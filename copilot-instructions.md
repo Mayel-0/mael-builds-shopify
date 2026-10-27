@@ -1,0 +1,1 @@
+/Users/mayel/Documents/Personnal/shopify/mael-builds-shopify/mael-builds-horizon/AGENTS.md
