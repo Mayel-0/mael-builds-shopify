@@ -1,0 +1,30 @@
+{% assign produit = closest.product %}
+{% assign projet = produit.metafields.custom.projet.value %}
+
+{%- if projet != blank -%}
+  {% assign pieces = projet.pieces.value %}
+  {% assign total = 0 %}
+
+  {% comment %} Une seule boucle : on calcule le total ET on prépare la liste {% endcomment %}
+  {%- capture liste_pieces -%}
+    {%- for piece in pieces -%}
+      {% assign temps_piece = piece.temps_impression.value | times: piece.quantite.value %}
+      {% assign total = total | plus: temps_piece %}
+      <li class="fiche-technique__piece">
+        <h3>{{ piece.nom.value }}</h3>
+        <p>{{ piece.quantite.value }} × {{ piece.temps_impression.value }} h</p>
+        {% render 'badge-materiau', materiau: piece.materiau.value %}
+      </li>
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  <div class="fiche-technique" {{ block.shopify_attributes }}>
+    <h2>{{ block.settings.titre }}</h2>
+    <p>Temps d'impression total : {{ total | round: 1 }} h</p>
+    <ul class="fiche-technique__pieces">
+      {{ liste_pieces }}
+    </ul>
+  </div>
+{%- elsif request.design_mode -%}
+  <p {{ block.shopify_attributes }}>Aucun projet associé à ce produit.</p>
+{%- endif -%}
