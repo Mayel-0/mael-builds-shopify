@@ -28,3 +28,11 @@
 {%- elsif request.design_mode -%}
   <p {{ block.shopify_attributes }}>Aucun projet associé à ce produit.</p>
 {%- endif -%}
+
+{% schema %}
+{
+  "name": "Fiche technique",
+  "settings": [{ "type": "text", "id": "titre", "label": "Titre", "default": "Fiche technique" }],
+  "presets": [{ "name": "Fiche technique" }]
+}
+{% endschema %}
