@@ -1,0 +1,35 @@
+{% assign produit = closest.product %}
+{% assign projet = produit.metafields.custom.projet.value %}
+{% assign lignes = projet.composant.value %}
+
+{%- if projet != blank and lignes.size > 0 -%}
+  <div class="fiche-composants" {{ block.shopify_attributes }}>
+    <h2>{{ block.settings.titre }}</h2>
+    {%- if block.settings.affiche_composant -%}
+      <div class="fiche-composants__liste">
+        {% for ligne in lignes %}
+          {% render 'carte-composant',
+            composant: ligne.composant.value,
+            quantite: ligne.quantite.value,
+            afficher_bouton_acheter: block.settings.afficher_bouton_acheter,
+            text_bouton_acheter: block.settings.text_bouton_acheter
+          %}
+        {% endfor %}
+      </div>
+    {%- endif -%}
+  </div>
+{%- elsif request.design_mode -%}
+  <p {{ block.shopify_attributes }}>Aucun composant associé à ce produit.</p>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Fiche Composants",
+  "presets": [{ "name": "Fiche composant" }],
+  "settings": [
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Fiche Composant" },
+    { "type": "checkbox", "id": "affiche_composant", "label": "Affciher les composants", "default": true },
+    { "type": "checkbox", "id": "afficher_bouton_acheter", "label": "Afficher Bouton acheter", "default": true },
+    { "type": "text", "id": "text_bouton_acheter", "label": "Texte bouto acheter", "default": "Acheter" }
+  ]
+}
+{% endschema %}

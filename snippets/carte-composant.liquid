@@ -1,0 +1,40 @@
+{% doc %}
+  @param {metaobject} composant - Le métaobjet Composant à afficher
+  @param {number} [quantite] - Quantité nécessaire, affichée sous la forme « 2 × »
+  @param {boolean} [masquer_lien] - Ne pas afficher le lien d'achat
+  @param {boolean} [afficher_bouton_acheter] - Afficher le lien d'achat
+  @param {string} [text_bouton_acheter] - Text bouton achata
+
+  @example
+  {% render 'carte-composant', composant: ligne.composant.value, quantite: ligne.quantite.value %}
+{% enddoc %}
+
+{%- if composant != blank -%}
+  <div class="carte-composant">
+    {%- if composant.image.value -%}
+      {{
+        composant.image.value
+        | image_url: width: 240
+        | image_tag: class: 'carte-composant__image', alt: composant.nom.value, loading: 'lazy'
+      }}
+    {%- endif -%}
+    <p class="carte-composant__nom">
+      {%- if quantite -%}{{ quantite }} × {% endif -%}
+      {{ composant.nom.value }}
+    </p>
+    {% if composant.lien.value != blank %}
+      {%- if afficher_bouton_acheter -%}
+        {%- unless masquer_lien -%}
+          <a href="{{ composant.lien.value }}" target="_blank" rel="noopener">{{ text_bouton_acheter }}</a>
+        {%- endunless -%}
+      {%- endif -%}
+    {%- endif %}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .carte-composant__image {
+    width: 20%;
+    height: 20%;
+  }
+{% endstylesheet %}
