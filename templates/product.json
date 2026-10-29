@@ -20,6 +20,17 @@
           },
           "blocks": {}
         },
+        "fiche_composants_LCWUqb": {
+          "type": "fiche-composants",
+          "name": "Fiche composant",
+          "settings": {
+            "titre": "Fiche Composant",
+            "affiche_composant": true,
+            "afficher_bouton_acheter": true,
+            "text_bouton_acheter": "Acheter le composant"
+          },
+          "blocks": {}
+        },
         "disclosures": {
           "type": "disclosures",
           "settings": {
@@ -321,6 +332,7 @@
       },
       "block_order": [
         "fiche_technique_z6FjCA",
+        "fiche_composants_LCWUqb",
         "disclosures"
       ],
       "settings": {
