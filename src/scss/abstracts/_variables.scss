@@ -1,0 +1,33 @@
+// Variables Sass : elles ne génèrent aucun CSS à elles seules.
+// Dans un autre fichier : @use '../abstracts/variables' as *;
+
+// Breakpoints (les mêmes que ceux d'Horizon, voir assets/base.css)
+$bp-tablette: 750px;
+$bp-bureau: 990px;
+$bp-large: 1400px;
+
+// Espacements
+$espace-1: 8px;
+$espace-2: 12px;
+$espace-3: 16px;
+$espace-4: 24px;
+$espace-5: 32px;
+$espace-6: 56px;
+$espace-section: 88px;
+
+// Rayons
+$rayon-bouton: 12px;
+$rayon-photo: 18px;
+$rayon-carte: 24px; // entre 22 et 26 px
+
+// Typographie (les polices sont déclarées dans snippets/mb-polices.liquid)
+$titre-graisse: 600;
+$titre-interlettrage: -0.03em;
+$texte-graisse: 400;
+$texte-graisse-forte: 600;
+
+// Couleurs qu'Horizon ne propose pas dans ses schémas.
+// Les autres (fond, surface, bordure, texte, boutons, liens) se règlent
+// dans l'éditeur : Paramètres du thème → Couleurs.
+$accent: #09bcf5; // numéros, traits, puces : jamais en fond de bouton ni pour du texte
+$texte-secondaire: #5b616b;

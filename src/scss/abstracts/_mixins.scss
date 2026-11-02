@@ -1,0 +1,32 @@
+// Mixins : comme les variables, ils ne génèrent du CSS que là où on les inclut.
+// Dans un autre fichier : @use '../abstracts/mixins' as *;
+
+@use 'sass:map';
+@use 'variables' as *;
+
+// Media query à partir d'une largeur minimale (mobile d'abord)
+// Exemple : @include a-partir-de(tablette) { ... }
+$breakpoints: (
+  tablette: $bp-tablette,
+  bureau: $bp-bureau,
+  large: $bp-large,
+);
+
+@mixin a-partir-de($nom) {
+  @media screen and (min-width: map.get($breakpoints, $nom)) {
+    @content;
+  }
+}
+
+// Contour visible uniquement à la navigation clavier
+// Exemple : .bouton { @include focus-visible; }
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
