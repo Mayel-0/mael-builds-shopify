@@ -1,5 +1,7 @@
-{% assign produit = closest.product %}
-{% assign projet = produit.metafields.custom.projet.value %}
+{% assign projet = closest.product.metafields.custom.projet.value %}
+{% if projet == blank and metaobject.system.type == 'projet' %}
+  {% assign projet = metaobject %}
+{% endif %}
 {% assign lignes = projet.composant.value %}
 
 {%- if projet != blank and lignes.size > 0 -%}
