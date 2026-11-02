@@ -1,0 +1,65 @@
+{% assign projet = metaobject %}
+{%- assign images = projet.galerie.value -%}
+{% assign produit = projet.produit.value %}
+{%- if projet != blank -%}
+  <div class="projet-entete" {{ block.shopify_attributes }}>
+    <div class="projet-entete__contenu">
+      <div class="projet-entete__texte">
+        <h1>{{ projet.titre.value }}</h1>
+        <div>
+          <p>{{ projet.accroche.value }}</p>
+          <span class="projet-entete__difficulte">{{ projet.difficulte.value }}</span>
+        </div>
+      </div>
+      <div class="projet-entete__conteneur-galerie">
+        {%- if images.size > 0 -%}
+          <div class="projet-entete__galerie">
+            {%- for image in images -%}
+              {%- capture alt_image -%}{{ projet.titre.value }} – photo {{ forloop.index }}{%- endcapture -%}
+              {{
+                image
+                | image_url: width: 480
+                | image_tag: class: 'projet-entete__image', alt: alt_image, loading: 'lazy'
+              }}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+        {%- if produit != blank -%}
+          <h2>Produit associé</h2>
+          <h3>{{ produit.title }} - {{ produit.price | money }}</h3>
+          <a class="projet-entete__lien" href="{{ produit.url }}">Voir le produit</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+{%- elsif request.design_mode -%}
+  <p {{ block.shopify_attributes }}>Aucun projet n'a étais trouvé.</p>
+{%- endif -%}
+
+{% stylesheet %}
+  /* Le reste du style est dans src/scss/blocks/_entete-projet.scss.
+     Ici, pas de Sass : seulement des variables CSS avec var(). */
+  .projet-entete__texte {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .projet-entete__difficulte {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--texte-secondaire);
+  }
+  .projet-entete__difficulte::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{ "name": "Entete Projet", "presets": [{ "name": "Entete Projet" }], "settings": [] }
+{% endschema %}

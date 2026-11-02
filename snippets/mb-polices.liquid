@@ -1,0 +1,25 @@
+{% doc %}
+  Déclare les polices personnalisées du site (Clash Display et Supreme).
+  Les fichiers .woff2 doivent se trouver dans le dossier assets/.
+
+  @example
+  {% render 'mb-polices' %}
+{% enddoc %}
+
+{{ 'ClashDisplay-Variable.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+{{ 'Supreme-Variable.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+
+{% style %}
+  @font-face {
+    font-family: 'Clash Display';
+    src: url('{{ 'ClashDisplay-Variable.woff2' | asset_url }}') format('woff2');
+    font-weight: 200 700;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Supreme';
+    src: url('{{ 'Supreme-Variable.woff2' | asset_url }}') format('woff2');
+    font-weight: 100 800;
+    font-display: swap;
+  }
+{% endstyle %}
