@@ -3,20 +3,27 @@
 {% assign lignes = projet.composant.value %}
 
 {%- if projet != blank and lignes.size > 0 -%}
-  <div class="fiche-composants" {{ block.shopify_attributes }}>
+  <div
+    class="fiche-composants"
+    style="
+      --taille-image-composants: {{ block.settings.taille_image_composant }};
+      --position-composants: {{ block.settings.position_element_composant }};
+    "
+    {{ block.shopify_attributes }}
+  >
     <h2>{{ block.settings.titre }}</h2>
-    {%- if block.settings.affiche_composant -%}
-      <div class="fiche-composants__liste">
-        {% for ligne in lignes %}
-          {% render 'carte-composant',
-            composant: ligne.composant.value,
-            quantite: ligne.quantite.value,
-            afficher_bouton_acheter: block.settings.afficher_bouton_acheter,
-            text_bouton_acheter: block.settings.text_bouton_acheter
-          %}
-        {% endfor %}
-      </div>
-    {%- endif -%}
+
+    <div class="fiche-composants__liste">
+      {% for ligne in lignes %}
+        {% render 'carte-composant',
+          composant: ligne.composant.value,
+          quantite: ligne.quantite.value,
+          afficher_bouton_acheter: block.settings.afficher_bouton_acheter,
+          text_bouton_acheter: block.settings.text_bouton_acheter,
+          afficher_image_composant: block.settings.afficher_image_composant
+        %}
+      {% endfor %}
+    </div>
   </div>
 {%- elsif request.design_mode -%}
   <p {{ block.shopify_attributes }}>Aucun composant associé à ce produit.</p>
@@ -24,12 +31,55 @@
 {% schema %}
 {
   "name": "Fiche Composants",
-  "presets": [{ "name": "Fiche composant" }],
+  "presets": [{ "name": "Fiche Composants" }],
   "settings": [
-    { "type": "text", "id": "titre", "label": "Titre", "default": "Fiche Composant" },
-    { "type": "checkbox", "id": "affiche_composant", "label": "Affciher les composants", "default": true },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Fiche Composants" },
     { "type": "checkbox", "id": "afficher_bouton_acheter", "label": "Afficher Bouton acheter", "default": true },
-    { "type": "text", "id": "text_bouton_acheter", "label": "Texte bouto acheter", "default": "Acheter" }
+    {
+      "type": "text",
+      "id": "text_bouton_acheter",
+      "label": "Texte bouton acheter",
+      "default": "Acheter",
+      "visible_if": "{{ block.settings.afficher_bouton_acheter }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "afficher_image_composant",
+      "label": "Afficher les images de composant",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "taille_image_composant",
+      "label": "Taille des images",
+      "default": "120px",
+      "options": [
+        { "value": "60px", "label": "Petit" },
+        { "value": "120px", "label": "Moyen" },
+        { "value": "180px", "label": "Grand" }
+      ],
+      "visible_if": "{{ block.settings.afficher_image_composant }}"
+    },
+    {
+      "type": "select",
+      "id": "position_element_composant",
+      "label": "Position des éléments",
+      "default": "center",
+      "options": [
+        { "value": "start", "label": "Gauche" },
+        { "value": "center", "label": "Centre" },
+        { "value": "end", "label": "Droit" }
+      ]
+    }
   ]
 }
 {% endschema %}
+
+{% stylesheet %}
+  .fiche-composants__liste {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+{% endstylesheet %}

@@ -1,40 +1,61 @@
 {% doc %}
+  Snippet Composant par Boucle
+
   @param {metaobject} composant - Le métaobjet Composant à afficher
   @param {number} [quantite] - Quantité nécessaire, affichée sous la forme « 2 × »
-  @param {boolean} [masquer_lien] - Ne pas afficher le lien d'achat
   @param {boolean} [afficher_bouton_acheter] - Afficher le lien d'achat
-  @param {string} [text_bouton_acheter] - Text bouton achata
+  @param {string} [text_bouton_acheter] - Texte du bouton d’achat
+  @param {boolean} [afficher_image_composant] - Afficher l'image du composant
 
   @example
-  {% render 'carte-composant', composant: ligne.composant.value, quantite: ligne.quantite.value %}
+  {% render 'carte-composant',
+    composant: ligne.composant.value,
+    quantite: ligne.quantite.value,
+    afficher_image_composant: true,
+    afficher_bouton_acheter: true,
+    text_bouton_acheter: 'Voir le composant'
+  %}
 {% enddoc %}
 
 {%- if composant != blank -%}
-  <div class="carte-composant">
-    {%- if composant.image.value -%}
-      {{
-        composant.image.value
-        | image_url: width: 240
-        | image_tag: class: 'carte-composant__image', alt: composant.nom.value, loading: 'lazy'
-      }}
-    {%- endif -%}
+  <div
+    class="carte-composant"
+  >
+    {% if afficher_image_composant != blank %}
+      {% unless composant.image.value == false %}
+        {{
+          composant.image.value
+          | image_url: width: 240
+          | image_tag: class: 'carte-composant__image', alt: composant.nom.value, loading: 'lazy'
+        }}
+      {% endunless %}
+    {% endif %}
     <p class="carte-composant__nom">
       {%- if quantite -%}{{ quantite }} × {% endif -%}
       {{ composant.nom.value }}
     </p>
     {% if composant.lien.value != blank %}
-      {%- if afficher_bouton_acheter -%}
-        {%- unless masquer_lien -%}
-          <a href="{{ composant.lien.value }}" target="_blank" rel="noopener">{{ text_bouton_acheter }}</a>
-        {%- endunless -%}
-      {%- endif -%}
+      {%- unless afficher_bouton_acheter == false -%}
+        <a href="{{ composant.lien.value | default: 'Acheter' }}" target="_blank" rel="noopener">
+          {{- text_bouton_acheter -}}
+        </a>
+      {%- endunless -%}
     {%- endif %}
   </div>
 {%- endif -%}
 
 {% stylesheet %}
-  .carte-composant__image {
-    width: 20%;
-    height: 20%;
+  .carte-composant {
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    padding: 1.5rem 1rem;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: var(--position-composants, center);
+    justify-content: var(--position-composants, center);
+    .carte-composant__image {
+      width: var(--taille-image-composants, 120px);
+    }
   }
 {% endstylesheet %}

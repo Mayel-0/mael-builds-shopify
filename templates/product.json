@@ -25,9 +25,22 @@
           "name": "Fiche composant",
           "settings": {
             "titre": "Fiche Composant",
-            "affiche_composant": true,
             "afficher_bouton_acheter": true,
-            "text_bouton_acheter": "Acheter le composant"
+            "text_bouton_acheter": "Acheter le composant",
+            "afficher_image_composant": true,
+            "taille_image_composant": "120px",
+            "position_element_composant": "center"
+          },
+          "blocks": {}
+        },
+        "etapes_montage_U4gJ3h": {
+          "type": "etapes-montage",
+          "name": "Fiche Etapes",
+          "settings": {
+            "titre": "Etapes :",
+            "afficher_image_etape": true,
+            "taille_image_etape": "120px",
+            "ligne_etapes": "decimal"
           },
           "blocks": {}
         },
@@ -333,6 +346,7 @@
       "block_order": [
         "fiche_technique_z6FjCA",
         "fiche_composants_LCWUqb",
+        "etapes_montage_U4gJ3h",
         "disclosures"
       ],
       "settings": {

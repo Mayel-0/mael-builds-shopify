@@ -1,0 +1,50 @@
+{% doc %}
+  @param {metaobject} etape - Le métaobjet etape à afficher
+  @param {boolean} [afficher_image_etape] - Afficher les image des composant
+  @param {boolean} [ouvrir_premiere_etape] - Premier etape ouvert
+  @param {boolean} [tous_les_etapes_ouvert] - Tous les etapes ouvert
+
+  @example
+  {% render 'carte-etape' for etapes as etape, afficher_image_etape: false %}
+{% enddoc %}
+{%- if etape != blank -%}
+  <li class="carte-etape__ligne">
+    <details
+      {% if tous_les_etapes_ouvert == true %}
+        open
+      {% endif -%}
+      {% if ouvrir_premiere_etape == true %}
+        {% if forloop.first %}
+          open
+        {% endif %}
+      {% endif %}
+    >
+      <summary>
+        <h3>{{ etape.titre.value }}</h3>
+      </summary>
+      <div class="carte-etape__contenu">
+        {% unless afficher_image_etape == false %}
+          {%- if etape.image.value -%}
+            {{
+              etape.image.value
+              | image_url: width: 240
+              | image_tag: class: 'carte-etape__image', alt: etape.titre.value, loading: 'lazy'
+            }}
+          {%- endif -%}
+        {% endunless %}
+        {% if etape.contenu != blank %}
+          {{ etape.contenu | metafield_tag }}
+        {% endif %}
+      </div>
+    </details>
+  </li>
+{% endif %}
+
+{% stylesheet %}
+  .carte-etape__ligne {
+    list-style-type: var(--ligne-etapes, decimal);
+    .carte-etape__image {
+      width: var(--taille-image-etapes, 120px);
+    }
+  }
+{% endstylesheet %}

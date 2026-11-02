@@ -1,0 +1,72 @@
+{% assign produit = closest.product %}
+{% assign projet = produit.metafields.custom.projet.value %}
+{% assign etapes = projet.etape.value %}
+
+{%- if projet != blank and etapes.size > 0 -%}
+  <div
+    class="block-etapes"
+    {{ block.shopify_attributes }}
+    style="
+      --taille-image-etapes: {{ block.settings.taille_image_etape }};
+      --ligne-etapes: {{ block.settings.ligne_etapes }};
+    "
+  >
+    <h2>{{ block.settings.titre }}</h2>
+    <ol>
+      {% render 'carte-etape'
+        for etapes as etape,
+        afficher_image_etape: block.settings.afficher_image_etape,
+        ouvrir_premiere_etape: block.settings.ouvrir_premiere_etape,
+        tous_les_etapes_ouvert: block.settings.tous_les_etapes_ouvert
+      %}
+    </ol>
+  </div>
+{%- elsif request.design_mode -%}
+  <p {{ block.shopify_attributes }}>Aucune etape associé à ce produit.</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Fiche Etapes",
+  "presets": [{ "name": "Fiche Etapes" }],
+  "settings": [
+    { "type": "text", "id": "titre", "label": "Titre Block", "default": "Etapes :" },
+    {
+      "type": "checkbox",
+      "id": "afficher_image_etape",
+      "label": "Afficher les images de l'étape",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "taille_image_etape",
+      "label": "Taille des images",
+      "default": "120px",
+      "options": [
+        { "value": "60px", "label": "Petit" },
+        { "value": "120px", "label": "Moyen" },
+        { "value": "180px", "label": "Grand" }
+      ],
+      "visible_if": "{{ block.settings.afficher_image_etape }}"
+    },
+    {
+      "type": "select",
+      "id": "ligne_etapes",
+      "label": "Style de la Liste",
+      "default": "decimal",
+      "options": [
+        { "value": "decimal", "label": "Numéroté" },
+        { "value": "upper-alpha", "label": "Alphabet" }
+      ]
+    },
+    { "type": "checkbox", "id": "ouvrir_premiere_etape", "label": "La premiere etape ouvert", "default": true },
+    {
+      "type": "checkbox",
+      "id": "tous_les_etapes_ouvert",
+      "label": "Tous les etapes ouvert",
+      "default": false,
+      "visible_if": "{{ block.settings.ouvrir_premiere_etape != true }}"
+    }
+  ]
+}
+{% endschema %}
