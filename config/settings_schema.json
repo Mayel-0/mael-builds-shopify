@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Horizon",
-    "theme_version": "4.3.0",
-    "theme_author": "Shopify",
-    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
-    "theme_support_url": "https://support.shopify.com/"
+    "theme_name": "Mael-theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Mael",
+    "theme_documentation_url": "https://github.com/Mayel-0/mael-builds-shopify#readme",
+    "theme_support_url": "https://github.com/Mayel-0/mael-builds-shopify/issues"
   },
   {
     "name": "t:names.logo_and_favicon",
