@@ -1,0 +1,14 @@
+// blocks/price.liquid (Horizon), seulement dans la fiche produit :
+// .product-details exclut les cartes produit et les recommandations.
+// Horizon applique sa typo sur la balise (.paragraph:not(.button)) ET sur ses
+// enfants (.paragraph > *) : on cible les deux, avec .text-block pour gagner.
+@use '../abstracts/variables' as *;
+
+.product-details product-price.text-block {
+  &,
+  > * {
+    font-family: var(--font-heading--family);
+    font-size: $espace-4;
+    font-weight: $titre-graisse;
+  }
+}

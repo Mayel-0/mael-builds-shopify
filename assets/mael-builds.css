@@ -379,3 +379,10 @@
   font-size: 24px;
   font-weight: 600;
 }
+
+.product-details product-price.text-block,
+.product-details product-price.text-block > * {
+  font-family: var(--font-heading--family);
+  font-size: 24px;
+  font-weight: 600;
+}

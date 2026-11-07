@@ -5,6 +5,7 @@
   @param {product} product_resource - The product to render
   @param {boolean} [show_unit_price] - Whether to show the unit price
   @param {boolean} [show_sale_price_first] - Whether to show the sale price first
+  @param {boolean} [prix_card_product] - Prefixe pour les prix dans les card}
 {%- enddoc -%}
 
 {% render 'price-styles' %}
@@ -67,10 +68,10 @@
     assign price_min = price_min | money_with_currency
     assign price_max = price_max | money_with_currency
   else
-    assign price = price | money
-    assign compare_at_price = compare_at_price | money
-    assign price_min = price_min | money
-    assign price_max = price_max | money
+    assign price = price | money_amount
+    assign compare_at_price = compare_at_price | money_amount
+    assign price_min = price_min | money_amount
+    assign price_max = price_max | money_amount
   endif
 -%}
 
@@ -111,7 +112,7 @@
       {% endif %}
     {% else %}
       <span class="price"
-        ><bdi>{{ price | default: '&nbsp;' }}</bdi></span
+        ><bdi>{{ price | default: '&nbsp;' }} €</bdi></span
       >
     {% endif %}
   {% endif %}
@@ -120,7 +121,7 @@
       if use_currency
         assign unit_price = selected_variant.unit_price | money_with_currency
       else
-        assign unit_price = selected_variant.unit_price | money
+        assign unit_price = selected_variant.unit_price | money_amount
       endif
     -%}
     {% render 'unit-price', price: unit_price, measurement: selected_variant.unit_price_measurement %}
