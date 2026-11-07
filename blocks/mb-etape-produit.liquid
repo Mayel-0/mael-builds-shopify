@@ -1,0 +1,28 @@
+{% assign projet = closest.product.metafields.custom.projet.value %}
+{% assign etapes = projet.etape.value %}
+
+{% if etapes != blank %}
+  <div class="mb-produit-etape" {{ block.shopify_attributes }}>
+    <h3 class="mb-produit-etape__titre-block">{{ block.settings.titre_block }}</h3>
+    <ol class="mb-produit-etape__liste">
+      {% render 'mb-etape-details' for etapes as etape, ouvert: block.settings.ouvert %}
+    </ol>
+  </div>
+{% elsif request.design_mode %}
+  <p {{ block.shopify_attributes }}>Ajouter des etape au Projet du Produit</p>
+{%- endif %}
+
+{% schema %}
+{
+  "name": "Etape produit",
+  "presets": [
+    {
+      "name": "Etape produit"
+    }
+  ],
+  "settings": [
+    { "type": "text", "id": "titre_block", "label": "Titre du Button", "default": "Étapes de montage" },
+    { "type": "checkbox", "id": "ouvert", "label": "Le premier est Ouvert par défaut", "default": true }
+  ]
+}
+{% endschema %}

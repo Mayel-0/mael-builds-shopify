@@ -1,0 +1,56 @@
+@use '../abstracts/variables' as *;
+
+.mb-details-etape {
+  background-color: var(--bg-blanc);
+  padding: $espace-2 $espace-3;
+  border-radius: 12px;
+
+  // La classe est sur le <li>, l'attribut open sur le <details> à l'intérieur :
+  // l'espace après & veut dire « un [open] DANS .mb-details-etape »
+  & [open] &__titre::after {
+    content: '−';
+  }
+
+  &__titre {
+    margin: 0;
+    font-size: 17px;
+    font-weight: $titre-graisse;
+    span {
+      margin-right: $espace-3;
+      color: var(--accent);
+    }
+    &::after {
+      content: '+';
+      font-size: $espace-4;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--texte-secondaire);
+      position: absolute;
+      right: 4%;
+    }
+  }
+  &__contenu {
+    display: flex;
+    color: var(--texte-secondaire-noir);
+    gap: $espace-3;
+    margin-top: $espace-3;
+    p {
+      width: 80%;
+    }
+  }
+  &__conteneur-image {
+    border-radius: 12px;
+    height: 220px;
+    width: 240px;
+    background-color: var(--bg-claire);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__image {
+    height: 210px;
+    width: 230px;
+    border-radius: 12px;
+  }
+}
+

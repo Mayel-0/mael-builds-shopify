@@ -10,10 +10,12 @@
 @use 'blocks/entete-projet';
 @use 'blocks/mb-titre-produit';
 @use 'blocks/mb-etiquettes-produit';
+@use 'blocks/mb-etape-produit';
 
 // Snippets (snippets/*.liquid)
 @use 'snippets/mb-badge-difficulte';
 @use 'snippets/mb-details-produit';
 @use 'snippets/mb-materiel';
 @use 'snippets/mb-composant-ligne';
+@use 'snippets/mb-etape-details';
 @use 'snippets/_mb-details-projet';

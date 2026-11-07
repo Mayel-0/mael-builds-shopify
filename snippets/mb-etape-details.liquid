@@ -1,0 +1,45 @@
+{% doc %}
+  @param {metaobject} etape - Meta object Etape
+  @param {boolean} ouvert - Le premier details est ouvert par defaut
+
+  @example
+  {% render 'mb-etape-details' for etapes as etape, ouvert: true %}
+{% enddoc %}
+
+{% assign current_index = forloop.index %}
+
+{% if etape != blank %}
+  <li class="mb-details-etape">
+    <details
+      {% if ouvert and forloop.first %}
+        open
+      {% endif %}
+    >
+      <summary>
+        <h4 class="mb-details-etape__titre">
+          <span>
+            {%- if current_index < 10 -%}
+              0{{ current_index }}
+            {%- else -%}
+              {{ current_index }}
+            {%- endif -%}
+          </span>
+          {{ etape.titre.value }}
+        </h4>
+      </summary>
+
+      <div class="mb-details-etape__contenu">
+        {% if etape.image.value != blank %}
+          <div class="mb-details-etape__conteneur-image">
+            {{
+              etape.image.value
+              | image_url: width: 400, height: 400
+              | image_tag: alt: etape.titre.value, loading: 'lazy', class: 'mb-details-etape__image'
+            }}
+          </div>
+        {% endif %}
+        {{ etape.contenu | metafield_tag }}
+      </div>
+    </details>
+  </li>
+{%- endif %}

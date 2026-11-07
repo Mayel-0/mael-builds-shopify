@@ -1,0 +1,30 @@
+@use '../abstracts/variables' as *;
+
+// La section Horizon est une grille à 3 colonnes (marge | contenu | marge) et
+// .section--page-width > * place chaque bloc dans la colonne 2 (base.css).
+// On fait passer le bloc Shopify qui contient nos étapes sur toute la largeur.
+.section > .shopify-block:has(> .mb-produit-etape) {
+  grid-column: 1 / -1;
+}
+
+.mb-produit-etape {
+  background-color: var(--bg-claire);
+  padding: $espace-6 calc(max(0px, (100% - var(--page-width)) / 2) + var(--page-margin));
+  &__titre-block {
+    margin: 0;
+    align-items: baseline;
+    font-weight: $texte-graisse-forte;
+    font-size: $espace-5;
+    letter-spacing: -0.03rem;
+    margin-bottom: $espace-4;
+  }
+  &__liste {
+    display: flex;
+    flex-direction: column;
+    gap: $espace-4;
+  }
+}
+
+.mb-produit-etape ol {
+  list-style-type: none;
+}
