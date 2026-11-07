@@ -1,0 +1,58 @@
+@use '../abstracts/variables' as *;
+
+
+.mb-lien-projet {
+  // Toute la largeur, même dans une section/un groupe aligné à gauche
+  // (align-items: flex-start rétrécit les enfants à la taille de leur contenu)
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-claire);
+  padding: 18px 20px;
+  border-radius: 18px;
+  gap: 0px;
+  &__lien {
+    font-weight: $texte-graisse-forte;
+    font-size: $espace-3;
+  }
+
+  &__label {
+    font-size: $espace-2;
+    color: var(--accent);
+  }
+
+  &__textes {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__fleche {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s;
+  }
+
+  &:hover &__fleche {
+    transform: translateX(4px);
+  }
+
+  // Page produit (lien vers le projet)
+  &--produit {
+  }
+
+  // Page projet (lien vers le produit) : exemple de style différent
+  &--projet {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+  }
+  // Un élément intérieur seulement sur une page : &--projet &__label
+  &--projet &__label {
+    color: var(--accent);
+    color: var(--color-background);
+  }
+
+  &--projet &__textes {
+    flex-direction: column-reverse;
+  }
+}

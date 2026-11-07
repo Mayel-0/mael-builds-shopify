@@ -114,6 +114,48 @@
   list-style-type: none;
 }
 
+.mb-lien-projet {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-claire);
+  padding: 18px 20px;
+  border-radius: 18px;
+  gap: 0px;
+}
+.mb-lien-projet__lien {
+  font-weight: 600;
+  font-size: 16px;
+}
+.mb-lien-projet__label {
+  font-size: 12px;
+  color: var(--accent);
+}
+.mb-lien-projet__textes {
+  display: flex;
+  flex-direction: column;
+}
+.mb-lien-projet__fleche {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s;
+}
+.mb-lien-projet:hover .mb-lien-projet__fleche {
+  transform: translateX(4px);
+}
+.mb-lien-projet--projet {
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+}
+.mb-lien-projet--projet .mb-lien-projet__label {
+  color: var(--accent);
+  color: var(--color-background);
+}
+.mb-lien-projet--projet .mb-lien-projet__textes {
+  flex-direction: column-reverse;
+}
+
 .mb-badge-difficulte {
   border: 1px solid #d5d8dd;
   font-size: 12px;

@@ -1,0 +1,55 @@
+{%- liquid
+  assign url = blank
+
+  if closest.product != blank
+    # Page produit → lien vers la page du projet
+    assign projet = closest.product.metafields.custom.projet.value
+    assign url = projet.system.url
+    assign label = block.settings.texte_label
+    assign texte = block.settings.texte_lien
+    assign contexte = 'produit'
+  elsif metaobject.system.type == 'projet'
+    # Page projet → lien vers le produit à acheter
+    assign produit = metaobject.produit.value
+    assign url = produit.url
+    assign label = block.settings.texte_label_projet
+    assign texte = block.settings.texte_lien_projet
+    assign contexte = 'projet'
+  endif
+-%}
+
+{%- if url != blank -%}
+  <a href="{{ url }}" class="mb-lien-projet mb-lien-projet--{{ contexte }}" {{ block.shopify_attributes }}>
+    <span class="mb-lien-projet__textes">
+      {%- if label != blank -%}
+        <span class="mb-lien-projet__label">{{ label }}</span>
+      {%- endif -%}
+      <span class="mb-lien-projet__lien">{{ texte }}</span>
+    </span>
+    <span class="mb-lien-projet__fleche svg-wrapper">
+      {{- 'icon-arrow.svg' | inline_asset_content -}}
+    </span>
+  </a>
+{%- elsif request.design_mode -%}
+  <p {{ block.shopify_attributes }}>Aucun projet ou produit associé à cette page.</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Lien",
+  "tag": null,
+  "presets": [
+    {
+      "name": "Lien"
+    }
+  ],
+  "settings": [
+    { "type": "header", "content": "Sur une page produit (lien vers le projet)" },
+    { "type": "text", "id": "texte_label", "label": "Texte du label", "default": "Making-of" },
+    { "type": "text", "id": "texte_lien", "label": "Texte du lien", "default": "Voir comment il a été fabriqué" },
+    { "type": "header", "content": "Sur une page projet (lien vers le produit)" },
+    { "type": "text", "id": "texte_label_projet", "label": "Texte du label", "default": "Boutique" },
+    { "type": "text", "id": "texte_lien_projet", "label": "Texte du lien", "default": "Acheter le kit" }
+  ]
+}
+{% endschema %}
