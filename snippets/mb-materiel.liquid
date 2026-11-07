@@ -1,0 +1,30 @@
+{% doc %}
+  @param {metaobject} materiel - Le matériel du produit (métachamp produit custom.materiel)
+  @param {metaobject} piece - La pièce du produit (métachamp produit custom.pieces)
+
+  @example
+  {% render 'mb-materiel', materiel: piece.materiau.value, piece: piece %}
+{% enddoc %}
+
+{%- liquid
+  assign heures_decimales = piece.temps_impression.value | times: piece.quantite.value
+  assign minutes_total = heures_decimales | times: 60 | round
+  assign heures = minutes_total | divided_by: 60
+  assign minutes = minutes_total | modulo: 60
+  assign minutes = minutes | prepend: '0' | slice: -2, 2
+-%}
+
+{%- if materiel != blank -%}
+  <div class="mb-materiel" style="--couleur-materiel: {{ materiel.couleur.value }};">
+    <div class="mb-materiel__ligne">
+      <p class="mb-materiel__texte-secondaire">Temps d'impression total</p>
+      <p class="mb-materiel__temps">{{ heures }}h{{ minutes }}</p>
+    </div>
+    <div class="mb-materiel__ligne">
+      <p class="mb-materiel__texte-secondaire">{{ piece.nom.value }} - {{ piece.quantite.value }} pièce(s)</p>
+      <p class="mb-materiel__label-materiel">{{ materiel.nom.value }} - {{ materiel.temperature_buse }} °C</p>
+    </div>
+  </div>
+{%- elsif request.design_mode -%}
+  <p {{ block.shopify_attributes }}>Ajoute le matériel du produit dans l'admin.</p>
+{%- endif -%}

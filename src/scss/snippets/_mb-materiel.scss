@@ -1,0 +1,43 @@
+// snippets/mb-materiel.liquid
+@use '../abstracts/variables' as *;
+
+.mb-materiel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 0px;
+  p {
+    margin: 0;
+  }
+  &__ligne {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  & &__temps {
+    font-weight: $texte-graisse-forte;
+  }
+  &__label-materiel {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--bordure-claire);
+    padding: 2px $espace-1;
+    border-radius: 18px;
+    &::before {
+      content: ' ';
+      display: flex;
+      width: $espace-2;
+      height: $espace-2;
+      border-radius: 50%;
+      background-color: var(--couleur-materiel, transparent);
+      border: 1px solid var(--bordure-claire);
+    }
+  }
+  & &__label-materiel {
+    font-size: $espace-2;
+  }
+  &__texte-secondaire {
+    color: var(--texte-secondaire);
+  }
+}
