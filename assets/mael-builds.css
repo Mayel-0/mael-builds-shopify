@@ -156,6 +156,49 @@
   flex-direction: column-reverse;
 }
 
+.mb-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid var(--bordure-claire);
+  border-radius: 12px;
+  padding: 12px 16px;
+  gap: 12px;
+}
+.mb-card__label {
+  margin: 0px;
+  font-weight: 300;
+}
+.mb-card__prix {
+  margin: 0px;
+}
+.mb-card__prix span {
+  font-weight: 600;
+}
+.mb-card__titre {
+  margin: 0px;
+  font-weight: 600;
+}
+.mb-card__image {
+  width: 76px;
+  height: 76px;
+  border-radius: 14px;
+}
+.mb-card__lien {
+  width: 100%;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-align: center;
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+}
+.mb-card__contenu {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
 .mb-badge-difficulte {
   border: 1px solid #d5d8dd;
   font-size: 12px;

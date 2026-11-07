@@ -1,0 +1,35 @@
+{%- liquid
+  assign produit = metaobject.produit.value
+-%}
+
+{% if produit != blank %}
+  <div class="mb-card" {{ block.shopify_attributes }}>
+    <div class="mb-card__contenu">
+      {%- if produit.featured_image != blank -%}
+        {{
+          produit.featured_image
+          | image_url: width: 400, height: 400, crop: 'center'
+          | image_tag: alt: produit.title, loading: 'lazy', class: 'mb-card__image'
+        }}
+      {%- endif -%}
+      <div>
+        <span class="mb-card__label">Produit associé</span>
+        <p class="mb-card__titre">{{ produit.title }}</p>
+        <p class="mb-card__prix">
+          À partir de <span>{{ produit.price_min | money }}</span>
+        </p>
+      </div>
+    </div>
+    <a class="mb-card__lien" href="{{ produit.url }}">Acheter ce projet</a>
+  </div>
+{% elsif request.design_mode %}
+  <p {{ block.shopify_attributes }}>Ajouter un produit a ce Projet</p>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Carte Produit",
+  "presets": [{ "name": "Carte Produit" }],
+  "settings": []
+}
+{% endschema %}

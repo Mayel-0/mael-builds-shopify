@@ -12,6 +12,7 @@
 @use 'blocks/mb-etiquettes-produit';
 @use 'blocks/mb-etape-produit';
 @use 'blocks/mb-lien-projet';
+@use 'blocks/mb-card-produit.scss';
 
 // Snippets (snippets/*.liquid)
 @use 'snippets/mb-badge-difficulte';
