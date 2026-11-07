@@ -1,0 +1,52 @@
+{% doc %}
+  @param {metaobject} pieces - Liste des pieces
+  @param {metaobject} composants - Liste des composants
+  @param {string} difficulte - Niveaux de difficulte du projet
+{% enddoc %}
+
+{%- liquid
+  assign total_quantite = 0
+  assign total_temp_impression = 0
+  assign total_composant = 0
+
+  for piece in pieces
+    assign quantite = piece.quantite.value | default: 1
+    assign total_quantite = total_quantite | plus: quantite
+    assign temp_impression = piece.temps_impression.value | times: quantite
+    assign total_temp_impression = total_temp_impression | plus: temp_impression
+    assign materiel = piece.materiau.value.nom.value
+  endfor
+
+  for composant in composants
+    assign quantite = composant.quantite.value
+    assign total_composant = total_composant | plus: quantite
+  endfor
+
+  # Temps total (heures décimales, 8.3 = 8h18) → heures + minutes sur 2 chiffres
+  assign minutes_total = total_temp_impression | times: 60 | round
+  assign heures = minutes_total | divided_by: 60
+  assign minutes = minutes_total | modulo: 60 | prepend: '0' | slice: -2, 2
+-%}
+
+<div class="mb-details-projet">
+  <div>
+    <label>Temps impression</label>
+    <p>{{ heures }}h{{ minutes }}</p>
+  </div>
+  <div>
+    <label>Matériau</label>
+    <p>{{ materiel }}</p>
+  </div>
+  <div>
+    <label>Pieces</label>
+    <p>{{ total_quantite }}</p>
+  </div>
+  <div>
+    <label>Composants</label>
+    <p>{{ total_composant }}</p>
+  </div>
+  <div>
+    <label>Niveau</label>
+    <p>{{ difficulte }}</p>
+  </div>
+</div>

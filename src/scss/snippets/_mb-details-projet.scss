@@ -1,0 +1,19 @@
+@use '../abstracts/variables' as *;
+
+
+.mb-details-projet {
+  display: flex;
+  align-items: center;
+  gap: $espace-6;
+  margin-top: $espace-3;
+  label {
+    font-size: $espace-2;
+    font-weight: 300;
+    color: var(--texte-secondaire);
+  }
+  p {
+    margin-top: 0px;
+    font-size: $espace-4;
+    font-weight: $texte-graisse-forte;
+  }
+}

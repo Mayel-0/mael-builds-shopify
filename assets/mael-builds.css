@@ -119,3 +119,19 @@
   position: absolute;
   right: 4%;
 }
+.mb-details-projet {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  margin-top: 16px;
+}
+.mb-details-projet label {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--texte-secondaire);
+}
+.mb-details-projet p {
+  margin-top: 0px;
+  font-size: 24px;
+  font-weight: 600;
+}

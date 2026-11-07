@@ -1,0 +1,44 @@
+{%- liquid
+  assign context = blank
+  if closest.product != blank
+    assign context = 'produit'
+  elsif metaobject.system.type == 'projet'
+    assign context = 'projet'
+    assign projet = metaobject
+  endif
+-%}
+
+{%- if context != blank -%}
+  {%- if context == 'produit' -%}
+    <div {{ block.shopify_attributes }}>
+      {% render 'mb-details-produit',
+        titre: block.settings.titre_summary,
+        contenu: product.description,
+        ouvert: block.settings.ouvert
+      %}
+    </div>
+  {% endif %}
+  {%- if context == 'projet' -%}
+    <div {{ block.shopify_attributes }}>
+      <p>{{ projet.accroche.value }}</p>
+      {% render 'mb-details-projet', pieces: projet.pieces.value, composants: projet.composant.value, difficulte: projet.difficulte.value %}
+    </div>
+  {%- endif -%}
+{%- elsif request.design_mode -%}
+  <p {{ block.shopify_attributes }}>Desciption pour projet ou produit.</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Description",
+  "presets": [
+    {
+      "name": "Description"
+    }
+  ],
+  "settings": [
+    { "type": "text", "id": "titre_summary", "label": "Titre du Button", "default": "Description" },
+    { "type": "checkbox", "id": "ouvert", "label": "Ouvert par défaut", "default": true }
+  ]
+}
+{% endschema %}
