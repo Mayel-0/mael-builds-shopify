@@ -8,6 +8,9 @@
 
 // Blocs (blocks/*.liquid)
 @use 'blocks/entete-projet';
+@use 'blocks/mb-titre-produit';
+@use 'blocks/mb-etiquettes-produit';
 
 // Snippets (snippets/*.liquid)
+@use 'snippets/mb-badge-difficulte';
 @use 'snippets/mb-details-produit';

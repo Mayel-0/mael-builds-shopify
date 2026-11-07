@@ -1,0 +1,10 @@
+// snippets/mb-badge-difficulte.liquid
+@use '../abstracts/variables' as *;
+
+.mb-badge-difficulte {
+  border: 1px solid $bordure-claire;
+  font-size: $espace-2;
+  font-weight: 500;
+  padding: 4px $espace-2;
+  border-radius: 999px;
+}

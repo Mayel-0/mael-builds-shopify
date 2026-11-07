@@ -1,0 +1,28 @@
+// blocks/mb-titre-produit.liquid
+@use '../abstracts/variables' as *;
+
+.mb-titre-produit {
+  margin: 0;
+
+  &__titre {
+    font-family: var(--font-heading--family);
+    font-weight: $titre-graisse;
+    font-size: 40px;
+    line-height: 1.08;
+  }
+
+  // Page projet : à styler si besoin (ex. titre plus grand)
+  // Le trait et le texte côte à côte, centrés verticalement
+  &--projet &__label {
+    display: flex;
+    align-items: center;
+    gap: $espace-1;
+  }
+
+  &--projet &__label::before {
+    content: ''; // obligatoire : sans content, le ::before n'est pas créé
+    width: $espace-3;
+    height: 1px;
+    background-color: var(--accent);
+  }
+}

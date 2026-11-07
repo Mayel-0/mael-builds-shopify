@@ -57,6 +57,45 @@
   outline: none;
 }
 
+.mb-titre-produit {
+  margin: 0;
+}
+.mb-titre-produit__titre {
+  font-family: var(--font-heading--family);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.08;
+}
+.mb-titre-produit--projet .mb-titre-produit__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mb-titre-produit--projet .mb-titre-produit__label::before {
+  content: "";
+  width: 16px;
+  height: 1px;
+  background-color: var(--accent);
+}
+
+.mb-etiquettes-produit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.mb-etiquettes-produit__type {
+  font-weight: var(--mb-graisse-type, 300);
+}
+
+.mb-badge-difficulte {
+  border: 1px solid #d5d8dd;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
 .mb-details-produit {
   border-bottom: 1px solid var(--bordure-claire);
 }

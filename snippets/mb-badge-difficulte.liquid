@@ -1,0 +1,14 @@
+{% doc %}
+  @param {string} difficulte - Le niveau : Débutant, Intermédiaire ou Avancé
+  @param {string} [prefixe] - Texte affiché avant le niveau, par exemple « Niveau »
+
+  @example
+  {% render 'mb-badge-difficulte', difficulte: produit.metafields.custom.difficulte.value, prefixe: 'Niveau' %}
+{% enddoc %}
+
+{%- if difficulte != blank -%}
+  <span class="mb-badge-difficulte">
+    {%- if prefixe != blank -%}{{ prefixe }} {% endif -%}
+    {{ difficulte | downcase }}
+  </span>
+{%- endif -%}
