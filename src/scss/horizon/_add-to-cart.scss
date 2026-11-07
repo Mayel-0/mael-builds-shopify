@@ -1,0 +1,9 @@
+// blocks/add-to-cart.liquid (Horizon)
+@use '../abstracts/variables' as *;
+
+.mb-securite-paiement {
+  font-size: $espace-2;
+  color: var(--texte-secondaire);
+  text-align: center;
+  margin: 0;
+}
