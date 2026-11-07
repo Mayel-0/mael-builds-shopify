@@ -5,6 +5,10 @@
   --rayon-photo: 18px;
   --rayon-carte: 24px;
   --espace-section: 88px;
+  --texte-secondaire-noir: #2B2F35;
+  --bordure-claire: #d5d8dd;
+  --bg-claire: #F4F5F7;
+  --bg-blanc: #FFFFFF;
 }
 
 :root {
