@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --accent: #09bcf5;
   --texte-secondaire: #5b616b;
@@ -54,4 +55,28 @@
 }
 .projet-entete__lien:focus:not(:focus-visible) {
   outline: none;
+}
+
+.mb-details-produit {
+  border-bottom: 1px solid var(--bordure-claire);
+}
+.mb-details-produit[open] .mb-details-produit__titre::after {
+  content: "−";
+}
+.mb-details-produit__titre {
+  min-height: 60px;
+  height: 60px;
+}
+.mb-details-produit__titre h2 {
+  font-weight: 600;
+  font-size: 16px;
+}
+.mb-details-produit__titre::after {
+  content: "+";
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--texte-secondaire);
+  position: absolute;
+  right: 4%;
 }

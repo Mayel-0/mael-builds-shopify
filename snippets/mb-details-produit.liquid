@@ -1,0 +1,24 @@
+{% doc %}
+  @param {string} titre - Le Titre du Button, par exemple « Description »
+  @param {string} contenu - Le contenu HTML à afficher une fois déplié
+  @param {boolean} [ouvert] - Ouvert par défaut
+
+  @example
+  {% render 'mb-details-produit', titre: 'Description', contenu: produit.metafields.custom.description, ouvert: true %}
+{% enddoc %}
+
+{%- if titre != blank and contenu != blank -%}
+  <details
+    class="mb-details-produit"
+    {% if ouvert %}
+      open
+    {% endif %}
+  >
+    <summary class="mb-details-produit__titre">
+      <h2>{{ titre }}</h2>
+    </summary>
+    <div class="mb-details-produit__contenu">
+      {{ contenu }}
+    </div>
+  </details>
+{%- endif -%}
