@@ -1,0 +1,14 @@
+{% doc %}
+  Affiche le label de livraison de la variante (métachamp variante custom.label_livraison).
+  Rendu dans le sélecteur de variantes pour se mettre à jour au changement de variante.
+
+  @param {variant} variante - La variante dont on affiche le label
+
+  @example
+  {% render 'mb-label-livraison', variante: product.selected_or_first_available_variant %}
+{% enddoc %}
+
+{%- assign label_livraison = variante.metafields.custom.livraison.value -%}
+{%- if label_livraison != blank -%}
+  <p class="mb-label-livraison">{{ label_livraison }}</p>
+{%- endif -%}

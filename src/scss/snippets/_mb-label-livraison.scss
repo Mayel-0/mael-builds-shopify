@@ -1,0 +1,18 @@
+// snippets/mb-label-livraison.liquid
+@use '../abstracts/variables' as *;
+
+.mb-label-livraison {
+  margin: $espace-3 0;
+  display: flex;
+  gap: $espace-2;
+  align-items: center;
+  font-size: $espace-2;
+
+  &::before {
+    content: '';
+    width: $espace-1;
+    height: $espace-1;
+    border-radius: 50%;
+    background-color: var(--accent);
+  }
+}

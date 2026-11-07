@@ -1,0 +1,79 @@
+// snippets/variant-main-picker.liquid (Horizon)
+// Le CSS d'Horizon (snippets/variant-picker-styles.liquid) est chargé après le nôtre :
+// on préfixe par .variant-picker pour gagner en spécificité.
+@use '../abstracts/variables' as *;
+
+// Styles de base d'Horizon à neutraliser
+.variant-picker .variant-option--buttons {
+  display: flex;
+  flex-direction: column;
+  gap: $espace-2;
+
+  .variant-option__button-label {
+    display: flex;
+    // Horizon : flex: 0 0 3.25em + overflow: clip → hauteur figée, 2e ligne coupée
+    flex: 0 0 auto;
+    white-space: normal;
+
+    // Pas de « pilule » de fond noire sur la variante sélectionnée
+    .variant-option__button-label__pill {
+      display: none;
+    }
+
+    // Sélectionnée : texte normal, bordure (le ::before d'Horizon) plus épaisse et noire
+    &:has(:checked),
+    &:has(:checked):hover {
+      color: var(--color-variant-text);
+
+      &::before {
+        border-width: 2px;
+        border-color: var(--color-foreground);
+      }
+    }
+  }
+}
+
+// Nos éléments ajoutés dans le snippet
+.mb-variantes {
+  &__prix {
+    font-weight: $texte-graisse-forte;
+  }
+
+  &__legend {
+    font-weight: $titre-graisse;
+  }
+
+  &__legend-valeur {
+    font-weight: 300;
+  }
+
+  &__contenu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 2px;
+    // Au-dessus du faux contour ::before d'Horizon (z-index: 2)
+    position: relative;
+    z-index: 2;
+    // Le clic doit traverser jusqu'au <label> pour cocher la variante
+    pointer-events: none;
+  }
+
+  &__texte-variant {
+    display: flex;
+    flex-direction: column;
+  }
+
+  // 3 classes pour battre « text-align: center » (2 classes, chargé après nous)
+  // de .variant-option--equal-width-buttons .variant-option__button-label__text
+  .variant-picker .variant-option--buttons &__nom {
+    text-align: start;
+    font-size: $espace-3;
+    font-weight: $texte-graisse-forte;
+  }
+
+  &__detail {
+    font-size: $espace-2;
+    color: var(--texte-secondaire);
+  }
+}

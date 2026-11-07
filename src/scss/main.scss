@@ -17,6 +17,7 @@
 // Snippets (snippets/*.liquid)
 @use 'snippets/mb-badge-difficulte';
 @use 'snippets/mb-details-produit';
+@use 'snippets/mb-label-livraison';
 @use 'snippets/mb-materiel';
 @use 'snippets/mb-composant-ligne';
 @use 'snippets/mb-etape-details';
@@ -24,3 +25,4 @@
 
 // Fichiers d'Horizon modifiés
 @use 'horizon/price';
+@use 'horizon/variant-main-picker';

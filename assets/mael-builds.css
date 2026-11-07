@@ -230,6 +230,21 @@
   position: absolute;
   right: 4%;
 }
+.mb-label-livraison {
+  margin: 16px 0;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 12px;
+}
+.mb-label-livraison::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
 .mb-materiel {
   display: flex;
   flex-direction: column;
@@ -385,4 +400,57 @@
   font-family: var(--font-heading--family);
   font-size: 24px;
   font-weight: 600;
+}
+
+.variant-picker .variant-option--buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.variant-picker .variant-option--buttons .variant-option__button-label {
+  display: flex;
+  flex: 0 0 auto;
+  white-space: normal;
+}
+.variant-picker .variant-option--buttons .variant-option__button-label .variant-option__button-label__pill {
+  display: none;
+}
+.variant-picker .variant-option--buttons .variant-option__button-label:has(:checked), .variant-picker .variant-option--buttons .variant-option__button-label:has(:checked):hover {
+  color: var(--color-variant-text);
+}
+.variant-picker .variant-option--buttons .variant-option__button-label:has(:checked)::before, .variant-picker .variant-option--buttons .variant-option__button-label:has(:checked):hover::before {
+  border-width: 2px;
+  border-color: var(--color-foreground);
+}
+
+.mb-variantes__prix {
+  font-weight: 600;
+}
+.mb-variantes__legend {
+  font-weight: 600;
+}
+.mb-variantes__legend-valeur {
+  font-weight: 300;
+}
+.mb-variantes__contenu {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2px;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+.mb-variantes__texte-variant {
+  display: flex;
+  flex-direction: column;
+}
+.variant-picker .variant-option--buttons .mb-variantes__nom {
+  text-align: start;
+  font-size: 16px;
+  font-weight: 600;
+}
+.mb-variantes__detail {
+  font-size: 12px;
+  color: var(--texte-secondaire);
 }

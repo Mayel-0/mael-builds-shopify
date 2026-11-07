@@ -88,13 +88,16 @@
           </div>
         {%- elsif variant_style == 'swatch' or block_settings.variant_style == 'buttons' -%}
           <fieldset
-            class="variant-option variant-option--buttons{% if variant_style == 'swatch' %} variant-option--swatches{% else %} variant-option--{{ settings.variant_button_width }}{% endif %}"
+            class="mb-variantes variant-option variant-option--buttons{% if variant_style == 'swatch' %} variant-option--swatches{% else %} variant-option--{{ settings.variant_button_width }}{% endif %}"
             data-fieldset-index="{{ fieldset_index }}"
             ref="fieldsets[]"
             {{ option_id_attribute }}
           >
-            <legend>
+            <legend class="mb-variantes__legend">
               {{ product_option.name | escape -}}
+              {%- unless variant_style == 'swatch' -%}
+                : <span class="mb-variantes__legend-valeur">{{ product_option.selected_value | escape -}}</span>
+              {%- endunless -%}
               {%- if variant_style == 'swatch' -%}
                 <span class="variant-option__swatch-value">{{ product_option.selected_value }}</span>
               {%- endif %}
@@ -155,12 +158,22 @@
                       data-key="variant-option-pill"
                     ></span>
                   {% endif %}
-                  <span
-                    class="variant-option__button-label__text"
-                    data-key="variant-option-text"
-                  >
-                    {{- product_option_value | escape -}}
-                  </span>
+                  {%- assign variant_price = product_option_value.variant.price -%}
+                  {%- assign detail_format = product_option_value.variant.metafields.custom.detail_format.value -%}
+                  <div class="mb-variantes__contenu">
+                    <div class="mb-variantes__texte-variant">
+                      <span
+                        class="mb-variantes__nom variant-option__button-label__text"
+                        data-key="variant-option-text"
+                      >
+                        {{- product_option_value | escape -}}
+                      </span>
+                      {%- if detail_format != blank -%}
+                        <span class="mb-variantes__detail">{{ detail_format }}</span>
+                      {%- endif -%}
+                    </div>
+                    <p class="mb-variantes__prix">{{ variant_price | money_amount }} €</p>
+                  </div>
                 {% endif %}
                 {% render 'strikethrough-variant', product_option: product_option_value %}
               </label>
@@ -237,11 +250,16 @@
         {%- endif -%}
       {%- endfor -%}
 
+      {% render 'mb-label-livraison', variante: product_resource.selected_or_first_available_variant %}
+
       <script type="application/json">
         {{ product_resource.selected_or_first_available_variant | json }}
       </script>
     </form>
   </variant-picker>
+{% else %}
+  {% # Produit sans variantes : Horizon n'affiche pas le sélecteur, on garde le label %}
+  {% render 'mb-label-livraison', variante: product_resource.selected_or_first_available_variant %}
 {% endunless %}
 
 {% render 'swatch-styles' %}
