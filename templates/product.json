@@ -12,35 +12,12 @@
     "main": {
       "type": "product-information",
       "blocks": {
-        "fiche_technique_z6FjCA": {
-          "type": "fiche-technique",
-          "name": "Fiche technique",
+        "mb_etape_produit_zABYYL": {
+          "type": "mb-etape-produit",
+          "name": "Etape produit",
           "settings": {
-            "titre": "Fiche technique"
-          },
-          "blocks": {}
-        },
-        "fiche_composants_LCWUqb": {
-          "type": "fiche-composants",
-          "name": "Fiche composant",
-          "settings": {
-            "titre": "Fiche Composant",
-            "afficher_bouton_acheter": true,
-            "text_bouton_acheter": "Acheter le composant",
-            "afficher_image_composant": true,
-            "taille_image_composant": "120px",
-            "position_element_composant": "center"
-          },
-          "blocks": {}
-        },
-        "etapes_montage_U4gJ3h": {
-          "type": "etapes-montage",
-          "name": "Fiche Etapes",
-          "settings": {
-            "titre": "Etapes :",
-            "afficher_image_etape": true,
-            "taille_image_etape": "120px",
-            "ligne_etapes": "decimal"
+            "titre_block": "Étapes de montage",
+            "ouvert": true
           },
           "blocks": {}
         },
@@ -66,20 +43,20 @@
           "type": "_product-media-gallery",
           "static": true,
           "settings": {
-            "media_presentation": "grid",
+            "media_presentation": "carousel",
             "media_columns": "two",
             "image_gap": 4,
             "large_first_image": false,
             "icons_style": "arrow",
-            "slideshow_controls_style": "counter",
-            "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "right",
-            "thumbnail_width": 44,
-            "thumbnail_radius": 0,
-            "aspect_ratio": "adapt",
+            "slideshow_controls_style": "thumbnails",
+            "slideshow_mobile_controls_style": "thumbnails",
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 72,
+            "thumbnail_radius": 12,
+            "aspect_ratio": "1",
             "constrain_to_viewport": true,
             "media_fit": "contain",
-            "media_radius": 0,
+            "media_radius": 18,
             "extend_media": false,
             "zoom": true,
             "video_loop": false,
@@ -158,30 +135,20 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "text_xpVMaM": {
-                  "type": "text",
-                  "name": "t:names.title",
+                "mb_etiquettes_produit_8pnKCG": {
+                  "type": "mb-etiquettes-produit",
+                  "name": "Etiquettes produit",
                   "settings": {
-                    "text": "<h1>{{ closest.product.title }}</h1>",
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "prefixe_difficulte": "Niveau",
+                    "upcase_type": true,
+                    "style_type": "300"
                   },
+                  "blocks": {}
+                },
+                "mb_titre_produit_PVcVYN": {
+                  "type": "mb-titre-produit",
+                  "name": "Titre produit",
+                  "settings": {},
                   "blocks": {}
                 },
                 "price_tVjtKg": {
@@ -199,7 +166,7 @@
                     "letter_spacing": "normal",
                     "case": "none",
                     "text_color": "",
-                    "padding-block-start": 4,
+                    "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
@@ -208,22 +175,10 @@
                 }
               },
               "block_order": [
-                "text_xpVMaM",
+                "mb_etiquettes_produit_8pnKCG",
+                "mb_titre_produit_PVcVYN",
                 "price_tVjtKg"
               ]
-            },
-            "divider_VJhene": {
-              "type": "_divider",
-              "name": "t:names.divider",
-              "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "divider_color": "{{ settings.color_palette.color3 }}",
-                "width_percent": 100,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
             },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
@@ -291,6 +246,7 @@
                   "type": "add-to-cart",
                   "static": true,
                   "settings": {
+                    "texte_bouton": "Ajouter au panier",
                     "style_class": "button",
                     "custom_button_background": "{{ settings.color_palette.foreground }}",
                     "custom_button_text": "{{ settings.color_palette.background }}",
@@ -300,6 +256,7 @@
                 },
                 "accelerated-checkout": {
                   "type": "accelerated-checkout",
+                  "disabled": true,
                   "static": true,
                   "settings": {},
                   "blocks": {}
@@ -307,54 +264,64 @@
               },
               "block_order": []
             },
-            "text_aEtTtq": {
-              "type": "text",
-              "name": "t:names.product_description",
+            "mb_description_produit_ACf48f": {
+              "type": "mb-description-produit",
+              "name": "Description produit",
               "settings": {
-                "text": "{{ closest.product.description }}",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "titre_summary": "Description",
+                "ouvert": true
+              },
+              "blocks": {}
+            },
+            "mb_fiche_technique_CCwWfD": {
+              "type": "mb-fiche-technique",
+              "name": "Fiche technique",
+              "settings": {
+                "titre_summary": "Fiche technique",
+                "ouvert": false
+              },
+              "blocks": {}
+            },
+            "mb_fiche_composant_hjfPNP": {
+              "type": "mb-fiche-composant",
+              "name": "Fiche composant",
+              "settings": {
+                "titre_summary": "Matériel nécessaire",
+                "ouvert": false
+              },
+              "blocks": {}
+            },
+            "mb_lien_projet_MjHbAq": {
+              "type": "mb-lien-projet",
+              "name": "Lien vers projet",
+              "settings": {
+                "texte_lien": "Voir comment il a été fabriqué",
+                "texte_label": "Making-of"
               },
               "blocks": {}
             }
           },
           "block_order": [
             "group_icgrde",
-            "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
-            "text_aEtTtq"
+            "mb_description_produit_ACf48f",
+            "mb_fiche_technique_CCwWfD",
+            "mb_fiche_composant_hjfPNP",
+            "mb_lien_projet_MjHbAq"
           ]
         }
       },
       "block_order": [
-        "fiche_technique_z6FjCA",
-        "fiche_composants_LCWUqb",
-        "etapes_montage_U4gJ3h",
+        "mb_etape_produit_zABYYL",
         "disclosures"
       ],
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
-        "equal_columns": false,
+        "equal_columns": true,
         "limit_details_width": false,
-        "gap": 48,
+        "gap": 20,
         "enable_sticky_add_to_cart": true,
         "background_color": "",
         "padding-block-start": 0,
@@ -368,7 +335,7 @@
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h2>You may also like </h2>",
+            "text": "<h2>Dans la même catégorie</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -413,11 +380,11 @@
               "name": "t:names.product_card_media",
               "settings": {
                 "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
+                "border": "solid",
+                "border_width": 0,
                 "border_opacity": 100,
                 "border_color": "",
-                "border_radius": 0,
+                "border_radius": 18,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -432,7 +399,7 @@
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "paragraph",
+                "type_preset": "h5",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
