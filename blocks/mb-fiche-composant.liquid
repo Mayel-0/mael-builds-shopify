@@ -1,0 +1,36 @@
+{%- assign projet = closest.product.metafields.custom.projet.value -%}
+{%- assign ligne_composants = projet.composant.value -%}
+
+{%- capture contenu_fiche -%}
+
+  {%- for ligne_composant in ligne_composants -%}
+    {%- render 'mb-composant-ligne', ligne: ligne_composant, composant: ligne_composant.composant.value -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if contenu_fiche != blank -%}
+  <div {{ block.shopify_attributes }}>
+    {% render 'mb-details-produit',
+      titre: block.settings.titre_summary,
+      contenu: contenu_fiche,
+      ouvert: block.settings.ouvert
+    %}
+  </div>
+{%- elsif request.design_mode -%}
+  <p {{ block.shopify_attributes }}>Aucune pièce associée à ce produit.</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Fiche composant",
+  "presets": [
+    {
+      "name": "Fiche composant"
+    }
+  ],
+  "settings": [
+    { "type": "text", "id": "titre_summary", "label": "Titre du Button", "default": "Matériel nécessaire" },
+    { "type": "checkbox", "id": "ouvert", "label": "Ouvert par défaut", "default": true }
+  ]
+}
+{% endschema %}

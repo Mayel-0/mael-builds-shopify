@@ -1,0 +1,32 @@
+{% doc %}
+  @param {metaobject} ligne - La ligne du composant (métachamp produit custom.lignes)
+  @param {metaobject} composant - Le composant du produit (métachamp produit custom.composants)
+
+  @example
+  {% render 'mb-composant-ligne', ligne: ligne, composant: composant %}
+{% enddoc %}
+
+{% if ligne and composant != blank %}
+  <div class="mb-composant-ligne">
+    <div class="mb-composant-ligne__contenu">
+      <div class="mb-composant-ligne__image">
+        {%- if composant.image.value != blank -%}
+          {{
+            composant.image.value
+            | image_url: width: 400, height: 400, crop: 'center'
+            | image_tag: alt: composant.nom.value, loading: 'lazy', class: 'mb-composant-ligne__img'
+          }}
+        {%- endif -%}
+      </div>
+
+      <p class="mb-composant-ligne__texte">
+        <span class="mb-composant-ligne__quantite">{{ ligne.quantite.value }}</span>
+        <span class="mb-composant-ligne__fois">×</span>
+        <span class="mb-composant-ligne__nom">{{ composant.nom.value }}</span>
+      </p>
+    </div>
+    <div class="mb-composant-ligne__lien">
+      <a href="{{ composant.lien.value }}" target="_blank">Acheter</a>
+    </div>
+  </div>
+{% endif %}
