@@ -26,6 +26,11 @@ $titre-interlettrage: -0.03em;
 $texte-graisse: 400;
 $texte-graisse-forte: 600;
 
+// Tailles de texte (à ne pas confondre avec les espacements, même si les valeurs se ressemblent)
+$texte-petit: 12px;
+$texte-normal: 16px;
+$texte-grand: 24px;
+
 // Couleurs qu'Horizon ne propose pas dans ses schémas.
 // Les autres (fond, surface, bordure, texte, boutons, liens) se règlent
 // dans l'éditeur : Paramètres du thème → Couleurs.

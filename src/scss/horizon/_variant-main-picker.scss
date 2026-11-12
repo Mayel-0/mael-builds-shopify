@@ -68,12 +68,12 @@
   // de .variant-option--equal-width-buttons .variant-option__button-label__text
   .variant-picker .variant-option--buttons &__nom {
     text-align: start;
-    font-size: $espace-3;
+    font-size: $texte-normal;
     font-weight: $texte-graisse-forte;
   }
 
   &__detail {
-    font-size: $espace-2;
+    font-size: $texte-petit;
     color: var(--texte-secondaire);
   }
 }
