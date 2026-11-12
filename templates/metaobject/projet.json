@@ -46,7 +46,7 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "",
-            "padding-block-start": 0,
+            "padding-block-start": 19,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
@@ -93,9 +93,23 @@
               },
               "blocks": {
                 "mb_titre_produit_4yayBT": {
-                  "type": "mb-titre-produit",
+                  "type": "titre",
                   "name": "Titre",
-                  "settings": {},
+                  "settings": {
+                    "titre": "{{ closest.metaobject.projet.titre.value }}",
+                    "lien": "",
+                    "label": "Making-of",
+                    "trait_label": true,
+                    "style_label": "uppercase",
+                    "badge": "",
+                    "prefixe_badge": "Niveau",
+                    "niveau": "h1",
+                    "taille": "40px",
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "margin_left": 0,
+                    "margin_right": 0
+                  },
                   "blocks": {}
                 },
                 "mb_description_produit_qFcKG8": {
@@ -103,7 +117,8 @@
                   "name": "Description",
                   "settings": {
                     "titre_summary": "Description",
-                    "ouvert": true
+                    "ouvert": true,
+                    "afficher_bordure": true
                   },
                   "blocks": {}
                 }
@@ -113,19 +128,649 @@
                 "mb_description_produit_qFcKG8"
               ]
             },
-            "mb_card_produit_AP73rq": {
-              "type": "mb-card-produit",
-              "name": "Carte Produit",
-              "settings": {},
-              "blocks": {}
+            "group_DAENnn": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 0,
+                "width": "custom",
+                "custom_width": 32,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "{{ settings.color_palette.color1 }}",
+                "border_radius": 18,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 18,
+                "padding-block-end": 12,
+                "padding-inline-start": 12,
+                "padding-inline-end": 12
+              },
+              "blocks": {
+                "groupe_produit_associe": {
+                  "type": "groupe-produit",
+                  "name": "Produit associé",
+                  "settings": {
+                    "produit": "{{ closest.metaobject.projet.produit.value }}",
+                    "direction": "mb-groupe-produit--vertical",
+                    "gap": 0
+                  },
+                  "blocks": {
+                    "group_GEKDmF": {
+                      "type": "group",
+                      "name": "t:names.group",
+                      "settings": {
+                        "content_direction": "row",
+                        "vertical_on_mobile": true,
+                        "horizontal_alignment": "center",
+                        "vertical_alignment": "center",
+                        "align_baseline": false,
+                        "horizontal_alignment_flex_direction_column": "flex-start",
+                        "vertical_alignment_flex_direction_column": "center",
+                        "gap": 12,
+                        "width": "fill",
+                        "custom_width": 100,
+                        "width_mobile": "fill",
+                        "custom_width_mobile": 100,
+                        "height": "fit",
+                        "custom_height": 100,
+                        "background_media": "none",
+                        "background_color": "",
+                        "video_position": "cover",
+                        "background_image_position": "cover",
+                        "toggle_overlay": false,
+                        "overlay_color": "#00000026",
+                        "overlay_style": "solid",
+                        "gradient_direction": "to top",
+                        "border": "none",
+                        "border_width": 1,
+                        "border_opacity": 100,
+                        "border_color": "",
+                        "border_radius": 0,
+                        "link": "",
+                        "open_in_new_tab": false,
+                        "placeholder": "",
+                        "padding-block-start": 0,
+                        "padding-block-end": 8,
+                        "padding-inline-start": 8,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {
+                        "group_dY7gKa": {
+                          "type": "group",
+                          "name": "t:names.group",
+                          "settings": {
+                            "content_direction": "column",
+                            "vertical_on_mobile": true,
+                            "horizontal_alignment": "flex-start",
+                            "vertical_alignment": "center",
+                            "align_baseline": false,
+                            "horizontal_alignment_flex_direction_column": "center",
+                            "vertical_alignment_flex_direction_column": "center",
+                            "gap": 12,
+                            "width": "custom",
+                            "custom_width": 22,
+                            "width_mobile": "fill",
+                            "custom_width_mobile": 100,
+                            "height": "fit",
+                            "custom_height": 100,
+                            "background_media": "none",
+                            "background_color": "",
+                            "video_position": "cover",
+                            "background_image_position": "cover",
+                            "toggle_overlay": false,
+                            "overlay_color": "#00000026",
+                            "overlay_style": "solid",
+                            "gradient_direction": "to top",
+                            "border": "none",
+                            "border_width": 1,
+                            "border_opacity": 100,
+                            "border_color": "",
+                            "border_radius": 0,
+                            "link": "",
+                            "open_in_new_tab": false,
+                            "placeholder": "",
+                            "padding-block-start": 0,
+                            "padding-block-end": 0,
+                            "padding-inline-start": 0,
+                            "padding-inline-end": 0
+                          },
+                          "blocks": {
+                            "image_zg33rB": {
+                              "type": "image",
+                              "name": "t:names.image",
+                              "settings": {
+                                "link": "",
+                                "image_ratio": "square",
+                                "width": "custom",
+                                "custom_width": 100,
+                                "width_mobile": "fill",
+                                "custom_width_mobile": 100,
+                                "height": "fit",
+                                "border": "solid",
+                                "border_width": 1,
+                                "border_opacity": 100,
+                                "border_color": "",
+                                "border_radius": 18,
+                                "padding-block-start": 8,
+                                "padding-block-end": 0,
+                                "padding-inline-start": 0,
+                                "padding-inline-end": 0
+                              },
+                              "blocks": {}
+                            }
+                          },
+                          "block_order": [
+                            "image_zg33rB"
+                          ]
+                        },
+                        "group_FVHAGq": {
+                          "type": "group",
+                          "name": "t:names.group",
+                          "settings": {
+                            "content_direction": "column",
+                            "vertical_on_mobile": true,
+                            "horizontal_alignment": "flex-start",
+                            "vertical_alignment": "center",
+                            "align_baseline": false,
+                            "horizontal_alignment_flex_direction_column": "flex-start",
+                            "vertical_alignment_flex_direction_column": "center",
+                            "gap": 12,
+                            "width": "fill",
+                            "custom_width": 100,
+                            "width_mobile": "fill",
+                            "custom_width_mobile": 100,
+                            "height": "fit",
+                            "custom_height": 100,
+                            "background_media": "none",
+                            "background_color": "",
+                            "video_position": "cover",
+                            "background_image_position": "cover",
+                            "toggle_overlay": false,
+                            "overlay_color": "#00000026",
+                            "overlay_style": "solid",
+                            "gradient_direction": "to top",
+                            "border": "none",
+                            "border_width": 1,
+                            "border_opacity": 100,
+                            "border_color": "",
+                            "border_radius": 0,
+                            "link": "",
+                            "open_in_new_tab": false,
+                            "placeholder": "",
+                            "padding-block-start": 0,
+                            "padding-block-end": 0,
+                            "padding-inline-start": 0,
+                            "padding-inline-end": 0
+                          },
+                          "blocks": {
+                            "mb_titre_produit_Q6Arrp": {
+                              "type": "titre",
+                              "name": "Titre",
+                              "settings": {
+                                "titre": "{{ closest.product.title }}",
+                                "lien": "",
+                                "label": "Produit associé",
+                                "trait_label": false,
+                                "style_label": "none",
+                                "badge": "",
+                                "prefixe_badge": "Niveau",
+                                "niveau": "h3",
+                                "taille": "14px",
+                                "margin_top": 0,
+                                "margin_bottom": 0,
+                                "margin_left": 0,
+                                "margin_right": 0
+                              },
+                              "blocks": {}
+                            },
+                            "price_F6LBd4": {
+                              "type": "price",
+                              "name": "t:names.product_price",
+                              "settings": {
+                                "prefixe": "À partir de",
+                                "suffixe": "",
+                                "color_texte": "var(--texte-secondaire-noir)",
+                                "show_sale_price_first": true,
+                                "show_installments": false,
+                                "show_tax_info": false,
+                                "type_preset": "",
+                                "width": "100%",
+                                "alignment": "left",
+                                "font": "var(--font-body--family)",
+                                "font_size": "1rem",
+                                "line_height": "normal",
+                                "letter_spacing": "normal",
+                                "case": "none",
+                                "text_color": "",
+                                "padding-block-start": 0,
+                                "padding-block-end": 0,
+                                "padding-inline-start": 0,
+                                "padding-inline-end": 0
+                              },
+                              "blocks": {}
+                            }
+                          },
+                          "block_order": [
+                            "mb_titre_produit_Q6Arrp",
+                            "price_F6LBd4"
+                          ]
+                        }
+                      },
+                      "block_order": [
+                        "group_dY7gKa",
+                        "group_FVHAGq"
+                      ]
+                    }
+                  },
+                  "block_order": [
+                    "group_GEKDmF"
+                  ]
+                },
+                "mb_lien_projet_KhUcTi": {
+                  "type": "mb-lien-projet",
+                  "name": "Lien",
+                  "settings": {
+                    "label_boolean": false,
+                    "texte_label": "Making-of",
+                    "position_label": "mb-lien-projet--label-dessus",
+                    "texte_lien": "Voir le produit",
+                    "style": "mb-lien-projet--sombre",
+                    "font_align": "center",
+                    "petit_lien": false,
+                    "texte_petit_lien": "Voir le produit",
+                    "arrow_boolean": false,
+                    "padding_side_y": 0,
+                    "padding_side_x": 10,
+                    "largeur_lien": 90
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "groupe_produit_associe",
+                "mb_lien_projet_KhUcTi"
+              ]
             }
           },
           "block_order": [
             "group_kAmNm8",
-            "mb_card_produit_AP73rq"
+            "group_DAENnn"
           ]
         },
-        "group_aQVgKt": {
+        "group_rhjgxA": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "mb_galerie_projet_zWCf9f": {
+              "type": "mb-galerie-projet",
+              "name": "Galerie image",
+              "settings": {
+                "disposition": "mb-galerie-projet--mosaique",
+                "espacement": 20,
+                "arrondi": 18,
+                "afficher_legendes": false
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "mb_galerie_projet_zWCf9f"
+          ]
+        }
+      },
+      "block_order": [
+        "group_gbT74E",
+        "group_rhjgxA"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "space-between",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "small",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 18,
+        "padding-block-start": 0,
+        "padding-block-end": 35
+      }
+    },
+    "section_LMULYx": {
+      "type": "section",
+      "blocks": {
+        "group_WyJKF8": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "flex-start",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 50,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "custom",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 18,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "group_cPEjxY": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "custom",
+                "custom_width": 35,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "{{ settings.color_palette.background }}",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "solid",
+                "border_width": 0,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 24,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 18,
+                "padding-block-end": 18,
+                "padding-inline-start": 24,
+                "padding-inline-end": 24
+              },
+              "blocks": {
+                "mb_accordeon_VWLBgi": {
+                  "type": "mb-accordeon",
+                  "name": "Accordéon vide",
+                  "settings": {
+                    "titre": "Fiche technique",
+                    "ouvert": true,
+                    "afficher_bordure": false
+                  },
+                  "blocks": {
+                    "mb_liste_pieces_YRkGmp": {
+                      "type": "mb-liste-pieces",
+                      "name": "Liste des pièces",
+                      "settings": {
+                        "disposition": "mb-liste-pieces--detaillee",
+                        "afficher_separateurs": true,
+                        "afficher_resume": true,
+                        "texte_resume": "Temps d'impression total",
+                        "format_temps": "decimal",
+                        "afficher_temps_piece": true,
+                        "afficher_couche": true,
+                        "afficher_temperature": true
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "mb_liste_pieces_YRkGmp"
+                  ]
+                }
+              },
+              "block_order": [
+                "mb_accordeon_VWLBgi"
+              ]
+            },
+            "group_qErNeY": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "custom",
+                "custom_width": 40,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "{{ settings.color_palette.background }}",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": true,
+                "overlay_color": "{{ settings.color_palette.background }}",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "solid",
+                "border_width": 0,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 24,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 18,
+                "padding-block-end": 18,
+                "padding-inline-start": 24,
+                "padding-inline-end": 24
+              },
+              "blocks": {
+                "mb_accordeon_thtqKt": {
+                  "type": "mb-accordeon",
+                  "name": "Accordéon vide",
+                  "settings": {
+                    "titre": "Matériel nécessaire",
+                    "ouvert": true,
+                    "afficher_bordure": false
+                  },
+                  "blocks": {
+                    "mb_liste_composants_gWKwTU": {
+                      "type": "mb-liste-composants",
+                      "name": "Liste des composants",
+                      "settings": {
+                        "afficher_separateurs": true
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "mb_liste_composants_gWKwTU"
+                  ]
+                }
+              },
+              "block_order": [
+                "mb_accordeon_thtqKt"
+              ]
+            }
+          },
+          "block_order": [
+            "group_cPEjxY",
+            "group_qErNeY"
+          ]
+        }
+      },
+      "block_order": [
+        "group_WyJKF8"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "space-between",
+        "gap": 12,
+        "section_width": "full-width",
+        "section_height": "small",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.color1 }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 28,
+        "padding-block-end": 28
+      }
+    },
+    "section_6FtANY": {
+      "type": "section",
+      "blocks": {
+        "mb_titre_produit_AzgMtK": {
+          "type": "titre",
+          "name": "Titre",
+          "settings": {
+            "titre": "Étapes de montage",
+            "lien": "",
+            "label": "",
+            "trait_label": false,
+            "style_label": "uppercase",
+            "badge": "",
+            "prefixe_badge": "Niveau",
+            "niveau": "h2",
+            "taille": "32px",
+            "margin_top": 0,
+            "margin_bottom": 14,
+            "margin_left": 0,
+            "margin_right": 0
+          },
+          "blocks": {}
+        },
+        "mb_etape_produit_MfBhwB": {
+          "type": "mb-etape-produit",
+          "name": "Etape produit",
+          "settings": {
+            "titre_block": "Étapes de montage",
+            "ouvert": true,
+            "bordure_boolean": true,
+            "couleur_bordure": "{{ settings.color_palette.color1 }}",
+            "bordure_epaisseur": 2,
+            "bordure_radius": 18
+          },
+          "blocks": {}
+        },
+        "group_hWDBU6": {
           "type": "group",
           "name": "t:names.group",
           "settings": {
@@ -169,10 +814,18 @@
               "type": "mb-lien-projet",
               "name": "Lien",
               "settings": {
-                "texte_label": "Making-of",
-                "texte_lien": "Voir comment il a été fabriqué",
-                "texte_label_projet": "Boutique",
-                "texte_lien_projet": "Acheter le kit"
+                "label_boolean": true,
+                "texte_label": "Lien vers le produit",
+                "position_label": "mb-lien-projet--label-dessous",
+                "texte_lien": "Envie de le construire ?",
+                "style": "mb-lien-projet--sombre",
+                "font_align": "left",
+                "petit_lien": true,
+                "texte_petit_lien": "Lien vers le produit",
+                "arrow_boolean": false,
+                "padding_side_y": 20,
+                "padding_side_x": 35,
+                "largeur_lien": 100
               },
               "blocks": {}
             }
@@ -183,8 +836,9 @@
         }
       },
       "block_order": [
-        "group_gbT74E",
-        "group_aQVgKt"
+        "mb_titre_produit_AzgMtK",
+        "mb_etape_produit_MfBhwB",
+        "group_hWDBU6"
       ],
       "name": "t:names.custom_section",
       "settings": {
@@ -194,7 +848,7 @@
         "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "space-between",
+        "vertical_alignment_flex_direction_column": "center",
         "gap": 12,
         "section_width": "page-width",
         "section_height": "small",
@@ -212,12 +866,14 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 24,
+        "padding-block-end": 24
       }
     }
   },
   "order": [
-    "section_KgeX79"
+    "section_KgeX79",
+    "section_LMULYx",
+    "section_6FtANY"
   ]
 }

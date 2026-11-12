@@ -5,7 +5,6 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid var(--bordure-claire);
   border-radius: 12px;
   padding: $espace-2 $espace-3;
   gap: 12px;
@@ -27,14 +26,6 @@
     width: 76px;
     height: 76px;
     border-radius: 14px;
-  }
-  &__lien {
-    width: 100%;
-    padding: $espace-2 $espace-4;
-    border-radius: 12px;
-    text-align: center;
-    background-color: var(--color-foreground);
-    color: var(--color-background);
   }
   &__contenu {
     display: flex;
