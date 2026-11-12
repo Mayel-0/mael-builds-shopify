@@ -1,37 +1,58 @@
 {%- liquid
+  # Seule la destination dépend de la page. Textes et style viennent des réglages :
+  # chaque bloc placé dans un template a ses propres réglages, indépendants.
   assign url = blank
 
   if closest.product != blank
-    # Page produit → lien vers la page du projet
-    assign projet = closest.product.metafields.custom.projet.value
-    assign url = projet.system.url
-    assign label = block.settings.texte_label
-    assign texte = block.settings.texte_lien
-    assign contexte = 'produit'
+    # Page produit → page du projet
+    assign url = closest.product.metafields.custom.projet.value.system.url
+    assign texte_petit_lien_defaut = 'mael.liens.voir_projet' | t
   elsif metaobject.system.type == 'projet'
-    # Page projet → lien vers le produit à acheter
-    assign produit = metaobject.produit.value
-    assign url = produit.url
-    assign label = block.settings.texte_label_projet
-    assign texte = block.settings.texte_lien_projet
-    assign contexte = 'projet'
+    # Page projet → produit à acheter
+    assign url = metaobject.produit.value.url
+    assign texte_petit_lien_defaut = 'mael.liens.voir_produit' | t
+  endif
+
+  assign texte_petit_lien = block.settings.texte_petit_lien | default: texte_petit_lien_defaut
+
+  if block.settings.petit_lien != true
+    assign balise = 'a'
+  else
+    assign balise = 'div'
   endif
 -%}
 
 {%- if url != blank -%}
-  <a href="{{ url }}" class="mb-lien-projet mb-lien-projet--{{ contexte }}" {{ block.shopify_attributes }}>
+  <{{ balise }}
+    {% if balise == 'a' %}
+      href="{{ url }}"
+    {% endif %}
+    class="mb-lien-projet {{ block.settings.style }} {{ block.settings.position_label }}"
+    style="
+      --font-align: {{ block.settings.font_align }};
+      --padding-side: {{ block.settings.padding_side_y }}px;
+      --padding-side-x: {{ block.settings.padding_side_x }}px;
+      --largeur-lien: {{ block.settings.largeur_lien }}%;
+    "
+    {{ block.shopify_attributes }}
+  >
     <span class="mb-lien-projet__textes">
-      {%- if label != blank -%}
-        <span class="mb-lien-projet__label">{{ label }}</span>
+      {%- if block.settings.label_boolean and block.settings.texte_label != blank -%}
+        <span class="mb-lien-projet__label">{{ block.settings.texte_label }}</span>
       {%- endif -%}
-      <span class="mb-lien-projet__lien">{{ texte }}</span>
+      <span class="mb-lien-projet__lien">{{ block.settings.texte_lien }}</span>
     </span>
-    <span class="mb-lien-projet__fleche svg-wrapper">
-      {{- 'icon-arrow.svg' | inline_asset_content -}}
-    </span>
-  </a>
+    {%- if block.settings.petit_lien == false and block.settings.arrow_boolean == true -%}
+      <span class="mb-lien-projet__fleche svg-wrapper">
+        {{- 'icon-arrow.svg' | inline_asset_content -}}
+      </span>
+    {%- endif -%}
+    {%- if block.settings.petit_lien == true -%}
+      <a class="mb-lien-projet__petit-lien" href="{{ url }}">{{ texte_petit_lien }}</a>
+    {%- endif -%}
+  </{{ balise }}>
 {%- elsif request.design_mode -%}
-  <p {{ block.shopify_attributes }}>Aucun projet ou produit associé à cette page.</p>
+  <p {{ block.shopify_attributes }}>{{ 'mael.editeur.aucun_lien' | t }}</p>
 {%- endif -%}
 
 {% schema %}
@@ -44,12 +65,95 @@
     }
   ],
   "settings": [
-    { "type": "header", "content": "Sur une page produit (lien vers le projet)" },
-    { "type": "text", "id": "texte_label", "label": "Texte du label", "default": "Making-of" },
+    {
+      "type": "paragraph",
+      "content": "Sur une page produit, le lien mène au projet. Sur une page projet, il mène au produit."
+    },
+    { "type": "header", "content": "Textes" },
+    { "type": "checkbox", "id": "label_boolean", "label": "Afficher le label", "default": true },
+    {
+      "type": "text",
+      "id": "texte_label",
+      "label": "Texte du label",
+      "default": "Making-of",
+      "visible_if": "{{ block.settings.label_boolean }}"
+    },
+    {
+      "type": "select",
+      "id": "position_label",
+      "label": "Position du label",
+      "default": "mb-lien-projet--label-dessus",
+      "options": [
+        { "label": "Au-dessus du lien", "value": "mb-lien-projet--label-dessus" },
+        { "label": "Sous le lien", "value": "mb-lien-projet--label-dessous" }
+      ],
+      "visible_if": "{{ block.settings.label_boolean }}"
+    },
     { "type": "text", "id": "texte_lien", "label": "Texte du lien", "default": "Voir comment il a été fabriqué" },
-    { "type": "header", "content": "Sur une page projet (lien vers le produit)" },
-    { "type": "text", "id": "texte_label_projet", "label": "Texte du label", "default": "Boutique" },
-    { "type": "text", "id": "texte_lien_projet", "label": "Texte du lien", "default": "Acheter le kit" }
+    { "type": "header", "content": "Style" },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Couleurs",
+      "default": "mb-lien-projet--clair",
+      "options": [
+        { "label": "Clair (fond gris, texte foncé)", "value": "mb-lien-projet--clair" },
+        { "label": "Sombre (fond foncé, texte clair)", "value": "mb-lien-projet--sombre" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "font_align",
+      "label": "Alignement du texte",
+      "default": "left",
+      "options": [
+        { "label": "Gauche", "value": "left" },
+        { "label": "Centre", "value": "center" },
+        { "label": "Droite", "value": "right" }
+      ]
+    },
+    { "type": "checkbox", "id": "petit_lien", "label": "Activer un petit lien", "default": false },
+    {
+      "type": "text",
+      "id": "texte_petit_lien",
+      "label": "Texte du petit lien",
+      "info": "Laisser vide pour « Voir le projet » (page produit) ou « Voir le produit » (page projet)",
+      "visible_if": "{{ block.settings.petit_lien }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "arrow_boolean",
+      "label": "Flech visibile ou non",
+      "default": true,
+      "visible_if": "{{ block.settings.petit_lien != true }}"
+    },
+    {
+      "type": "range",
+      "id": "padding_side_y",
+      "label": "Espacement bordure intérieur Y",
+      "max": 50,
+      "min": 0,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_side_x",
+      "label": "Espacement bordure intérieur X",
+      "max": 60,
+      "min": 0,
+      "default": 18,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "largeur_lien",
+      "label": "Largeur en %",
+      "max": 100,
+      "min": 0,
+      "default": 100,
+      "unit": "%"
+    }
   ]
 }
 {% endschema %}
