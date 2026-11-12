@@ -1,0 +1,80 @@
+{%- doc -%}
+  Groupe qui fournit un produit à tous les blocs placés dedans.
+
+  Le produit vient du réglage « Produit » (choisi à la main ou connecté à une
+  source dynamique, ex. le champ « produit » d'un projet). Les blocs enfants le
+  lisent avec `closest.product` : titre relié à {{ closest.product.title }}, prix,
+  bouton d'ajout au panier… sans savoir d'où vient le produit.
+
+  @example
+  {% content_for 'block', type: 'groupe-produit', id: 'groupe-produit' %}
+{%- enddoc -%}
+
+<div
+  class="mb-groupe-produit {{ block.settings.direction }}"
+  style="--gap: {{ block.settings.gap }}px;"
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.produit == blank and request.design_mode -%}
+    <p class="mb-groupe-produit__vide">{{ 'mael.editeur.aucun_produit' | t }}</p>
+  {%- endif -%}
+
+  {% content_for 'blocks', closest.product: block.settings.produit %}
+</div>
+
+{% schema %}
+{
+  "name": "Groupe produit",
+  "tag": null,
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [
+    {
+      "type": "product",
+      "id": "produit",
+      "label": "Produit",
+      "info": "Choisis un produit ou connecte une source dynamique (ex. le champ « produit » du projet). Les blocs à l'intérieur l'utilisent."
+    },
+    { "type": "header", "content": "Disposition" },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Direction",
+      "default": "mb-groupe-produit--vertical",
+      "options": [
+        { "value": "mb-groupe-produit--vertical", "label": "Verticale" },
+        { "value": "mb-groupe-produit--horizontal", "label": "Horizontale" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Espace entre les blocs",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Groupe produit",
+      "settings": {
+        "produit": "{{ closest.product }}"
+      },
+      "blocks": [
+        {
+          "type": "titre",
+          "settings": {
+            "titre": "{{ closest.product.title }}",
+            "lien": "{{ closest.product.url }}",
+            "niveau": "h3",
+            "taille": "20px"
+          }
+        },
+        { "type": "price" }
+      ]
+    }
+  ]
+}
+{% endschema %}

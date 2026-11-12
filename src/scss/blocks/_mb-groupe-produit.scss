@@ -1,0 +1,24 @@
+// blocks/groupe-produit.liquid
+@use '../abstracts/variables' as *;
+
+.mb-groupe-produit {
+  display: flex;
+  gap: var(--gap, #{$espace-2});
+  width: 100%;
+
+  &--vertical {
+    flex-direction: column;
+  }
+
+  &--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  // Message visible seulement dans l'éditeur quand aucun produit n'est choisi
+  &__vide {
+    margin: 0;
+    opacity: 0.6;
+  }
+}
