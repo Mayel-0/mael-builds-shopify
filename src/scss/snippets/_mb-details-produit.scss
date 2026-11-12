@@ -4,30 +4,34 @@
 .mb-details-produit {
   border-bottom: 1px solid var(--bordure-claire);
 
+  // Réglage « Afficher la bordure du bas » décoché dans le bloc
+  &--sans-bordure {
+    border-bottom: none;
+  }
+
   &[open] &__titre::after {
     content: '−';
   }
 
   &__titre {
+    position: relative; // repère du « + » (en absolute) : sans ça il se place par rapport à un ancêtre au hasard
     min-height: 60px;
     height: 60px;
     h2 {
       font-weight: $titre-graisse;
-      font-size: $espace-3;
+      font-size: $texte-normal;
     }
     &::after {
       content: '+';
-      font-size: $espace-4;
+      font-size: $texte-grand;
       font-weight: 300;
       line-height: 1;
       color: var(--texte-secondaire);
       position: absolute;
-      right: 4%;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%); // centré verticalement dans le summary
     }
   }
 
-  &__contenu {
-    p {
-    }
-  }
 }

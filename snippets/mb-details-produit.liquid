@@ -2,14 +2,15 @@
   @param {string} titre - Le Titre du Button, par exemple « Description »
   @param {string} contenu - Le contenu HTML à afficher une fois déplié
   @param {boolean} [ouvert] - Ouvert par défaut
+  @param {boolean} [bordure] - Bordure du bas (affichée si absent ou true, masquée si false)
 
   @example
-  {% render 'mb-details-produit', titre: 'Description', contenu: produit.metafields.custom.description, ouvert: true %}
+  {% render 'mb-details-produit', titre: 'Description', contenu: produit.metafields.custom.description, ouvert: true, bordure: false %}
 {% enddoc %}
 
 {%- if titre != blank and contenu != blank -%}
   <details
-    class="mb-details-produit"
+    class="mb-details-produit{% if bordure == false %} mb-details-produit--sans-bordure{% endif %}"
     {% if ouvert %}
       open
     {% endif %}

@@ -14,23 +14,29 @@
       {% render 'mb-details-produit',
         titre: block.settings.titre_summary,
         contenu: product.description,
-        ouvert: block.settings.ouvert
+        ouvert: block.settings.ouvert,
+        bordure: block.settings.afficher_bordure
       %}
     </div>
   {% endif %}
   {%- if context == 'projet' -%}
     <div {{ block.shopify_attributes }}>
       <p>{{ projet.accroche.value }}</p>
-      {% render 'mb-details-projet', pieces: projet.pieces.value, composants: projet.composant.value, difficulte: projet.difficulte.value %}
+      {% render 'mb-details-projet',
+        pieces: projet.pieces.value,
+        composants: projet.composant.value,
+        difficulte: projet.difficulte.value
+      %}
     </div>
   {%- endif -%}
 {%- elsif request.design_mode -%}
-  <p {{ block.shopify_attributes }}>Desciption pour projet ou produit.</p>
+  <p {{ block.shopify_attributes }}>{{ 'mael.editeur.description' | t }}</p>
 {%- endif -%}
 
 {% schema %}
 {
   "name": "Description",
+  "tag": null,
   "presets": [
     {
       "name": "Description"
@@ -38,7 +44,8 @@
   ],
   "settings": [
     { "type": "text", "id": "titre_summary", "label": "Titre du Button", "default": "Description" },
-    { "type": "checkbox", "id": "ouvert", "label": "Ouvert par défaut", "default": true }
+    { "type": "checkbox", "id": "ouvert", "label": "Ouvert par défaut", "default": true },
+    { "type": "checkbox", "id": "afficher_bordure", "label": "Afficher la bordure du bas", "default": true }
   ]
 }
 {% endschema %}

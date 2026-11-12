@@ -11,6 +11,10 @@
     content: '−';
   }
 
+  summary {
+    position: relative; // repère du « + » (en absolute)
+  }
+
   &__titre {
     margin: 0;
     font-size: 17px;
@@ -21,12 +25,14 @@
     }
     &::after {
       content: '+';
-      font-size: $espace-4;
+      font-size: $texte-grand;
       font-weight: 300;
       line-height: 1;
       color: var(--texte-secondaire);
       position: absolute;
-      right: 4%;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
   &__contenu {
