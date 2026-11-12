@@ -371,5 +371,42 @@
       "default_title": "Default Title",
       "sticky_add_to_cart": "Quick add to cart bar"
     }
+  },
+  "mael": {
+    "pieces": {
+      "quantite": {
+        "one": "{{ count }} part",
+        "other": "{{ count }} parts"
+      },
+      "couche": "{{ hauteur }} mm layer"
+    },
+    "duree": {
+      "decimal": "{{ heures }} h",
+      "heures_minutes": "{{ heures }}h{{ minutes }}"
+    },
+    "composants": {
+      "acheter": "Buy"
+    },
+    "liens": {
+      "voir_projet": "See the project",
+      "voir_produit": "See the product"
+    },
+    "projet": {
+      "temps_impression": "Print time",
+      "materiau": "Material",
+      "pieces": "Parts",
+      "composants": "Components",
+      "niveau": "Level"
+    },
+    "editeur": {
+      "aucune_piece": "No parts linked to this project.",
+      "aucun_composant": "No components linked to this project.",
+      "aucune_etape": "Add steps to the product's project.",
+      "aucune_image": "Add images to the project gallery.",
+      "aucun_lien": "No project or product linked to this page.",
+      "aucun_produit": "Pick or connect a product in the group settings.",
+      "titre": "Fill in the title in the block settings.",
+      "description": "This block shows the description of a product or a project."
+    }
   }
 }

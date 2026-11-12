@@ -350,5 +350,42 @@
       "success_moderated": "Commentaire publié, en attente de modération",
       "success": "Commentaire publié"
     }
+  },
+  "mael": {
+    "pieces": {
+      "quantite": {
+        "one": "{{ count }} pièce",
+        "other": "{{ count }} pièces"
+      },
+      "couche": "couche {{ hauteur }} mm"
+    },
+    "duree": {
+      "decimal": "{{ heures }} h",
+      "heures_minutes": "{{ heures }}h{{ minutes }}"
+    },
+    "composants": {
+      "acheter": "Acheter"
+    },
+    "liens": {
+      "voir_projet": "Voir le projet",
+      "voir_produit": "Voir le produit"
+    },
+    "projet": {
+      "temps_impression": "Temps d'impression",
+      "materiau": "Matériau",
+      "pieces": "Pièces",
+      "composants": "Composants",
+      "niveau": "Niveau"
+    },
+    "editeur": {
+      "aucune_piece": "Aucune pièce associée à ce projet.",
+      "aucun_composant": "Aucun composant associé à ce projet.",
+      "aucune_etape": "Ajoute des étapes au projet du produit.",
+      "aucune_image": "Ajoute des images dans la galerie du projet.",
+      "aucun_lien": "Aucun projet ou produit associé à cette page.",
+      "aucun_produit": "Choisis ou connecte un produit dans les réglages du groupe.",
+      "titre": "Renseigne le titre dans les réglages du bloc.",
+      "description": "Ce bloc affiche la description d'un produit ou d'un projet."
+    }
   }
 }
