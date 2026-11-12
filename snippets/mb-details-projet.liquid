@@ -1,19 +1,24 @@
 {% doc %}
-  @param {metaobject} pieces - Liste des pieces
+  Affiche le résumé chiffré d'un projet : temps d'impression, matériau, pièces, composants, niveau.
+
+  @param {metaobject} pieces - Liste des pièces
   @param {metaobject} composants - Liste des composants
-  @param {string} difficulte - Niveaux de difficulte du projet
+  @param {string} difficulte - Niveau de difficulté du projet
+
+  @example
+  {% render 'mb-details-projet', pieces: projet.pieces.value, composants: projet.composant.value, difficulte: projet.difficulte.value %}
 {% enddoc %}
 
 {%- liquid
   assign total_quantite = 0
-  assign total_temp_impression = 0
+  assign total_temps_impression = 0
   assign total_composant = 0
 
   for piece in pieces
     assign quantite = piece.quantite.value | default: 1
     assign total_quantite = total_quantite | plus: quantite
-    assign temp_impression = piece.temps_impression.value | times: quantite
-    assign total_temp_impression = total_temp_impression | plus: temp_impression
+    assign temps_impression = piece.temps_impression.value | times: quantite
+    assign total_temps_impression = total_temps_impression | plus: temps_impression
     assign materiel = piece.materiau.value.nom.value
   endfor
 
@@ -21,32 +26,29 @@
     assign quantite = composant.quantite.value
     assign total_composant = total_composant | plus: quantite
   endfor
-
-  # Temps total (heures décimales, 8.3 = 8h18) → heures + minutes sur 2 chiffres
-  assign minutes_total = total_temp_impression | times: 60 | round
-  assign heures = minutes_total | divided_by: 60
-  assign minutes = minutes_total | modulo: 60 | prepend: '0' | slice: -2, 2
 -%}
 
 <div class="mb-details-projet">
   <div>
-    <label>Temps impression</label>
-    <p>{{ heures }}h{{ minutes }}</p>
+    <span class="mb-details-projet__label">{{ 'mael.projet.temps_impression' | t }}</span>
+    <p class="mb-details-projet__valeur">
+      {%- render 'mb-duree', heures_decimales: total_temps_impression, format: 'heures' -%}
+    </p>
   </div>
   <div>
-    <label>Matériau</label>
-    <p>{{ materiel }}</p>
+    <span class="mb-details-projet__label">{{ 'mael.projet.materiau' | t }}</span>
+    <p class="mb-details-projet__valeur">{{ materiel }}</p>
   </div>
   <div>
-    <label>Pieces</label>
-    <p>{{ total_quantite }}</p>
+    <span class="mb-details-projet__label">{{ 'mael.projet.pieces' | t }}</span>
+    <p class="mb-details-projet__valeur">{{ total_quantite }}</p>
   </div>
   <div>
-    <label>Composants</label>
-    <p>{{ total_composant }}</p>
+    <span class="mb-details-projet__label">{{ 'mael.projet.composants' | t }}</span>
+    <p class="mb-details-projet__valeur">{{ total_composant }}</p>
   </div>
   <div>
-    <label>Niveau</label>
-    <p>{{ difficulte }}</p>
+    <span class="mb-details-projet__label">{{ 'mael.projet.niveau' | t }}</span>
+    <p class="mb-details-projet__valeur">{{ difficulte }}</p>
   </div>
 </div>

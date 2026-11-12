@@ -1,19 +1,21 @@
+// snippets/mb-details-projet.liquid
 @use '../abstracts/variables' as *;
-
 
 .mb-details-projet {
   display: flex;
   align-items: center;
   gap: $espace-6;
   margin-top: $espace-3;
-  label {
-    font-size: $espace-2;
+
+  &__label {
+    font-size: $texte-petit;
     font-weight: 300;
     color: var(--texte-secondaire);
   }
-  p {
-    margin-top: 0px;
-    font-size: $espace-4;
+
+  & &__valeur {
+    margin-top: 0;
+    font-size: $texte-grand;
     font-weight: $texte-graisse-forte;
   }
 }
