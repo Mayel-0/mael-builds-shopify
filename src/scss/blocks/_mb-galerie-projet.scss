@@ -1,0 +1,46 @@
+// blocks/mb-galerie-projet.liquid
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.mb-galerie-projet {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); // mobile : 2 colonnes
+  gap: var(--gap-galerie, #{$espace-2});
+
+  @include a-partir-de(tablette) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &__element {
+    position: relative;
+    margin: 0; // <figure> a une marge par défaut dans les navigateurs
+    aspect-ratio: 1; // cases carrées
+    overflow: hidden;
+    border-radius: var(--rayon-galerie, #{$rayon-photo});
+    background-color: var(--bg-claire);
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // remplit la case sans déformer
+  }
+
+  &__legende {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: $espace-1 $espace-2;
+    font-size: $texte-petit;
+    color: var(--color-background);
+    background: linear-gradient(transparent, rgb(0 0 0 / 0.55));
+  }
+
+  // Réglage « Disposition : Mosaïque » : la 1re image fait 2 × 2 cases.
+  // La grille place toute seule les suivantes autour (2 à droite, puis la ligne du bas).
+  &--mosaique &__element:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}

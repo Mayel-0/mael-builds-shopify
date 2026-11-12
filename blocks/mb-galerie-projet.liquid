@@ -1,0 +1,83 @@
+{%- liquid
+  # Données selon la page : la galerie du projet
+  assign images = blank
+  if closest.product != blank
+    assign images = closest.product.metafields.custom.projet.value.galerie.value
+  elsif metaobject.system.type == 'projet'
+    assign images = metaobject.galerie.value
+  endif
+-%}
+
+{%- if images != blank -%}
+  <div
+    class="mb-galerie-projet {{ block.settings.disposition }}"
+    style="--gap-galerie: {{ block.settings.espacement }}px; --rayon-galerie: {{ block.settings.arrondi }}px;"
+    {{ block.shopify_attributes }}
+  >
+    {%- comment -%} images est une LISTE : une boucle pour passer chaque image à image_url {%- endcomment -%}
+    {%- for image in images -%}
+      <figure class="mb-galerie-projet__element">
+        {{
+          image
+          | image_url: width: 1200
+          | image_tag:
+            alt: image.alt,
+            loading: 'lazy',
+            widths: '400, 800, 1200',
+            sizes: '(min-width: 750px) 33vw, 100vw',
+            class: 'mb-galerie-projet__image'
+        }}
+        {%- if block.settings.afficher_legendes and image.alt != blank -%}
+          <figcaption class="mb-galerie-projet__legende">{{ image.alt }}</figcaption>
+        {%- endif -%}
+      </figure>
+    {%- endfor -%}
+  </div>
+{%- elsif request.design_mode -%}
+  <p {{ block.shopify_attributes }}>{{ 'mael.editeur.aucune_image' | t }}</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Galerie projet",
+  "tag": null,
+  "presets": [{ "name": "Galerie projet" }],
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Les images viennent du champ « galerie » du projet. Le texte alternatif de chaque image sert de légende."
+    },
+    {
+      "type": "select",
+      "id": "disposition",
+      "label": "Disposition",
+      "default": "mb-galerie-projet--mosaique",
+      "options": [
+        { "label": "Mosaïque (1 grande image)", "value": "mb-galerie-projet--mosaique" },
+        { "label": "Grille régulière", "value": "mb-galerie-projet--grille" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "espacement",
+      "label": "Espacement",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "arrondi",
+      "label": "Arrondi des coins",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    { "type": "checkbox", "id": "afficher_legendes", "label": "Afficher les légendes", "default": false }
+  ]
+}
+{% endschema %}
