@@ -1,6 +1,7 @@
 @use '../abstracts/variables' as *;
 
 .mb-composant-ligne {
+  width: 100%; // sinon space-between n'a pas d'espace à répartir
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,7 +14,7 @@
     width: $espace-6;
     height: $espace-6;
     border-radius: 10px;
-    background: var(--fond-secondaire);
+    background: var(--bg-claire);
     margin-right: $espace-3;
   }
   &__img {
