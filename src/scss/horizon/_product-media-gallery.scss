@@ -1,0 +1,41 @@
+// blocks/_product-media-gallery.liquid (Horizon), en mode Carrousel + Miniatures en bas.
+// Le CSS des miniatures est dans snippets/slideshow-controls.liquid, chargé après le nôtre :
+// on préfixe par .product-information .media-gallery--carousel pour gagner en spécificité
+// (et ne toucher que la galerie de la fiche produit).
+@use '../abstracts/variables' as *;
+
+.product-information .media-gallery--carousel {
+  // Largeur max de toute la galerie (grande image + miniatures, qui suivent)
+  max-width: 560px;
+  padding: 0px $espace-2;
+
+  // Grande image : fond gris clair derrière les photos détourées
+  .product-media-container {
+    background-color: var(--bg-claire);
+  }
+
+  // La rangée de miniatures : 4 colonnes égales sur toute la largeur.
+  // Horizon : display: inline-flex + margin-inline: auto (centrée, largeur du contenu)
+  .slideshow-controls__thumbnails {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $espace-2;
+    width: 100%;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+
+  // Chaque miniature (un <button>)
+  // Horizon : width: clamp(44px, 7vw, var(--thumbnail-width)) → 72px max
+  .slideshow-controls__thumbnails .slideshow-control {
+    width: 100%;
+    background-color: var(--bg-claire);
+    border: 1px solid var(--bordure-claire);
+
+    // Miniature de l'image affichée : bordure noire au lieu du contour d'Horizon
+    &[aria-selected='true'] {
+      outline: none;
+      border: 2px solid var(--color-foreground);
+    }
+  }
+}
