@@ -12,33 +12,6 @@
     "main": {
       "type": "product-information",
       "blocks": {
-        "mb_etape_produit_zABYYL": {
-          "type": "mb-etape-produit",
-          "name": "Etape produit",
-          "settings": {
-            "titre_block": "Étapes de montage",
-            "ouvert": true
-          },
-          "blocks": {}
-        },
-        "disclosures": {
-          "type": "disclosures",
-          "settings": {
-            "heading": "Disclosures",
-            "heading_preset": "h4",
-            "open_by_default": false,
-            "icon": "caret",
-            "disclosure_heading_preset": "h5",
-            "text_color": "",
-            "dividers": true,
-            "divider_color": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
         "media-gallery": {
           "type": "_product-media-gallery",
           "static": true,
@@ -135,25 +108,33 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "mb_etiquettes_produit_8pnKCG": {
-                  "type": "mb-etiquettes-produit",
-                  "name": "Etiquettes produit",
-                  "settings": {
-                    "prefixe_difficulte": "Niveau",
-                    "upcase_type": true,
-                    "style_type": "300"
-                  },
-                  "blocks": {}
-                },
                 "mb_titre_produit_PVcVYN": {
-                  "type": "mb-titre-produit",
+                  "type": "titre",
                   "name": "Titre produit",
-                  "settings": {},
+                  "settings": {
+                    "titre": "{{ closest.product.title }}",
+                    "lien": "",
+                    "label": "{{ closest.product.metafields.custom.difficulte.value }}",
+                    "afficher_type": true,
+                    "trait_label": false,
+                    "style_label": "uppercase",
+                    "badge": "",
+                    "prefixe_badge": "Niveau",
+                    "niveau": "h1",
+                    "taille": "40px",
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "margin_left": 0,
+                    "margin_right": 0
+                  },
                   "blocks": {}
                 },
                 "price_tVjtKg": {
                   "type": "price",
                   "settings": {
+                    "prefixe": "",
+                    "suffixe": "",
+                    "color_texte": "var(--texte-secondaire-noir)",
                     "show_sale_price_first": true,
                     "show_installments": true,
                     "show_tax_info": true,
@@ -175,7 +156,6 @@
                 }
               },
               "block_order": [
-                "mb_etiquettes_produit_8pnKCG",
                 "mb_titre_produit_PVcVYN",
                 "price_tVjtKg"
               ]
@@ -269,34 +249,74 @@
               "name": "Description produit",
               "settings": {
                 "titre_summary": "Description",
-                "ouvert": true
+                "ouvert": true,
+                "afficher_bordure": true
               },
               "blocks": {}
             },
-            "mb_fiche_technique_CCwWfD": {
-              "type": "mb-fiche-technique",
-              "name": "Fiche technique",
+            "mb_accordeon_fiche_technique": {
+              "type": "mb-accordeon",
               "settings": {
-                "titre_summary": "Fiche technique",
-                "ouvert": false
+                "titre": "Fiche technique",
+                "ouvert": false,
+                "afficher_bordure": true
               },
-              "blocks": {}
+              "blocks": {
+                "mb_liste_pieces_fiche": {
+                  "type": "mb-liste-pieces",
+                  "settings": {
+                    "disposition": "mb-liste-pieces--compacte",
+                    "afficher_separateurs": true,
+                    "afficher_resume": true,
+                    "texte_resume": "Temps d'impression total",
+                    "format_temps": "decimal",
+                    "afficher_temps_piece": false,
+                    "afficher_couche": false,
+                    "afficher_temperature": true
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "mb_liste_pieces_fiche"
+              ]
             },
-            "mb_fiche_composant_hjfPNP": {
-              "type": "mb-fiche-composant",
-              "name": "Fiche composant",
+            "mb_accordeon_materiel": {
+              "type": "mb-accordeon",
               "settings": {
-                "titre_summary": "Matériel nécessaire",
-                "ouvert": false
+                "titre": "Matériel nécessaire",
+                "ouvert": false,
+                "afficher_bordure": true
               },
-              "blocks": {}
+              "blocks": {
+                "mb_liste_composants_materiel": {
+                  "type": "mb-liste-composants",
+                  "settings": {
+                    "afficher_separateurs": true
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "mb_liste_composants_materiel"
+              ]
             },
             "mb_lien_projet_MjHbAq": {
               "type": "mb-lien-projet",
               "name": "Lien vers projet",
               "settings": {
+                "label_boolean": true,
+                "texte_label": "Making-of",
+                "position_label": "mb-lien-projet--label-dessus",
                 "texte_lien": "Voir comment il a été fabriqué",
-                "texte_label": "Making-of"
+                "style": "mb-lien-projet--clair",
+                "font_align": "left",
+                "petit_lien": false,
+                "texte_petit_lien": "",
+                "arrow_boolean": true,
+                "padding_side_y": 20,
+                "padding_side_x": 18,
+                "largeur_lien": 100
               },
               "blocks": {}
             }
@@ -306,16 +326,12 @@
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "mb_description_produit_ACf48f",
-            "mb_fiche_technique_CCwWfD",
-            "mb_fiche_composant_hjfPNP",
+            "mb_accordeon_fiche_technique",
+            "mb_accordeon_materiel",
             "mb_lien_projet_MjHbAq"
           ]
         }
       },
-      "block_order": [
-        "mb_etape_produit_zABYYL",
-        "disclosures"
-      ],
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
@@ -326,6 +342,101 @@
         "background_color": "",
         "padding-block-start": 0,
         "padding-block-end": 0
+      }
+    },
+    "section_HktG8E": {
+      "type": "section",
+      "blocks": {
+        "group_CCjbLi": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 24,
+            "padding-inline-end": 24
+          },
+          "blocks": {
+            "mb_etape_produit_kwwXmW": {
+              "type": "mb-etape-produit",
+              "name": "Etape produit",
+              "settings": {
+                "titre_block": "Étapes de montage",
+                "ouvert": true,
+                "bordure_boolean": true,
+                "couleur_bordure": "{{ settings.color_palette.color1 }}",
+                "bordure_epaisseur": 0,
+                "bordure_radius": 18
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "mb_etape_produit_kwwXmW"
+          ]
+        }
+      },
+      "block_order": [
+        "group_CCjbLi"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "full-width",
+        "section_height": "small",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.color1 }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 24,
+        "padding-block-end": 24
       }
     },
     "product_recommendations_qggXJq": {
@@ -393,33 +504,32 @@
               "blocks": {}
             },
             "product_title_M7MJkb": {
-              "type": "product-title",
+              "type": "titre",
               "name": "t:names.product_title",
               "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h5",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "titre": "{{ closest.product.title }}",
+                "lien": "{{ closest.product.url }}",
+                "label": "",
+                "afficher_type": false,
+                "trait_label": false,
+                "style_label": "uppercase",
+                "badge": "",
+                "prefixe_badge": "Niveau",
+                "niveau": "h3",
+                "taille": "16px",
+                "margin_top": 4,
+                "margin_bottom": 0,
+                "margin_left": 0,
+                "margin_right": 0
               },
               "blocks": {}
             },
             "price_gLWgA6": {
               "type": "price",
               "settings": {
+                "prefixe": "",
+                "suffixe": "",
+                "color_texte": "var(--texte-secondaire-noir)",
                 "show_sale_price_first": true,
                 "show_installments": false,
                 "show_tax_info": false,
@@ -473,6 +583,7 @@
   },
   "order": [
     "main",
+    "section_HktG8E",
     "product_recommendations_qggXJq"
   ]
 }
