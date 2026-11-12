@@ -3,6 +3,12 @@
 {%- liquid
   assign block_settings = block.settings
   assign product_resource = closest.product
+
+  # mael : sur une page projet (métaobjet), on prend le produit lié au projet
+  if product_resource == blank and metaobject.system.type == 'projet'
+    assign product_resource = metaobject.produit.value
+  endif
+
   assign selected_variant = product_resource.selected_or_first_available_variant
 -%}
 
@@ -48,14 +54,27 @@
       --color-rgb: {{ block_settings.text_color.rgb }};
     {% endif %}
     --width: {{ block_settings.width }};
+    --color-texte-sp: {{ block_settings.color_texte }};
   "
   {{ block.shopify_attributes }}
 >
-  {% render 'price',
-    show_unit_price: true,
-    product_resource: product_resource,
-    show_sale_price_first: block_settings.show_sale_price_first
-  %}
+  {%- comment -%}
+    mael : préfixe / suffixe autour du prix. Ils sont À CÔTÉ du snippet price, pas dedans :
+    au changement de variante, product-price.js ne remplace que [ref="priceContainer"].
+  {%- endcomment -%}
+  <div class="mb-prix">
+    {%- if block_settings.prefixe != blank -%}
+      <span class="mb-prix__prefixe">{{ block_settings.prefixe }}</span>
+    {%- endif -%}
+    {% render 'price',
+      show_unit_price: true,
+      product_resource: product_resource,
+      show_sale_price_first: block_settings.show_sale_price_first
+    %}
+    {%- if block_settings.suffixe != blank -%}
+      <span class="mb-prix__suffixe">{{ block_settings.suffixe }}</span>
+    {%- endif -%}
+  </div>
 
   {% if block_settings.show_tax_info %}
     <div class="tax-note">
@@ -98,6 +117,29 @@
     {
       "type": "paragraph",
       "content": "t:content.resource_reference_product_price"
+    },
+    {
+      "type": "text",
+      "id": "prefixe",
+      "label": "Texte avant le prix",
+      "info": "Exemple : À partir de"
+    },
+    {
+      "type": "text",
+      "id": "suffixe",
+      "label": "Texte après le prix",
+      "info": "Exemple : TTC"
+    },
+    {
+      "type": "select",
+      "id": "color_texte",
+      "label": "Couleur du text (Suffixe, Prefixe)",
+      "default": "var(--texte-secondaire-noir)",
+      "options": [
+        { "label": "Blanc", "value": "var(--color-background)" },
+        { "label": "Noir", "value": "var(--texte-secondaire-noir)" },
+        { "label": "Gris", "value": "var(--texte-secondaire)" }
+      ]
     },
     {
       "type": "paragraph",

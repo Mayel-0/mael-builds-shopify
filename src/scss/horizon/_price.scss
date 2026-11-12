@@ -8,7 +8,21 @@
   &,
   > * {
     font-family: var(--font-heading--family);
-    font-size: $espace-4;
+    font-size: $texte-grand;
     font-weight: $titre-graisse;
+  }
+}
+
+// Réglages « Texte avant / après le prix » (ajoutés dans blocks/price.liquid)
+.mb-prix {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline; // textes alignés sur la ligne de base du prix
+  gap: 0.3em;
+
+  &__prefixe,
+  &__suffixe {
+    // Secours : les blocs Prix déjà en place n'ont pas encore ce réglage enregistré
+    color: var(--color-texte-sp, var(--texte-secondaire));
   }
 }
