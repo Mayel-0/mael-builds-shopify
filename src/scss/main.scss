@@ -12,7 +12,7 @@
 @use 'blocks/mb-etiquettes-produit';
 @use 'blocks/mb-etape-produit';
 @use 'blocks/mb-lien-projet';
-@use 'blocks/mb-card-produit.scss';
+@use 'blocks/mb-card-produit';
 
 // Snippets (snippets/*.liquid)
 @use 'snippets/mb-badge-difficulte';
@@ -21,7 +21,7 @@
 @use 'snippets/mb-materiel';
 @use 'snippets/mb-composant-ligne';
 @use 'snippets/mb-etape-details';
-@use 'snippets/_mb-details-projet';
+@use 'snippets/mb-details-projet';
 
 // Fichiers d'Horizon modifiés
 @use 'horizon/price';
