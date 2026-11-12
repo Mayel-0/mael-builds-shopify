@@ -1,0 +1,33 @@
+{%- liquid
+  assign projet = blank
+  if closest.product != blank
+    assign projet = closest.product.metafields.custom.projet.value
+  elsif metaobject.system.type == 'projet'
+    assign projet = metaobject
+  endif
+  assign lignes = projet.composant.value
+-%}
+
+{%- if lignes != blank -%}
+  <div
+    class="mb-liste-composants{% if block.settings.afficher_separateurs %} mb-liste-composants--separateurs{% endif %}"
+    {{ block.shopify_attributes }}
+  >
+    {%- for ligne in lignes -%}
+      {%- render 'mb-composant-ligne', ligne: ligne, composant: ligne.composant.value -%}
+    {%- endfor -%}
+  </div>
+{%- elsif request.design_mode -%}
+  <p {{ block.shopify_attributes }}>{{ 'mael.editeur.aucun_composant' | t }}</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Liste des composants",
+  "tag": null,
+  "settings": [
+    { "type": "checkbox", "id": "afficher_separateurs", "label": "Trait entre chaque composant", "default": true }
+  ],
+  "presets": [{ "name": "Liste des composants" }]
+}
+{% endschema %}

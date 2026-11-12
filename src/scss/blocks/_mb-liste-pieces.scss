@@ -1,0 +1,79 @@
+// blocks/mb-liste-pieces.liquid
+// La LISTE décide de la disposition de ses pièces (modificateurs --detaillee / --compacte).
+@use '../abstracts/variables' as *;
+
+.mb-liste-pieces {
+  width: 100%;
+
+  // Total : libellé à gauche, durée à droite
+  &__resume {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $espace-3;
+    border-bottom: 1px solid var(--bordure-claire);
+  }
+
+  &__resume-texte {
+    color: var(--texte-secondaire);
+  }
+
+  &__total {
+    font-weight: $texte-graisse-forte;
+  }
+
+  // Réglage « Trait entre chaque pièce »
+  &--separateurs .mb-materiel + .mb-materiel {
+    border-top: 1px solid var(--bordure-claire);
+  }
+
+  // ---------- Disposition « Détaillée » (page projet) ----------
+  &--detaillee {
+    .mb-liste-pieces__resume {
+      padding-block: $espace-3;
+      margin-block-end: $espace-1;
+    }
+
+    .mb-liste-pieces__total {
+      font-family: var(--font-heading--family);
+      font-size: $texte-grand;
+    }
+
+    .mb-materiel {
+      padding-block: $espace-3;
+    }
+
+    // Nom en gras au-dessus, infos en petit dessous
+    .mb-materiel__nom {
+      font-weight: $texte-graisse-forte;
+    }
+
+    .mb-materiel__meta {
+      font-size: $texte-petit;
+    }
+  }
+
+  // ---------- Disposition « Compacte » (page produit, dans un accordéon) ----------
+  &--compacte {
+    .mb-liste-pieces__resume {
+      padding-block: $espace-2;
+    }
+
+    .mb-materiel {
+      padding-block: $espace-2;
+    }
+
+    // Nom et infos sur UNE ligne : « Masque Oni · 1 pièce »
+    .mb-materiel__infos {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0;
+      color: var(--texte-secondaire);
+    }
+
+    .mb-materiel__meta::before {
+      content: ' · ';
+      white-space: pre; // garde les espaces autour du « · »
+    }
+  }
+}

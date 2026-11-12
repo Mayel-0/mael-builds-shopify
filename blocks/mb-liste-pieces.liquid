@@ -1,0 +1,105 @@
+{%- liquid
+  assign projet = blank
+  if closest.product != blank
+    assign projet = closest.product.metafields.custom.projet.value
+  elsif metaobject.system.type == 'projet'
+    assign projet = metaobject
+  endif
+  assign pieces = projet.pieces.value
+  assign total_temps_impression = 0
+-%}
+
+{%- comment -%}
+  1. La boucle D'ABORD : elle capture le HTML de chaque pièce
+     ET additionne les temps (les assign dans un capture modifient bien la variable).
+     Les réglages de CONTENU sont transmis au snippet.
+{%- endcomment -%}
+{%- capture detail_pieces -%}
+  {%- for piece in pieces -%}
+    {%- liquid
+      assign quantite = piece.quantite.value | default: 1
+      assign temps_piece = piece.temps_impression.value | times: quantite
+      assign total_temps_impression = total_temps_impression | plus: temps_piece
+    -%}
+    {%- render 'mb-materiel',
+      piece: piece,
+      materiel: piece.materiau.value,
+      afficher_temps: block.settings.afficher_temps_piece,
+      afficher_couche: block.settings.afficher_couche,
+      afficher_temperature: block.settings.afficher_temperature,
+      format_temps: block.settings.format_temps
+    -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if detail_pieces != blank -%}
+  {%- comment -%} Réglage de MISE EN PAGE → une classe (--compacte / --detaillee) sur le conteneur {%- endcomment -%}
+  <div
+    class="mb-liste-pieces {{ block.settings.disposition }}{% if block.settings.afficher_separateurs %} mb-liste-pieces--separateurs{% endif %}"
+    {{ block.shopify_attributes }}
+  >
+    {%- comment -%} 2. Le résumé ENSUITE : le total est connu. Affiché en premier, calculé en dernier. {%- endcomment -%}
+    {%- if block.settings.afficher_resume -%}
+      <div class="mb-liste-pieces__resume">
+        <span class="mb-liste-pieces__resume-texte">{{ block.settings.texte_resume }}</span>
+        <span class="mb-liste-pieces__total">
+          {%- render 'mb-duree', heures_decimales: total_temps_impression, format: block.settings.format_temps -%}
+        </span>
+      </div>
+    {%- endif -%}
+
+    {{ detail_pieces }}
+  </div>
+{%- elsif request.design_mode -%}
+  <p {{ block.shopify_attributes }}>{{ 'mael.editeur.aucune_piece' | t }}</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Liste des pièces",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "disposition",
+      "label": "Disposition",
+      "default": "mb-liste-pieces--detaillee",
+      "options": [
+        { "label": "Détaillée (nom au-dessus des infos)", "value": "mb-liste-pieces--detaillee" },
+        { "label": "Compacte (tout sur une ligne)", "value": "mb-liste-pieces--compacte" }
+      ]
+    },
+    { "type": "checkbox", "id": "afficher_separateurs", "label": "Trait entre chaque pièce", "default": true },
+    { "type": "header", "content": "Temps d'impression total" },
+    { "type": "checkbox", "id": "afficher_resume", "label": "Afficher le total", "default": true },
+    {
+      "type": "text",
+      "id": "texte_resume",
+      "label": "Texte du total",
+      "default": "Temps d'impression total",
+      "visible_if": "{{ block.settings.afficher_resume }}"
+    },
+    {
+      "type": "select",
+      "id": "format_temps",
+      "label": "Format des durées",
+      "default": "decimal",
+      "options": [
+        { "label": "Décimal (8,3 h)", "value": "decimal" },
+        { "label": "Heures et minutes (8h18)", "value": "heures" }
+      ]
+    },
+    { "type": "header", "content": "Infos de chaque pièce" },
+    { "type": "checkbox", "id": "afficher_temps_piece", "label": "Temps d'impression", "default": true },
+    {
+      "type": "checkbox",
+      "id": "afficher_couche",
+      "label": "Hauteur de couche",
+      "info": "Champ « hauteur_couche » du métaobjet Pièce",
+      "default": true
+    },
+    { "type": "checkbox", "id": "afficher_temperature", "label": "Température dans le badge", "default": true }
+  ],
+  "presets": [{ "name": "Liste des pièces" }]
+}
+{% endschema %}

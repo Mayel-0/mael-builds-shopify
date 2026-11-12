@@ -1,0 +1,11 @@
+// blocks/mb-liste-composants.liquid
+@use '../abstracts/variables' as *;
+
+.mb-liste-composants {
+  width: 100%;
+
+  // Réglage « Trait entre chaque composant » : un trait entre deux lignes, pas au-dessus de la première
+  &--separateurs .mb-composant-ligne + .mb-composant-ligne {
+    border-top: 1px solid var(--bordure-claire);
+  }
+}

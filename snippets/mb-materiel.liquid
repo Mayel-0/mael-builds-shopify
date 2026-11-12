@@ -1,30 +1,47 @@
 {% doc %}
-  @param {metaobject} materiel - Le matériel du produit (métachamp produit custom.materiel)
-  @param {metaobject} piece - La pièce du produit (métachamp produit custom.pieces)
+  Affiche une pièce imprimée : nom, infos (quantité, temps, couche) et badge du matériau.
+  UNE seule structure HTML : la mise en page (compacte / détaillée) est gérée en CSS
+  par le bloc parent (mb-liste-pieces), le contenu par les paramètres ci-dessous.
+
+  @param {metaobject} piece - Le métaobjet Pièce
+  @param {metaobject} materiel - Le métaobjet Matériau de la pièce
+  @param {boolean} [afficher_temps] - Affiche le temps d'impression de la pièce
+  @param {boolean} [afficher_couche] - Affiche la hauteur de couche (champ hauteur_couche)
+  @param {boolean} [afficher_temperature] - Affiche la température de buse dans le badge
+  @param {string} [format_temps] - 'decimal' (8,3 h) ou 'heures' (8h18)
 
   @example
-  {% render 'mb-materiel', materiel: piece.materiau.value, piece: piece %}
+  {% render 'mb-materiel', piece: piece, materiel: piece.materiau.value, afficher_temps: true %}
 {% enddoc %}
 
 {%- liquid
-  assign heures_decimales = piece.temps_impression.value | times: piece.quantite.value
-  assign minutes_total = heures_decimales | times: 60 | round
-  assign heures = minutes_total | divided_by: 60
-  assign minutes = minutes_total | modulo: 60
-  assign minutes = minutes | prepend: '0' | slice: -2, 2
+  assign quantite = piece.quantite.value | default: 1
+  assign heures_decimales = piece.temps_impression.value | times: quantite
+  assign couche = piece.hauteur_couche.value
+  assign hauteur_couche = couche | append: '' | replace: '.', ','
 -%}
 
-{%- if materiel != blank -%}
-  <div class="mb-materiel" style="--couleur-materiel: {{ materiel.couleur.value }};">
-    <div class="mb-materiel__ligne">
-      <p class="mb-materiel__texte-secondaire">Temps d'impression total</p>
-      <p class="mb-materiel__temps">{{ heures }}h{{ minutes }}</p>
+{%- if piece != blank -%}
+  <div class="mb-materiel" style="--couleur-materiel: {{ materiel.couleur.value | default: 'transparent' }};">
+    <div class="mb-materiel__infos">
+      <span class="mb-materiel__nom">{{ piece.nom.value }}</span>
+      {%- comment -%} Chaque info est un <span> : les « · » entre eux sont ajoutés en CSS {%- endcomment -%}
+      <span class="mb-materiel__meta">
+        <span>{{ 'mael.pieces.quantite' | t: count: quantite }}</span>
+        {%- if afficher_temps -%}
+          <span>{%- render 'mb-duree', heures_decimales: heures_decimales, format: format_temps -%}</span>
+        {%- endif -%}
+        {%- if afficher_couche and couche != blank -%}
+          <span>{{ 'mael.pieces.couche' | t: hauteur: hauteur_couche }}</span>
+        {%- endif -%}
+      </span>
     </div>
-    <div class="mb-materiel__ligne">
-      <p class="mb-materiel__texte-secondaire">{{ piece.nom.value }} - {{ piece.quantite.value }} pièce(s)</p>
-      <p class="mb-materiel__label-materiel">{{ materiel.nom.value }} - {{ materiel.temperature_buse }} °C</p>
-    </div>
+
+    {%- if materiel != blank -%}
+      <span class="mb-materiel__badge">
+        {{- materiel.nom.value -}}
+        {%- if afficher_temperature and materiel.temperature_buse.value != blank %} · {{ materiel.temperature_buse.value }} °C{% endif -%}
+      </span>
+    {%- endif -%}
   </div>
-{%- elsif request.design_mode -%}
-  <p {{ block.shopify_attributes }}>Ajoute le matériel du produit dans l'admin.</p>
 {%- endif -%}

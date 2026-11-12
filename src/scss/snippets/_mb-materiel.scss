@@ -1,43 +1,55 @@
 // snippets/mb-materiel.liquid
+// Apparence d'UNE pièce, commune à toutes les dispositions.
+// La disposition (compacte / détaillée) est dans blocks/_mb-liste-pieces.scss.
 @use '../abstracts/variables' as *;
 
 .mb-materiel {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px 0px;
-  p {
-    margin: 0;
-  }
-  &__ligne {
+  align-items: center;
+  justify-content: space-between; // infos à gauche, badge à droite
+  gap: $espace-3;
+
+  &__infos {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column; // par défaut : nom au-dessus des infos
+    gap: 2px;
+    min-width: 0; // permet au texte de passer à la ligne au lieu de pousser le badge
   }
-  & &__temps {
-    font-weight: $texte-graisse-forte;
+
+  &__meta {
+    color: var(--texte-secondaire);
+
+    // « 1 pièce · 8,3 h · couche 0,2 mm » : le « · » est ajouté devant chaque info sauf la 1re
+    > span + span::before {
+      content: ' · ';
+      white-space: pre; // garde les espaces autour du « · »
+    }
   }
-  &__label-materiel {
-    display: flex;
+
+  // Badge du matériau : pastille de couleur + nom
+  &__badge {
+    flex-shrink: 0;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
+    padding: 2px $espace-2;
+    border-radius: 999px;
+    font-size: $texte-petit;
+    white-space: nowrap;
     border: 1px solid var(--bordure-claire);
-    padding: 2px $espace-1;
-    border-radius: 18px;
+
+    // Pastille de la couleur du matériau (métaobjet Matériau → champ couleur).
+    // La bordure la garde visible même si la couleur est blanche ou très claire.
     &::before {
-      content: ' ';
-      display: flex;
-      width: $espace-2;
-      height: $espace-2;
+      content: '';
+      flex-shrink: 0;
+      box-sizing: border-box; // la bordure est comptée DANS les 10px, pas en plus
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background-color: var(--couleur-materiel, transparent);
       border: 1px solid var(--bordure-claire);
     }
-  }
-  & &__label-materiel {
-    font-size: $espace-2;
-  }
-  &__texte-secondaire {
-    color: var(--texte-secondaire);
   }
 }
