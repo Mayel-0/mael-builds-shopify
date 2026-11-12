@@ -47,7 +47,10 @@
     }
   ],
   "disabled_on": {
-    "groups": ["header", "footer"]
+    "groups": [
+      "header",
+      "footer"
+    ]
   },
   "settings": [
     {
@@ -189,10 +192,14 @@
               },
               "blocks": {
                 "title": {
-                  "type": "product-title",
+                  "type": "titre",
                   "name": "t:names.title",
                   "settings": {
-                    "type_preset": "rte"
+                    "niveau": "h3",
+                    "taille": "16px",
+                    "margin_top": 4,
+                    "lien": "{{ closest.product.url }}",
+                    "titre": "{{ closest.product.title }}"
                   }
                 },
                 "price": {
@@ -204,7 +211,10 @@
                   }
                 }
               },
-              "block_order": ["title", "price"]
+              "block_order": [
+                "title",
+                "price"
+              ]
             },
             "review_stars": {
               "type": "review",
@@ -233,7 +243,12 @@
               }
             }
           },
-          "block_order": ["header", "review_stars", "variant_picker", "buy_buttons"]
+          "block_order": [
+            "header",
+            "review_stars",
+            "variant_picker",
+            "buy_buttons"
+          ]
         }
       }
     }

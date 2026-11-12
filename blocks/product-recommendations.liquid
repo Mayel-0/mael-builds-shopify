@@ -466,26 +466,14 @@
               }
             },
             "product_title": {
-              "type": "product-title",
+              "type": "titre",
               "name": "t:names.product_title",
               "settings": {
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "niveau": "h3",
+                "taille": "16px",
+                "margin_top": 4,
+                "lien": "{{ closest.product.url }}",
+                "titre": "{{ closest.product.title }}"
               }
             },
             "price": {
@@ -510,10 +498,16 @@
               }
             }
           },
-          "block_order": ["product-card-gallery", "product_title", "price"]
+          "block_order": [
+            "product-card-gallery",
+            "product_title",
+            "price"
+          ]
         }
       },
-      "block_order": ["heading"]
+      "block_order": [
+        "heading"
+      ]
     }
   ]
 }

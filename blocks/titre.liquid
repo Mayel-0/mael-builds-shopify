@@ -1,0 +1,163 @@
+{%- doc -%}
+  Bloc « Titre » générique : le seul titre du thème, utilisable partout.
+
+  Il ne devine rien selon la page : toutes ses valeurs (titre, label, badge, lien)
+  viennent des réglages. Dans l'éditeur, chaque champ peut être écrit à la main
+  ou connecté à une source dynamique (titre du produit, champ d'un projet…).
+
+  @example
+  {% content_for 'block', type: 'titre', id: 'titre' %}
+{%- enddoc -%}
+
+{%- liquid
+  assign titre = block.settings.titre
+  assign label = block.settings.label
+  assign badge = block.settings.badge
+
+  # Type du produit fourni par le parent (fiche produit, carte, Groupe produit).
+  # Le type n'existe pas comme source dynamique : on le lit via closest.product.
+  assign type = blank
+  if block.settings.afficher_type
+    assign type = closest.product.type
+  endif
+  assign lien = block.settings.lien
+  assign balise = block.settings.niveau
+-%}
+
+{%- if titre != blank -%}
+  <div
+    class="mb-titre"
+    {{ block.shopify_attributes }}
+    style="
+      --margin-top: {{ block.settings.margin_top }}px;
+      --margin-bottom: {{ block.settings.margin_bottom }}px;
+      --margin-left: {{ block.settings.margin_left }}px;
+      --margin-right: {{ block.settings.margin_right }}px;
+      --style-texte-label: {{ block.settings.style_label }};
+      --taille-titre: {{ block.settings.taille }};
+    "
+  >
+    {%- if label != blank or type != blank or badge != blank -%}
+      <div class="mb-titre__ligne">
+        {%- if label != blank or type != blank -%}
+          <p class="mb-titre__label{% if block.settings.trait_label %} mb-titre__label--trait{% endif %}">
+            {{- label -}}
+            {%- if label != blank and type != blank %} · {% endif -%}
+            {{- type -}}
+          </p>
+        {%- endif -%}
+        {%- render 'mb-badge-difficulte', difficulte: badge, prefixe: block.settings.prefixe_badge -%}
+      </div>
+    {%- endif -%}
+
+    <{{ balise }} class="mb-titre__titre">
+      {%- if lien != blank -%}
+        {%- comment -%} ref="productTitleLink" : lu par product-card.js pour suivre la variante choisie dans une carte {%- endcomment -%}
+        <a class="mb-titre__lien" ref="productTitleLink" href="{{ lien }}">{{ titre }}</a>
+      {%- else -%}
+        {{- titre -}}
+      {%- endif -%}
+    </{{ balise }}>
+  </div>
+{%- elsif request.design_mode -%}
+  <p {{ block.shopify_attributes }}>{{ 'mael.editeur.titre' | t }}</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Titre",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "titre",
+      "label": "Titre",
+      "info": "Écris le texte ou connecte une source dynamique (titre du produit, champ du projet…)."
+    },
+    {
+      "type": "url",
+      "id": "lien",
+      "label": "Lien",
+      "info": "Optionnel. Dans une carte produit : connecte l'URL du produit."
+    },
+    { "type": "header", "content": "Ligne au-dessus du titre" },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "info": "Laisser vide pour ne rien afficher. Exemple : Making-of"
+    },
+    {
+      "type": "checkbox",
+      "id": "afficher_type",
+      "label": "Afficher le type de produit",
+      "info": "Après le label. Fonctionne sur la fiche produit, dans une carte produit ou dans un Groupe produit. Rien ne s'affiche si le type est vide.",
+      "default": false
+    },
+    { "type": "checkbox", "id": "trait_label", "label": "Trait avant le label", "default": false },
+    {
+      "type": "select",
+      "id": "style_label",
+      "label": "Style du label",
+      "default": "uppercase",
+      "options": [
+        { "label": "En majuscule", "value": "uppercase" },
+        { "label": "Normale", "value": "none" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "info": "Laisser vide pour ne rien afficher. Exemple : connecte la difficulté du projet."
+    },
+    {
+      "type": "text",
+      "id": "prefixe_badge",
+      "label": "Texte avant le badge",
+      "default": "Niveau"
+    },
+    { "type": "header", "content": "Titre" },
+    {
+      "type": "select",
+      "id": "niveau",
+      "label": "Niveau du titre (structure)",
+      "default": "h2",
+      "info": "Un seul H1 par page. H2 ou H3 dans une carte ou une section.",
+      "options": [
+        { "label": "H1 (titre de la page)", "value": "h1" },
+        { "label": "H2 (titre de la section)", "value": "h2" },
+        { "label": "H3 (titre de la carte)", "value": "h3" },
+        { "label": "H4 (titre du bloc)", "value": "h4" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "taille",
+      "label": "Taille du titre",
+      "default": "32px",
+      "options": [
+        { "label": "Petit texte (14 px)", "value": "14px" },
+        { "label": "Texte (16 px)", "value": "16px" },
+        { "label": "Petit (20 px)", "value": "20px" },
+        { "label": "Moyen (24 px)", "value": "24px" },
+        { "label": "Grand (32 px)", "value": "32px" },
+        { "label": "Très grand (40 px)", "value": "40px" }
+      ]
+    },
+    { "type": "header", "content": "Marges" },
+    { "type": "range", "id": "margin_top", "label": "Haut", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "margin_bottom", "label": "Bas", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "margin_left", "label": "Gauche", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "margin_right", "label": "Droite", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 }
+  ],
+  "presets": [
+    {
+      "name": "Titre",
+      "settings": {
+        "titre": "Titre"
+      }
+    }
+  ]
+}
+{% endschema %}
