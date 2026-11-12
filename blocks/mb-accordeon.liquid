@@ -1,0 +1,41 @@
+{%- comment -%} On capture les blocs enfants pour les donner au snippet existant {%- endcomment -%}
+{%- capture contenu -%}
+  {%- content_for 'blocks' -%}
+{%- endcapture -%}
+
+<div class="mb-accordeon" {{ block.shopify_attributes }}>
+  {% render 'mb-details-produit',
+    titre: block.settings.titre,
+    contenu: contenu,
+    ouvert: block.settings.ouvert,
+    bordure: block.settings.afficher_bordure
+  %}
+</div>
+
+{% schema %}
+{
+  "name": "Accordéon",
+  "tag": null,
+  "blocks": [{ "type": "mb-liste-pieces" }, { "type": "mb-liste-composants" }, { "type": "@theme" }],
+  "settings": [
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Informations" },
+    { "type": "checkbox", "id": "ouvert", "label": "Ouvert par défaut", "default": false },
+    { "type": "checkbox", "id": "afficher_bordure", "label": "Afficher la bordure du bas", "default": true }
+  ],
+  "presets": [
+    {
+      "name": "Accordéon vide"
+    },
+    {
+      "name": "Fiche technique",
+      "settings": { "titre": "Fiche technique" },
+      "blocks": [{ "type": "mb-liste-pieces" }]
+    },
+    {
+      "name": "Matériel nécessaire",
+      "settings": { "titre": "Matériel nécessaire" },
+      "blocks": [{ "type": "mb-liste-composants" }]
+    }
+  ]
+}
+{% endschema %}

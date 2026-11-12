@@ -1,0 +1,8 @@
+// blocks/mb-accordeon.liquid
+@use '../abstracts/variables' as *;
+
+.mb-accordeon {
+  // Toute la largeur, même dans une section/un groupe aligné à gauche.
+  // Marche avec "tag": null dans le schéma : plus de <div class="shopify-block"> autour.
+  width: 100%;
+}
