@@ -1,3 +1,15 @@
+{%- liquid
+  # mael : si aucune image n'est choisie dans l'éditeur, on prend celle du produit ou du projet
+  assign image_affichee = block.settings.image
+  if image_affichee == blank
+    if closest.product != blank
+      assign image_affichee = closest.product.featured_image
+    elsif metaobject.system.type == 'projet'
+      assign image_affichee = metaobject.produit.value.featured_image
+    endif
+  endif
+-%}
+
 {% liquid
   assign block_settings = block.settings
   assign ratio = 1
@@ -8,7 +20,7 @@
     when 'portrait'
       assign ratio = '4 / 5'
     when 'adapt'
-      assign ratio = block_settings.image.aspect_ratio
+      assign ratio = image_affichee.aspect_ratio
   endcase
 
   if ratio == 0 or ratio == null
@@ -39,14 +51,14 @@
 %}
 
 {% capture image %}
-  {%- if block_settings.image -%}
+  {%- if image_affichee -%}
     {{
-      block_settings.image
+      image_affichee
       | image_url: width: 3840
       | image_tag:
-        width: block_settings.image.width,
+        width: image_affichee.width,
         widths: widths,
-        height: block_settings.image.height,
+        height: image_affichee.height,
         class: 'image-block__image border-style',
         style: image_border_style,
         sizes: sizes
