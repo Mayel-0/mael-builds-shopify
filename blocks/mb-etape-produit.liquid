@@ -1,20 +1,31 @@
-{% assign projet = closest.product.metafields.custom.projet.value %}
-{% assign etapes = projet.etape.value %}
+{%- liquid
+  assign projet = blank
+  if closest.product != blank
+    assign projet = closest.product.metafields.custom.projet.value
+  elsif metaobject.system.type == 'projet'
+    assign projet = metaobject
+  endif
+  assign etapes = projet.etape.value
+-%}
 
 {% if etapes != blank %}
-  <div class="mb-produit-etape" {{ block.shopify_attributes }}>
-    <h3 class="mb-produit-etape__titre-block">{{ block.settings.titre_block }}</h3>
+  <div
+    class="mb-produit-etape"
+    {{ block.shopify_attributes }}
+    style="{%- if block.settings.bordure_boolean -%}--bordure-etape: {{ block.settings.couleur_bordure }}; --bordure-taille: {{ block.settings.bordure_epaisseur }}px; --bordure-radius: {{ block.settings.bordure_radius }}px{%- endif -%};"
+  >
     <ol class="mb-produit-etape__liste">
       {% render 'mb-etape-details' for etapes as etape, ouvert: block.settings.ouvert %}
     </ol>
   </div>
 {% elsif request.design_mode %}
-  <p {{ block.shopify_attributes }}>Ajouter des etape au Projet du Produit</p>
+  <p {{ block.shopify_attributes }}>{{ 'mael.editeur.aucune_etape' | t }}</p>
 {%- endif %}
 
 {% schema %}
 {
   "name": "Etape produit",
+  "tag": null,
   "presets": [
     {
       "name": "Etape produit"
@@ -22,7 +33,35 @@
   ],
   "settings": [
     { "type": "text", "id": "titre_block", "label": "Titre du Button", "default": "Étapes de montage" },
-    { "type": "checkbox", "id": "ouvert", "label": "Le premier est Ouvert par défaut", "default": true }
+    { "type": "checkbox", "id": "ouvert", "label": "Le premier est Ouvert par défaut", "default": true },
+    { "type": "checkbox", "id": "bordure_boolean", "label": "Ajouter une Bordure", "default": false },
+    {
+      "type": "color",
+      "id": "couleur_bordure",
+      "label": "Couleur de bordure",
+      "default": "{{ settings.color_palette.color1 }}",
+      "visible_if": "{{ block.settings.bordure_boolean }}"
+    },
+    {
+      "type": "range",
+      "id": "bordure_epaisseur",
+      "label": "Taille bordure",
+      "min": 0,
+      "max": 10,
+      "default": 0,
+      "unit": "px",
+      "visible_if": "{{ block.settings.bordure_boolean }}"
+    },
+    {
+      "type": "range",
+      "id": "bordure_radius",
+      "label": "Angle radius",
+      "unit": "px",
+      "min": 0,
+      "max": 50,
+      "default": 0,
+      "visible_if": "{{ block.settings.bordure_boolean }}"
+    }
   ]
 }
 {% endschema %}
