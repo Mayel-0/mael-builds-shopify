@@ -11,7 +11,7 @@
   assign class = 'add-to-cart-button ' | append: block.settings.style_class | append: ' ' | append: scoped_class
   assign id = 'BuyButtons-ProductSubmitButton-' | append: block.id
 
-  # Texte personnalisé seulement si on peut ajouter : garde « Épuisé » / « Indisponible » sinon
+  # mael : texte personnalisé seulement si on peut ajouter. Le bouton n'affiche pas d'icône (show_icon: false) : garde « Épuisé » / « Indisponible » sinon
   if can_add_to_cart and block.settings.texte_bouton != blank
     assign add_to_cart_text = block.settings.texte_bouton
   endif
@@ -35,7 +35,8 @@
   %}
 </span>
 
-<p class="mb-securite-paiement">Paiement sécurisé · Carte, Apple Pay, PayPal</p>
+{%- # mael : réassurance sous le bouton d'ajout au panier -%}
+<p class="mb-securite-paiement">{{ 'mael.produit.paiement_securise' | t }}</p>
 
 {% schema %}
 {

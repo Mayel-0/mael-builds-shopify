@@ -5,14 +5,14 @@
   @param {string} filter_style - The filter style, can be 'horizontal' or 'vertical'.
   @param {boolean} [should_render_clear] - Whether to render the clear button.
   @param {string} [id_prefix] - Unique prefix to avoid duplicate IDs when rendered multiple times.
-  @param {string} [separator_text] - Séparateur de text min, max
+  @param {string} [separator_text] - Texte entre le prix min et le prix max (mael)
 
   @example
   {% render 'price-filter', filter: filter, filter_style: 'vertical', id_prefix: 'dialog' %}
 {%- enddoc -%}
 
 {%- liquid
-  # Séparateur entre min et max : texte du réglage, sinon la traduction Horizon (« à »).
+  # mael : séparateur entre min et max : texte du réglage, sinon la traduction Horizon (« à »).
   if separator_text == blank
     assign separator_text = 'fields.separator' | t
   endif
@@ -39,6 +39,7 @@
       class="facets__summary"
       data-testid="price-filter"
     >
+      {%- # mael : classe alter__graisse (titre en gras) -%}
       <span class="facets__label alter__graisse">{{ filter.label }}</span>
       <facet-status-component class="facets__status">
         <template ref="moneyFormat">{{ shop.money_format }}</template>

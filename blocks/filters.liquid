@@ -111,6 +111,7 @@
       class="facets facets--horizontal facets-controls-wrapper spacing-style{% if has_custom_color %} color-custom-{{ block.id }}{% endif %}"
       style="{% render 'spacing-style', settings: block_settings %}{% if block_settings.text_label_case == 'uppercase' %} --facet-label-transform: uppercase;{% endif %}"
     >
+      {%- # mael : réglage « Afficher le titre » -%}
       {% if block_settings.enable_filtering and block_settings.afficher_titre %}
         <h4 class="facets--filters-title">{{ 'content.filters' | t }}</h4>
       {% endif %}
@@ -119,6 +120,7 @@
         class="products-count-wrapper"
         data-testid="products-count"
       >
+        {%- # mael : réglage « Afficher le nombre de produits » -%}
         {%- if block_settings.nombre_article_boolean -%}
           <span role="status">
             {% if products_count > 25000 %}
@@ -218,6 +220,7 @@
                           assign should_render_clear = false
                         endif
 
+                        # mael : séparateur min / max réglable (separator_text)
                         render 'price-filter', filter: filter, filter_style: block_settings.filter_style, should_render_clear: should_render_clear, id_prefix: 'horizontal', separator_text: block_settings.separator_text
                       -%}
                     {% else %}
@@ -283,7 +286,8 @@
                 class="products-count-wrapper"
                 data-testid="products-count"
               >
-                {%- if block_settings.nombre_article_boolean -%}
+                {%- # mael : réglage « Afficher le nombre de produits » -%}
+        {%- if block_settings.nombre_article_boolean -%}
                   <span role="status">
                     {% if products_count > 25000 %}
                       {{- 'content.item_count_cutoff' | t: count: 25000 -}}
@@ -484,6 +488,7 @@
                           assign is_active = true
                         endif
 
+                        # mael : séparateur min / max réglable (separator_text)
                         render 'price-filter', filter: filter, filter_style: 'vertical', should_render_clear: false, id_prefix: 'dialog', separator_text: block_settings.separator_text
                       -%}
                     {% else %}

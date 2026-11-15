@@ -20,7 +20,7 @@
 
   assign alt_text_fallback = 'accessibility.home_logo_alt' | t: store_name: shop.name
 
-  # Texte affiché quand aucune image de logo n'est choisie (Paramètres du thème > Logo).
+  # mael : texte affiché quand aucune image de logo n'est choisie (Paramètres du thème > Logo).
   # Vide = nom de la boutique, comme avant.
   assign logo_texte = block_settings.texte | default: shop.name
 %}

@@ -11,6 +11,7 @@
 
 {% capture product_card_children %}
   <div class="featured-product-content-top">
+    {%- # mael : bloc Titre générique à la place de product-title -%}
     {% content_for 'block', type: 'mb-titre', id: 'featured-product-title' %}
 
     {% content_for 'block', type: '_featured-product-price', id: 'featured-product-price' %}

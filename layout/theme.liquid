@@ -24,6 +24,7 @@
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-palette' -%}
 
+    {%- # mael : polices de la charte et styles compilés depuis src/scss -%}
     {%- render 'mb-polices' -%}
     {{ 'mael-builds.css' | asset_url | stylesheet_tag }}
 

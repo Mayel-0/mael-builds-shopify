@@ -4,9 +4,14 @@
   assign block_settings = block.settings
   assign product_resource = closest.product
 
-  # mael : sur une page projet (métaobjet), on prend le produit lié au projet
-  if product_resource == blank and metaobject.system.type == 'projet'
-    assign product_resource = metaobject.produit.value
+  # mael : sans produit transmis, on prend le produit du projet
+  # (projet transmis par un parent, sinon projet de la page en cours)
+  if product_resource == blank
+    if closest.metaobject.projet != blank
+      assign product_resource = closest.metaobject.projet.produit.value
+    elsif metaobject.system.type == 'projet'
+      assign product_resource = metaobject.produit.value
+    endif
   endif
 
   assign selected_variant = product_resource.selected_or_first_available_variant
@@ -54,7 +59,7 @@
       --color-rgb: {{ block_settings.text_color.rgb }};
     {% endif %}
     --width: {{ block_settings.width }};
-    --color-texte-sp: {{ block_settings.color_texte }};
+    --color-texte-sp: {{ block_settings.color_texte }}; {%- # mael -%}
   "
   {{ block.shopify_attributes }}
 >

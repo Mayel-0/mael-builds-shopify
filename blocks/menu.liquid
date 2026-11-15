@@ -4,7 +4,7 @@
   assign heading = block_settings.heading
   assign show_as_accordion = block_settings.show_as_accordion
 
-  # Case « Afficher le titre » décochée : on réutilise la classe --empty de Horizon,
+  # mael : case « Afficher le titre » décochée : on réutilise la classe --empty de Horizon,
   # qui masque le titre (sauf en accordéon sur mobile, où il sert à ouvrir le menu).
   assign titre_masque = false
   if block_settings.afficher_titre == false
@@ -79,6 +79,7 @@
         {% endif %}
       >
         {% if menu %}
+          {%- # mael : direction, bordure, padding et lien actif réglables -%}
           <ul
             class="list-unstyled menu__liste {{ block_settings.direction }}"
             style="
@@ -93,7 +94,7 @@
           >
             {% for link in menu.links %}
               <li class="menu__item {{ block_settings.link_preset }}">
-                {%- comment -%} link.current : le lien pointe vers la page affichée {%- endcomment -%}
+                {%- comment -%} mael : link.current = le lien pointe vers la page affichée {%- endcomment -%}
                 <a
                   href="{{ link.url }}"
                   {% if link.current and block_settings.lien_actif %}
@@ -132,7 +133,7 @@
     margin-block-start: var(--spacing--size);
   }
 
-  /* Bordure et padding de chaque lien (réglages « Liens ») */
+  /* mael : bordure et padding de chaque lien (réglages « Liens ») */
   .menu__liste a {
     display: inline-block;
     padding: var(--lien-padding-y, 0) var(--lien-padding-x, 0);

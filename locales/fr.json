@@ -352,6 +352,9 @@
     }
   },
   "mael": {
+    "produit": {
+      "paiement_securise": "Paiement sécurisé · Carte, Apple Pay, PayPal"
+    },
     "pieces": {
       "quantite": {
         "one": "{{ count }} pièce",
