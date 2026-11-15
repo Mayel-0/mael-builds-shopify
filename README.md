@@ -1,92 +1,245 @@
-# Horizon
+# Mael Builds · thème Shopify
 
-[Getting started](#getting-started) |
-[Staying up to date with Horizon changes](#staying-up-to-date-with-horizon-changes) |
-[Developer tools](#developer-tools) |
-[Contributing](#contributing) |
-[License](#license)
+Boutique de démonstration de fichiers STL et de kits d'objets imprimés en 3D,
+construite sur **Horizon**, le thème officiel de Shopify.
 
-Horizon is the flagship of a new generation of first party Shopify themes. It incorporates the latest Liquid Storefronts features, including [theme blocks](https://shopify.dev/docs/storefronts/themes/architecture/blocks/theme-blocks/quick-start?framework=liquid).
+L'objectif : une boutique **entièrement gérable par le marchand**. Un nouveau projet
+se crée depuis l'admin, les pages se composent dans l'éditeur de thème, et les
+réglages restent bornés pour que le design ne casse pas.
 
-- **Web-native in its purest form:** Themes run on the [evergreen web](https://www.w3.org/2001/tag/doc/evergreen-web/). We leverage the latest web browsers to their fullest, while maintaining support for the older ones through progressive enhancement—not polyfills.
-- **Lean, fast, and reliable:** Functionality and design defaults to "no" until it meets this requirement. Code ships on quality. Themes must be built with purpose. They shouldn't support each and every feature in Shopify.
-- **Server-rendered:** HTML must be rendered by Shopify servers using Liquid. Business logic and platform primitives such as translations and money formatting don't belong on the client. Async and on-demand rendering of parts of the page is OK, but we do it sparingly as a progressive enhancement.
-- **Functional, not pixel-perfect:** The Web doesn't require each page to be rendered pixel-perfect by each browser engine. Using semantic markup, progressive enhancement, and clever design, we ensure that themes remain functional regardless of the browser.
+> Le marchand gère tout. Le code reste propre.
 
-## Getting started
+**Stack** : Shopify (Online Store 2.0, theme blocks), Liquid, métaobjets, SCSS (BEM),
+Shopify CLI, Theme Check, Search & Discovery, Digital Products.
 
-We recommend using the Skeleton Theme as a starting point for a theme development project. [Learn more on Shopify.dev](https://shopify.dev/themes/getting-started/create).
+---
 
-To create a new theme project based on Horizon:
+## Sommaire
 
-```sh
-git clone https://github.com/Shopify/horizon.git
+- [Le projet](#le-projet)
+- [Architecture](#architecture)
+- [Modèle de données](#modèle-de-données)
+- [Blocs et snippets](#blocs-et-snippets)
+- [Styles](#styles)
+- [Conventions](#conventions)
+- [Démarrer](#démarrer)
+- [Basé sur Horizon](#basé-sur-horizon)
+
+---
+
+## Le projet
+
+**Côté client** : choisir, comprendre, acheter.
+
+- Chaque projet existe en **fichier STL** (téléchargement immédiat) et en **kit complet**.
+- La fiche produit détaille la fiche technique, le matériel nécessaire et les étapes de montage.
+- Chaque projet a sa page **making-of**, qui renvoie vers le produit.
+
+**Côté marchand** : tout gérer sans une ligne de code.
+
+- Un projet = un **métaobjet** : pièces, matériaux, composants et étapes se saisissent dans l'admin.
+- Les pages sont composées dans l'**éditeur de thème** avec des blocs réutilisables.
+- Les **filtres** (format, niveau, prix) sont configurés dans Search & Discovery.
+
+| Page | Rôle |
+|---|---|
+| Accueil | Donne envie et oriente vers une catégorie (hero, garanties, catégories, produits phares, making-of à la une) |
+| Collection | Navigation par catégorie (collections automatiques) et filtres |
+| Fiche produit | Choix du format, ajout au panier, fiche technique, matériel, étapes |
+| Page projet | Le making-of, avec un lien pour acheter |
+
+---
+
+## Architecture
+
+```
+.
+├── blocks/      # blocs de thème ; les blocs du projet sont préfixés mb-
+├── sections/    # sections ; mb-hero
+├── snippets/    # fragments réutilisables ; préfixés mb-
+├── locales/     # traductions (fr, en) : textes du site et libellés de l'éditeur
+├── src/scss/    # sources SCSS, compilées dans assets/mael-builds.css
+└── docs/        # documentation technique
 ```
 
-Install the [Shopify CLI](https://shopify.dev/docs/storefronts/themes/tools/cli) to connect your local project to a Shopify store. Learn about the [theme developer tools](https://shopify.dev/docs/storefronts/themes/tools) available, and the suggested [developer tools](#developer-tools) below.
+### Des blocs génériques
 
-Please note that the `main` branch may include code for features not yet released. You may encounter Liquid API properties that are not publicly documented, but will be when the feature is officially rolled out.
+Un bloc **ne devine pas** sur quelle page il se trouve. Ses valeurs viennent de ses
+réglages, écrits à la main ou reliés à une **source dynamique** dans l'éditeur.
+Le même bloc `mb-titre` sert ainsi de titre de fiche produit, de titre de carte
+et de titre de hero.
 
-### Shopify Theme Store development
+### Le parent transmet, l'enfant lit
 
-If you're building a theme for the Shopify Theme Store, then do not use Horizon as a starting point. Themes based on, derived from, or incorporating Horizon are not eligible for submission to to the Shopify Theme Store. Use the [Skeleton Theme](https://github.com/Shopify/skeleton-theme) instead.
+Les données descendent de parent en enfant avec `closest` :
 
-## Staying up to date with Horizon changes
-
-Say you're building a new theme off Horizon but you still want to be able to pull in the latest changes, you can add a remote `upstream` pointing to this Horizon repository.
-
-1. Navigate to your local theme folder.
-2. Verify the list of remotes and validate that you have both an `origin` and `upstream`:
-
-```sh
-git remote -v
+```liquid
+{%- # Le parent fournit un produit à tous ses blocs enfants -%}
+{% content_for 'blocks', closest.product: block.settings.produit %}
 ```
 
-3. If you don't see an `upstream`, you can add one that points to Shopify's Horizon repository:
-
-```sh
-git remote add upstream https://github.com/Shopify/horizon.git
+```liquid
+{%- # L'enfant lit le produit le plus proche, sans savoir d'où il vient -%}
+{{ closest.product.title }}
 ```
 
-4. Pull in the latest Horizon changes into your repository:
+- `mb-groupe-produit` fournit un produit à ses enfants (titre, prix, image…).
+- `mb-hero` fournit un **produit ou un projet** à ses deux zones.
+- Les cartes de collection fournissent leur collection (`mb-nombre-produits`).
 
-```sh
-git fetch upstream
-git pull upstream main
+Les blocs liés à un projet le cherchent toujours dans le même ordre :
+le projet du produit transmis, puis le projet transmis directement
+(`closest.metaobject.projet`), puis le projet de la page en cours.
+
+### Horizon étendu, modifications tracées
+
+Le code du projet vit dans ses propres fichiers. Quand un fichier d'Horizon doit
+être modifié, chaque modification est marquée d'un commentaire `mael :` et listée
+dans [docs/modifications-horizon.md](docs/modifications-horizon.md), pour pouvoir
+la reporter lors d'une mise à jour d'Horizon.
+
+---
+
+## Modèle de données
+
+```
+Produit ──(custom.projet)──▶ Projet
+                              ├── titre, accroche, galerie, difficulté
+                              ├── produit ──▶ Produit
+                              ├── pièces ────────▶ Pièce ──▶ Matériau
+                              │                    (nom, quantité,      (nom, couleur,
+                              │                     temps, couche)       température)
+                              ├── composants ────▶ Ligne de composant ──▶ Composant
+                              │                    (quantité)             (nom, image, lien)
+                              └── étapes ────────▶ Étape (titre, contenu, image)
 ```
 
-## Developer tools
+| Métachamp | Sur | Rôle |
+|---|---|---|
+| `custom.projet` | Produit | Le projet (métaobjet) lié au produit |
+| `custom.difficulte` | Produit | Niveau affiché en badge sur les cartes |
+| `custom.livraison` | Variante | Message de livraison sous le sélecteur de format |
+| `custom.detail_format` | Variante | Détail de chaque format (« Téléchargement immédiat · usage personnel ») |
 
-There are a number of really useful tools that the Shopify Themes team uses during development. Horizon is already set up to work with these tools.
+Chaque projet a aussi sa propre page, générée par Shopify à partir du métaobjet
+(`templates/metaobject/projet.json`).
 
-### Shopify CLI
+---
 
-[Shopify CLI](https://shopify.dev/docs/storefronts/themes/tools/cli) helps you build Shopify themes faster and is used to automate and enhance your local development workflow. It comes bundled with a suite of commands for developing Shopify themes—everything from working with themes on a Shopify store (e.g. creating, publishing, deleting themes) or launching a development server for local theme development.
+## Blocs et snippets
 
-You can follow this [quick start guide for theme developers](https://shopify.dev/docs/themes/tools/cli) to get started.
+### Blocs
 
-### Theme Check
+| Bloc | Rôle |
+|---|---|
+| `mb-titre` | Titre générique : texte, lien, label, type de produit, badge, niveau H1 à H4 |
+| `mb-lien` | Lien en carte, avec label et petit lien ; mène au projet ou au produit par défaut |
+| `mb-groupe-produit` | Groupe qui transmet un produit à ses blocs enfants |
+| `mb-description` | Description d'un produit, ou résumé chiffré d'un projet |
+| `mb-accordeon` | Accordéon qui accueille d'autres blocs (fiche technique, matériel) |
+| `mb-liste-pieces` | Pièces imprimées et temps d'impression total |
+| `mb-liste-composants` | Composants électroniques, avec lien d'achat |
+| `mb-etapes` | Étapes de montage repliables, numérotées |
+| `mb-galerie-projet` | Galerie du projet, en mosaïque ou en grille |
+| `mb-garanties` / `mb-garantie` | Bandeau de réassurance |
+| `mb-nombre-produits` | Nombre de produits d'une collection (« 8 articles ») |
 
-We recommend using [Theme Check](https://github.com/shopify/theme-check) as a way to validate and lint your Shopify themes.
+### Section
 
-We've added Theme Check to Horizon's [list of VS Code extensions](/.vscode/extensions.json) so if you're using Visual Studio Code as your code editor of choice, you'll be prompted to install the [Theme Check VS Code](https://marketplace.visualstudio.com/items?itemName=Shopify.theme-check-vscode) extension upon opening VS Code after you've forked and cloned Horizon.
+| Section | Rôle |
+|---|---|
+| `mb-hero` | Hero en deux zones fixes (contenu, visuel), alimenté par un produit ou un projet |
 
-You can also run it from a terminal with the following Shopify CLI command:
+### Snippets
+
+| Snippet | Rôle |
+|---|---|
+| `mb-details` | Accordéon `<details>` générique |
+| `mb-resume-projet` | Résumé chiffré d'un projet (temps, matériaux, pièces, composants, niveau) |
+| `mb-piece` | Une pièce imprimée et son badge de matériau |
+| `mb-composant-ligne` | Une ligne de composant |
+| `mb-etape` | Une étape de montage |
+| `mb-duree` | Durée en heures décimales, formatée « 8,3 h » ou « 8h18 » |
+| `mb-badge-difficulte` | Badge de niveau |
+| `mb-label-livraison` | Message de livraison d'une variante |
+| `mb-polices` | Déclaration des polices de la charte |
+
+---
+
+## Styles
+
+- **SCSS compilé** par `sass` dans `assets/mael-builds.css`, chargé par `layout/theme.liquid`.
+- **Un fichier par composant**, rangé comme le Liquid : `src/scss/blocks/`,
+  `snippets/`, `sections/`, et `horizon/` pour les surcharges d'Horizon.
+- **BEM** : `.mb-lien`, `.mb-lien__label`, `.mb-lien--sombre`.
+- **Design tokens** dans [`src/scss/abstracts/_variables.scss`](src/scss/abstracts/_variables.scss) :
+  palette de la charte, espacements, rayons, graisses. Aucune valeur de design en dur.
+- **Mixins** de breakpoints (`a-partir-de(tablette)`, `avant(tablette)`), en mobile d'abord.
+- Un **réglage qui change une propriété CSS** passe par une variable CSS ; un réglage
+  qui en change plusieurs passe par une classe.
+
+```
+src/scss/
+├── abstracts/   # variables et mixins (ne génèrent pas de CSS)
+├── base/        # :root, typographie
+├── blocks/      # un fichier par bloc mb-
+├── snippets/    # un fichier par snippet mb-
+├── sections/    # un fichier par section mb-
+├── horizon/     # surcharges ciblées des fichiers d'Horizon
+└── main.scss    # point d'entrée
+```
+
+---
+
+## Conventions
+
+- **Nommage** : tout ce qui est propre au projet est préfixé `mb-` et nommé d'après son rôle.
+- **Traductions** : aucun texte en dur. Textes du site dans `locales/*.json`, libellés
+  de l'éditeur dans `locales/*.schema.json`, sous la clé `mael.*`.
+- **Documentation** : chaque snippet commence par un `{% doc %}` (paramètres et exemple).
+- **Qualité** : Theme Check sans erreur ni avertissement sur le code du projet.
+- **Commits** : [Conventional Commits](https://www.conventionalcommits.org/fr/)
+  (`feat`, `fix`, `refactor`, `docs`…), un commit par sujet.
+
+---
+
+## Démarrer
+
+**Prérequis** : Node.js, [Shopify CLI](https://shopify.dev/docs/storefronts/themes/tools/cli),
+un accès à la boutique de développement.
 
 ```bash
-shopify theme check
+npm install
 ```
 
-You can follow the [theme check documentation](https://shopify.dev/docs/storefronts/themes/tools/theme-check) for more details.
+Lancer le serveur de développement (compilation SCSS en continu et aperçu synchronisé
+avec l'éditeur de thème) :
 
-#### Shopify/theme-check-action
+```bash
+npm run dev
+```
 
-Horizon runs [Theme Check](#Theme-Check) on every commit via [Shopify/theme-check-action](https://github.com/Shopify/theme-check-action).
+Compiler le CSS une fois, minifié :
 
-## Contributing
+```bash
+npm run build
+```
 
-We are not accepting contributions to Horizon at this time.
+Vérifier le thème :
 
-## License
+```bash
+npm run check
+```
 
-Copyright (c) 2025-present Shopify Inc. See [LICENSE](/LICENSE.md) for further details.
+---
+
+## Basé sur Horizon
+
+Ce thème est dérivé de [Horizon](https://github.com/Shopify/horizon) 4.3.0, le thème
+de référence de Shopify. Horizon est distribué sous la licence de Shopify
+([LICENSE.md](LICENSE.md)), qui s'applique à ce dépôt. Les modifications apportées
+à Horizon sont listées dans [docs/modifications-horizon.md](docs/modifications-horizon.md).
+
+---
+
+Réalisé par **Maël Llado**, projet de démonstration (prix fictifs).
