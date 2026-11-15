@@ -23,7 +23,7 @@
   }
 
   // Réglage « Trait entre chaque pièce »
-  &--separateurs .mb-materiel + .mb-materiel {
+  &--separateurs .mb-piece + .mb-piece {
     border-top: 1px solid var(--bordure-claire);
   }
 
@@ -39,16 +39,16 @@
       font-size: $texte-grand;
     }
 
-    .mb-materiel {
+    .mb-piece {
       padding-block: $espace-3;
     }
 
     // Nom en gras au-dessus, infos en petit dessous
-    .mb-materiel__nom {
+    .mb-piece__nom {
       font-weight: $texte-graisse-forte;
     }
 
-    .mb-materiel__meta {
+    .mb-piece__meta {
       font-size: $texte-petit;
     }
   }
@@ -59,19 +59,19 @@
       padding-block: $espace-2;
     }
 
-    .mb-materiel {
+    .mb-piece {
       padding-block: $espace-2;
     }
 
     // Nom et infos sur UNE ligne : « Masque Oni · 1 pièce »
-    .mb-materiel__infos {
+    .mb-piece__infos {
       flex-direction: row;
       flex-wrap: wrap;
       gap: 0;
       color: var(--texte-secondaire);
     }
 
-    .mb-materiel__meta::before {
+    .mb-piece__meta::before {
       content: ' · ';
       white-space: pre; // garde les espaces autour du « · »
     }

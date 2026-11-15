@@ -170,7 +170,7 @@
           },
           "blocks": {
             "titre": {
-              "type": "titre",
+              "type": "mb-titre",
               "settings": {
                 "titre": "t:mael.hero.titre_defaut",
                 "label": "t:mael.hero.label_defaut",
@@ -196,21 +196,21 @@
               },
               "blocks": {
                 "bouton_boutique": {
-                  "type": "mb-lien-projet",
+                  "type": "mb-lien",
                   "settings": {
                     "lien": "shopify://collections/all",
                     "texte_lien": "t:mael.hero.bouton_boutique",
-                    "style": "mb-lien-projet--sombre",
+                    "style": "mb-lien--sombre",
                     "font_align": "center",
                     "label_boolean": false,
                     "arrow_boolean": false
                   }
                 },
                 "bouton_making_of": {
-                  "type": "mb-lien-projet",
+                  "type": "mb-lien",
                   "settings": {
                     "texte_lien": "t:mael.hero.bouton_making_of",
-                    "style": "mb-lien-projet--clair",
+                    "style": "mb-lien--clair",
                     "font_align": "center",
                     "label_boolean": false,
                     "arrow_boolean": false
@@ -240,7 +240,7 @@
               }
             },
             "etiquette": {
-              "type": "groupe-produit",
+              "type": "mb-groupe-produit",
               "name": "t:mael.hero.etiquette",
               "settings": {
                 "produit": "{{ closest.product }}",
@@ -248,7 +248,7 @@
               },
               "blocks": {
                 "titre_produit": {
-                  "type": "titre",
+                  "type": "mb-titre",
                   "settings": {
                     "titre": "{{ closest.product.title }}",
                     "niveau": "h3",

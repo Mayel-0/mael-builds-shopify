@@ -4,7 +4,7 @@
 {%- endcapture -%}
 
 <div class="mb-accordeon" {{ block.shopify_attributes }}>
-  {% render 'mb-details-produit',
+  {% render 'mb-details',
     titre: block.settings.titre,
     contenu: contenu,
     ouvert: block.settings.ouvert,

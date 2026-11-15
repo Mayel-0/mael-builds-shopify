@@ -18,7 +18,7 @@
 {%- if context != blank -%}
   {%- if context == 'produit' -%}
     <div {{ block.shopify_attributes }}>
-      {% render 'mb-details-produit',
+      {% render 'mb-details',
         titre: block.settings.titre_summary,
         contenu: closest.product.description,
         ouvert: block.settings.ouvert,
@@ -29,7 +29,7 @@
   {%- if context == 'projet' -%}
     <div {{ block.shopify_attributes }}>
       <p>{{ projet.accroche.value }}</p>
-      {% render 'mb-details-projet',
+      {% render 'mb-resume-projet',
         pieces: projet.pieces.value,
         composants: projet.composant.value,
         difficulte: projet.difficulte.value

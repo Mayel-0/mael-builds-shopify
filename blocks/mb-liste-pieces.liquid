@@ -27,7 +27,7 @@
       assign temps_piece = piece.temps_impression.value | times: quantite
       assign total_temps_impression = total_temps_impression | plus: temps_piece
     -%}
-    {%- render 'mb-materiel',
+    {%- render 'mb-piece',
       piece: piece,
       materiel: piece.materiau.value,
       afficher_temps: block.settings.afficher_temps_piece,

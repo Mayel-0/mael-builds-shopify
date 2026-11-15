@@ -11,7 +11,7 @@
   @param {string} [format_temps] - 'decimal' (8,3 h) ou 'heures' (8h18)
 
   @example
-  {% render 'mb-materiel', piece: piece, materiel: piece.materiau.value, afficher_temps: true %}
+  {% render 'mb-piece', piece: piece, materiel: piece.materiau.value, afficher_temps: true %}
 {% enddoc %}
 
 {%- liquid
@@ -22,11 +22,11 @@
 -%}
 
 {%- if piece != blank -%}
-  <div class="mb-materiel" style="--couleur-materiel: {{ materiel.couleur.value | default: 'transparent' }};">
-    <div class="mb-materiel__infos">
-      <span class="mb-materiel__nom">{{ piece.nom.value }}</span>
+  <div class="mb-piece" style="--couleur-materiau: {{ materiel.couleur.value | default: 'transparent' }};">
+    <div class="mb-piece__infos">
+      <span class="mb-piece__nom">{{ piece.nom.value }}</span>
       {%- comment -%} Chaque info est un <span> : les « · » entre eux sont ajoutés en CSS {%- endcomment -%}
-      <span class="mb-materiel__meta">
+      <span class="mb-piece__meta">
         <span>{{ 'mael.pieces.quantite' | t: count: quantite }}</span>
         {%- if afficher_temps -%}
           <span>{%- render 'mb-duree', heures_decimales: heures_decimales, format: format_temps -%}</span>
@@ -38,7 +38,7 @@
     </div>
 
     {%- if materiel != blank -%}
-      <span class="mb-materiel__badge">
+      <span class="mb-piece__badge">
         {{- materiel.nom.value -}}
         {%- if afficher_temperature and materiel.temperature_buse.value != blank %} · {{ materiel.temperature_buse.value }} °C{% endif -%}
       </span>

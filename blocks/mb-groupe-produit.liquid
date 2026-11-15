@@ -7,7 +7,7 @@
   bouton d'ajout au panier… sans savoir d'où vient le produit.
 
   @example
-  {% content_for 'block', type: 'groupe-produit', id: 'groupe-produit' %}
+  {% content_for 'block', type: 'mb-groupe-produit', id: 'groupe-produit' %}
 {%- enddoc -%}
 
 <div
@@ -64,7 +64,7 @@
       },
       "blocks": [
         {
-          "type": "titre",
+          "type": "mb-titre",
           "settings": {
             "titre": "{{ closest.product.title }}",
             "lien": "{{ closest.product.url }}",

@@ -1,9 +1,9 @@
-// snippets/mb-materiel.liquid
+// snippets/mb-piece.liquid
 // Apparence d'UNE pièce, commune à toutes les dispositions.
 // La disposition (compacte / détaillée) est dans blocks/_mb-liste-pieces.scss.
 @use '../abstracts/variables' as *;
 
-.mb-materiel {
+.mb-piece {
   width: 100%;
   display: flex;
   align-items: center;
@@ -48,7 +48,7 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background-color: var(--couleur-materiel, transparent);
+      background-color: var(--couleur-materiau, transparent);
       border: 1px solid var(--bordure-claire);
     }
   }

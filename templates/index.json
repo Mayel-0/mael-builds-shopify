@@ -89,7 +89,7 @@
           },
           "blocks": {
             "titre_3nzazA": {
-              "type": "titre",
+              "type": "mb-titre",
               "settings": {
                 "titre": "Des objets conçus, imprimés et montés à la main.",
                 "lien": "",
@@ -174,15 +174,15 @@
               },
               "blocks": {
                 "mb_lien_projet_HNiWzb": {
-                  "type": "mb-lien-projet",
+                  "type": "mb-lien",
                   "settings": {
                     "lien": "shopify://collections/all",
                     "label_boolean": false,
                     "texte_label": "Making-of",
-                    "position_label": "mb-lien-projet--label-dessus",
+                    "position_label": "mb-lien--label-dessus",
                     "texte_lien": "Découvrir la boutique",
                     "souligner": false,
-                    "style": "mb-lien-projet--sombre",
+                    "style": "mb-lien--sombre",
                     "couleur_texte": "",
                     "font_align": "center",
                     "petit_lien": false,
@@ -197,16 +197,16 @@
                   "blocks": {}
                 },
                 "mb_lien_projet_BVdCXH": {
-                  "type": "mb-lien-projet",
+                  "type": "mb-lien",
                   "disabled": true,
                   "settings": {
                     "lien": "",
                     "label_boolean": false,
                     "texte_label": "Making-of",
-                    "position_label": "mb-lien-projet--label-dessus",
+                    "position_label": "mb-lien--label-dessus",
                     "texte_lien": "Voir les making-of",
                     "souligner": false,
-                    "style": "mb-lien-projet--clair",
+                    "style": "mb-lien--clair",
                     "couleur_texte": "",
                     "font_align": "center",
                     "petit_lien": false,
@@ -297,7 +297,7 @@
               "blocks": {}
             },
             "groupe_produit_DEHpHw": {
-              "type": "groupe-produit",
+              "type": "mb-groupe-produit",
               "name": "t:mael.hero.etiquette",
               "settings": {
                 "produit": "{{ closest.product }}",
@@ -306,7 +306,7 @@
               },
               "blocks": {
                 "titre_gab96f": {
-                  "type": "titre",
+                  "type": "mb-titre",
                   "settings": {
                     "titre": "{{ closest.product.title }}",
                     "lien": "",
@@ -456,7 +456,7 @@
           },
           "blocks": {
             "titre_DFVtmq": {
-              "type": "titre",
+              "type": "mb-titre",
               "name": "Titre",
               "settings": {
                 "titre": "Les catégories",
@@ -477,16 +477,16 @@
               "blocks": {}
             },
             "mb_lien_projet_Ke4EEx": {
-              "type": "mb-lien-projet",
+              "type": "mb-lien",
               "name": "Lien",
               "settings": {
                 "lien": "shopify://collections/all",
                 "label_boolean": false,
                 "texte_label": "Making-of",
-                "position_label": "mb-lien-projet--label-dessus",
+                "position_label": "mb-lien--label-dessus",
                 "texte_lien": "",
                 "souligner": true,
-                "style": "mb-lien-projet--transparent",
+                "style": "mb-lien--transparent",
                 "couleur_texte": "{{ settings.color_palette.color7 }}",
                 "font_align": "right",
                 "petit_lien": true,
@@ -628,7 +628,7 @@
                       "blocks": {}
                     },
                     "nombre_produits_QCgwVL": {
-                      "type": "nombre-produits",
+                      "type": "mb-nombre-produits",
                       "name": "t:mael.nombre_produits.name",
                       "settings": {
                         "collection": "{{ closest.collection }}"
@@ -745,7 +745,7 @@
                       "blocks": {}
                     },
                     "nombre_produits_3LDwBz": {
-                      "type": "nombre-produits",
+                      "type": "mb-nombre-produits",
                       "name": "t:mael.nombre_produits.name",
                       "settings": {
                         "collection": "{{ closest.collection }}"
@@ -902,7 +902,7 @@
                           "blocks": {}
                         },
                         "nombre_produits_CaxtUA": {
-                          "type": "nombre-produits",
+                          "type": "mb-nombre-produits",
                           "name": "t:mael.nombre_produits.name",
                           "settings": {
                             "collection": "{{ closest.collection }}"
@@ -1024,7 +1024,7 @@
                       "blocks": {}
                     },
                     "nombre_produits_z8Kjcn": {
-                      "type": "nombre-produits",
+                      "type": "mb-nombre-produits",
                       "name": "t:mael.nombre_produits.name",
                       "settings": {
                         "collection": "{{ closest.collection }}"
@@ -1147,7 +1147,7 @@
           },
           "blocks": {
             "titre_VCRMC9": {
-              "type": "titre",
+              "type": "mb-titre",
               "name": "Titre",
               "settings": {
                 "titre": "Les plus demandés",
@@ -1168,16 +1168,16 @@
               "blocks": {}
             },
             "mb_lien_projet_AHKeme": {
-              "type": "mb-lien-projet",
+              "type": "mb-lien",
               "name": "Lien",
               "settings": {
                 "lien": "shopify://collections/all",
                 "label_boolean": false,
                 "texte_label": "Making-of",
-                "position_label": "mb-lien-projet--label-dessus",
+                "position_label": "mb-lien--label-dessus",
                 "texte_lien": "",
                 "souligner": true,
-                "style": "mb-lien-projet--transparent",
+                "style": "mb-lien--transparent",
                 "couleur_texte": "{{ settings.color_palette.color7 }}",
                 "font_align": "right",
                 "petit_lien": true,
@@ -1278,7 +1278,7 @@
                   "blocks": {}
                 },
                 "titre_LrEh8U": {
-                  "type": "titre",
+                  "type": "mb-titre",
                   "name": "t:names.product_title",
                   "settings": {
                     "titre": "{{ closest.product.title }}",
@@ -1372,7 +1372,7 @@
                   "blocks": {}
                 },
                 "titre_r7UbcC": {
-                  "type": "titre",
+                  "type": "mb-titre",
                   "name": "t:names.product_title",
                   "settings": {
                     "titre": "{{ closest.product.title }}",
@@ -1466,7 +1466,7 @@
                   "blocks": {}
                 },
                 "titre_DXwndW": {
-                  "type": "titre",
+                  "type": "mb-titre",
                   "name": "t:names.product_title",
                   "settings": {
                     "titre": "{{ closest.product.title }}",
@@ -1560,7 +1560,7 @@
                   "blocks": {}
                 },
                 "titre_aAeGVB": {
-                  "type": "titre",
+                  "type": "mb-titre",
                   "name": "t:names.product_title",
                   "settings": {
                     "titre": "{{ closest.product.title }}",
@@ -1701,7 +1701,7 @@
           },
           "blocks": {
             "titre_ikxJWU": {
-              "type": "titre",
+              "type": "mb-titre",
               "settings": {
                 "titre": "Masque Oni vision nocturne",
                 "lien": "",
@@ -1721,7 +1721,7 @@
               "blocks": {}
             },
             "mb_description_produit_BqMc7d": {
-              "type": "mb-description-produit",
+              "type": "mb-description",
               "name": "Description",
               "settings": {
                 "titre_summary": "Description",
@@ -1771,15 +1771,15 @@
               },
               "blocks": {
                 "mb_lien_projet_Rfi8pD": {
-                  "type": "mb-lien-projet",
+                  "type": "mb-lien",
                   "settings": {
                     "lien": "{{ closest.metaobject.projet.system.url }}",
                     "label_boolean": false,
                     "texte_label": "Making-of",
-                    "position_label": "mb-lien-projet--label-dessus",
+                    "position_label": "mb-lien--label-dessus",
                     "texte_lien": "",
                     "souligner": false,
-                    "style": "mb-lien-projet--transparent",
+                    "style": "mb-lien--transparent",
                     "couleur_texte": "{{ settings.color_palette.color4 }}",
                     "font_align": "left",
                     "petit_lien": true,
@@ -1869,7 +1869,7 @@
               "blocks": {}
             },
             "groupe_produit_xx43bf": {
-              "type": "groupe-produit",
+              "type": "mb-groupe-produit",
               "name": "t:mael.hero.etiquette",
               "disabled": true,
               "settings": {
@@ -1879,7 +1879,7 @@
               },
               "blocks": {
                 "titre_QEMtWm": {
-                  "type": "titre",
+                  "type": "mb-titre",
                   "settings": {
                     "titre": "{{ closest.product.title }}",
                     "lien": "",

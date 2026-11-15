@@ -16,14 +16,14 @@
 
 {% if etapes != blank %}
   <div
-    class="mb-produit-etape"
+    class="mb-etapes"
     {{ block.shopify_attributes }}
     {% if block.settings.bordure_boolean %}
       style="--bordure-etape: {{ block.settings.couleur_bordure }}; --bordure-taille: {{ block.settings.bordure_epaisseur }}px; --bordure-radius: {{ block.settings.bordure_radius }}px;"
     {% endif %}
   >
-    <ol class="mb-produit-etape__liste">
-      {% render 'mb-etape-details' for etapes as etape, ouvert: block.settings.ouvert %}
+    <ol class="mb-etapes__liste">
+      {% render 'mb-etape' for etapes as etape, ouvert: block.settings.ouvert %}
     </ol>
   </div>
 {% elsif request.design_mode %}

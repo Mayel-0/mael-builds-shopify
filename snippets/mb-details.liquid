@@ -5,20 +5,20 @@
   @param {boolean} [bordure] - Bordure du bas (affichée si absent ou true, masquée si false)
 
   @example
-  {% render 'mb-details-produit', titre: 'Description', contenu: produit.metafields.custom.description, ouvert: true, bordure: false %}
+  {% render 'mb-details', titre: 'Description', contenu: produit.metafields.custom.description, ouvert: true, bordure: false %}
 {% enddoc %}
 
 {%- if titre != blank and contenu != blank -%}
   <details
-    class="mb-details-produit{% if bordure == false %} mb-details-produit--sans-bordure{% endif %}"
+    class="mb-details{% if bordure == false %} mb-details--sans-bordure{% endif %}"
     {% if ouvert %}
       open
     {% endif %}
   >
-    <summary class="mb-details-produit__titre">
+    <summary class="mb-details__titre">
       <h2>{{ titre }}</h2>
     </summary>
-    <div class="mb-details-produit__contenu">
+    <div class="mb-details__contenu">
       {{ contenu }}
     </div>
   </details>

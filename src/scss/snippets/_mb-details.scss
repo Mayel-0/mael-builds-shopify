@@ -1,7 +1,7 @@
-// snippets/mb-details-produit.liquid
+// snippets/mb-details.liquid
 @use '../abstracts/variables' as *;
 
-.mb-details-produit {
+.mb-details {
   border-bottom: 1px solid var(--bordure-claire);
 
   // Réglage « Afficher la bordure du bas » décoché dans le bloc

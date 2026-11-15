@@ -6,7 +6,7 @@
   @param {boolean} [ouvert] - Ouvre la première étape par défaut
 
   @example
-  {% render 'mb-etape-details' for etapes as etape, ouvert: true %}
+  {% render 'mb-etape' for etapes as etape, ouvert: true %}
 {% enddoc %}
 
 {%- # theme-check-disable UndefinedObject -%}
@@ -14,14 +14,14 @@
 {% assign current_index = forloop.index %}
 
 {% if etape != blank %}
-  <li class="mb-details-etape">
+  <li class="mb-etape">
     <details
       {% if ouvert and forloop.first %}
         open
       {% endif %}
     >
       <summary>
-        <h4 class="mb-details-etape__titre">
+        <h4 class="mb-etape__titre">
           <span>
             {%- if current_index < 10 -%}
               0{{ current_index }}
@@ -33,13 +33,13 @@
         </h4>
       </summary>
 
-      <div class="mb-details-etape__contenu">
+      <div class="mb-etape__contenu">
         {% if etape.image.value != blank %}
-          <div class="mb-details-etape__conteneur-image">
+          <div class="mb-etape__conteneur-image">
             {{
               etape.image.value
               | image_url: width: 400, height: 400
-              | image_tag: alt: etape.titre.value, loading: 'lazy', class: 'mb-details-etape__image'
+              | image_tag: alt: etape.titre.value, loading: 'lazy', class: 'mb-etape__image'
             }}
           </div>
         {% endif %}

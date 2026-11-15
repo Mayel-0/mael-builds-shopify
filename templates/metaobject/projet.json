@@ -93,7 +93,7 @@
               },
               "blocks": {
                 "mb_titre_produit_4yayBT": {
-                  "type": "titre",
+                  "type": "mb-titre",
                   "name": "Titre",
                   "settings": {
                     "titre": "{{ closest.metaobject.projet.titre.value }}",
@@ -114,7 +114,7 @@
                   "blocks": {}
                 },
                 "mb_description_produit_qFcKG8": {
-                  "type": "mb-description-produit",
+                  "type": "mb-description",
                   "name": "Description",
                   "settings": {
                     "titre_summary": "Description",
@@ -170,7 +170,7 @@
               },
               "blocks": {
                 "groupe_produit_associe": {
-                  "type": "groupe-produit",
+                  "type": "mb-groupe-produit",
                   "name": "Produit associé",
                   "settings": {
                     "produit": "{{ closest.metaobject.projet.produit.value }}",
@@ -327,7 +327,7 @@
                           },
                           "blocks": {
                             "mb_titre_produit_Q6Arrp": {
-                              "type": "titre",
+                              "type": "mb-titre",
                               "name": "Titre",
                               "settings": {
                                 "titre": "{{ closest.product.title }}",
@@ -391,16 +391,16 @@
                   ]
                 },
                 "mb_lien_projet_KhUcTi": {
-                  "type": "mb-lien-projet",
+                  "type": "mb-lien",
                   "name": "Lien",
                   "settings": {
                     "lien": "",
                     "label_boolean": false,
                     "texte_label": "Making-of",
-                    "position_label": "mb-lien-projet--label-dessus",
+                    "position_label": "mb-lien--label-dessus",
                     "texte_lien": "Voir le produit",
                     "souligner": false,
-                    "style": "mb-lien-projet--sombre",
+                    "style": "mb-lien--sombre",
                     "couleur_texte": "",
                     "font_align": "center",
                     "petit_lien": false,
@@ -745,7 +745,7 @@
       "type": "section",
       "blocks": {
         "mb_titre_produit_AzgMtK": {
-          "type": "titre",
+          "type": "mb-titre",
           "name": "Titre",
           "settings": {
             "titre": "Étapes de montage",
@@ -766,7 +766,7 @@
           "blocks": {}
         },
         "mb_etape_produit_MfBhwB": {
-          "type": "mb-etape-produit",
+          "type": "mb-etapes",
           "name": "Etape produit",
           "settings": {
             "ouvert": true,
@@ -818,16 +818,16 @@
           },
           "blocks": {
             "mb_lien_projet_ntMAgm": {
-              "type": "mb-lien-projet",
+              "type": "mb-lien",
               "name": "Lien",
               "settings": {
                 "lien": "",
                 "label_boolean": true,
                 "texte_label": "Lien vers le produit",
-                "position_label": "mb-lien-projet--label-dessous",
+                "position_label": "mb-lien--label-dessous",
                 "texte_lien": "Envie de le construire ?",
                 "souligner": false,
-                "style": "mb-lien-projet--sombre",
+                "style": "mb-lien--sombre",
                 "couleur_texte": "",
                 "font_align": "left",
                 "petit_lien": true,

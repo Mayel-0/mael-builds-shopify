@@ -1,7 +1,7 @@
 @use '../abstracts/variables' as *;
 
 
-.mb-lien-projet {
+.mb-lien {
   // Toute la largeur, même dans une section/un groupe aligné à gauche
   // (align-items: flex-start rétrécit les enfants à la taille de leur contenu)
   width: var(--largeur-lien, 100%);

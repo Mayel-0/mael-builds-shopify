@@ -238,7 +238,7 @@
               "blocks": {}
             },
             "product_title_4nY4eT": {
-              "type": "titre",
+              "type": "mb-titre",
               "name": "t:names.product_title",
               "settings": {
                 "titre": "{{ closest.product.title }}",

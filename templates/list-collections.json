@@ -106,7 +106,7 @@
               },
               "blocks": {
                 "nombre_produits": {
-                  "type": "nombre-produits",
+                  "type": "mb-nombre-produits",
                   "settings": {
                     "collection": "{{ closest.collection }}"
                   },

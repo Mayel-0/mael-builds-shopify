@@ -29,7 +29,7 @@
     {% if balise == 'a' %}
       href="{{ url }}"
     {% endif %}
-    class="mb-lien-projet {{ block.settings.style }} {{ block.settings.position_label }}"
+    class="mb-lien {{ block.settings.style }} {{ block.settings.position_label }}"
     style="
       --font-align: {{ block.settings.font_align }};
       --padding-side: {{ block.settings.padding_side_y }}px;
@@ -42,19 +42,19 @@
     "
     {{ block.shopify_attributes }}
   >
-    <span class="mb-lien-projet__textes">
+    <span class="mb-lien__textes">
       {%- if block.settings.label_boolean and block.settings.texte_label != blank -%}
-        <span class="mb-lien-projet__label">{{ block.settings.texte_label }}</span>
+        <span class="mb-lien__label">{{ block.settings.texte_label }}</span>
       {%- endif -%}
-      <span class="mb-lien-projet__lien">{{ block.settings.texte_lien }}</span>
+      <span class="mb-lien__lien">{{ block.settings.texte_lien }}</span>
     </span>
     {%- if block.settings.petit_lien == false and block.settings.arrow_boolean == true -%}
-      <span class="mb-lien-projet__fleche svg-wrapper">
+      <span class="mb-lien__fleche svg-wrapper">
         {{- 'icon-arrow.svg' | inline_asset_content -}}
       </span>
     {%- endif -%}
     {%- if block.settings.petit_lien == true -%}
-      <a class="mb-lien-projet__petit-lien" href="{{ url }}">{{ texte_petit_lien }}</a>
+      <a class="mb-lien__petit-lien" href="{{ url }}">{{ texte_petit_lien }}</a>
     {%- endif -%}
   </{{ balise }}>
 {%- elsif request.design_mode -%}
@@ -90,10 +90,10 @@
       "type": "select",
       "id": "position_label",
       "label": "Position du label",
-      "default": "mb-lien-projet--label-dessus",
+      "default": "mb-lien--label-dessus",
       "options": [
-        { "label": "Au-dessus du lien", "value": "mb-lien-projet--label-dessus" },
-        { "label": "Sous le lien", "value": "mb-lien-projet--label-dessous" }
+        { "label": "Au-dessus du lien", "value": "mb-lien--label-dessus" },
+        { "label": "Sous le lien", "value": "mb-lien--label-dessous" }
       ],
       "visible_if": "{{ block.settings.label_boolean }}"
     },
@@ -104,11 +104,11 @@
       "type": "select",
       "id": "style",
       "label": "Couleurs",
-      "default": "mb-lien-projet--clair",
+      "default": "mb-lien--clair",
       "options": [
-        { "label": "Clair (fond gris, texte foncé)", "value": "mb-lien-projet--clair" },
-        { "label": "Sombre (fond foncé, texte clair)", "value": "mb-lien-projet--sombre" },
-        { "label": "Transparent (pas de couleur)", "value": "mb-lien-projet--transparent" }
+        { "label": "Clair (fond gris, texte foncé)", "value": "mb-lien--clair" },
+        { "label": "Sombre (fond foncé, texte clair)", "value": "mb-lien--sombre" },
+        { "label": "Transparent (pas de couleur)", "value": "mb-lien--transparent" }
       ]
     },
   
@@ -117,7 +117,7 @@
       "id": "couleur_texte",
       "label": "Couleur du texte",
       "info": "Vide = couleur du texte du thème.",
-      "visible_if": "{{ block.settings.style == 'mb-lien-projet--transparent' }}"
+      "visible_if": "{{ block.settings.style == 'mb-lien--transparent' }}"
     },
     {
       "type": "select",
@@ -150,7 +150,7 @@
       "id": "couleur_petit_lien",
       "label": "Couleur du petit lien",
       "info": "Vide = même couleur que le texte du lien.",
-      "visible_if": "{{ block.settings.petit_lien and block.settings.style == 'mb-lien-projet--transparent' }}"
+      "visible_if": "{{ block.settings.petit_lien and block.settings.style == 'mb-lien--transparent' }}"
     },
     {
       "type": "checkbox",

@@ -12,8 +12,8 @@
 @use 'blocks/mb-accordeon';
 @use 'blocks/mb-liste-pieces';
 @use 'blocks/mb-liste-composants';
-@use 'blocks/mb-etape-produit';
-@use 'blocks/mb-lien-projet';
+@use 'blocks/mb-etapes';
+@use 'blocks/mb-lien';
 @use 'blocks/mb-galerie-projet';
 @use 'blocks/mb-nombre-produits';
 @use 'blocks/mb-garantie';
@@ -24,12 +24,12 @@
 
 // Snippets (snippets/*.liquid)
 @use 'snippets/mb-badge-difficulte';
-@use 'snippets/mb-details-produit';
+@use 'snippets/mb-details';
 @use 'snippets/mb-label-livraison';
-@use 'snippets/mb-materiel';
+@use 'snippets/mb-piece';
 @use 'snippets/mb-composant-ligne';
-@use 'snippets/mb-etape-details';
-@use 'snippets/mb-details-projet';
+@use 'snippets/mb-etape';
+@use 'snippets/mb-resume-projet';
 
 // Fichiers d'Horizon modifiés
 @use 'horizon/price';

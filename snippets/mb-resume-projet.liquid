@@ -6,7 +6,7 @@
   @param {string} difficulte - Niveau de difficulté du projet
 
   @example
-  {% render 'mb-details-projet', pieces: projet.pieces.value, composants: projet.composant.value, difficulte: projet.difficulte.value %}
+  {% render 'mb-resume-projet', pieces: projet.pieces.value, composants: projet.composant.value, difficulte: projet.difficulte.value %}
 {% enddoc %}
 
 {%- liquid
@@ -32,27 +32,27 @@
   endfor
 -%}
 
-<div class="mb-details-projet">
+<div class="mb-resume-projet">
   <div>
-    <span class="mb-details-projet__label">{{ 'mael.projet.temps_impression' | t }}</span>
-    <p class="mb-details-projet__valeur">
+    <span class="mb-resume-projet__label">{{ 'mael.projet.temps_impression' | t }}</span>
+    <p class="mb-resume-projet__valeur">
       {%- render 'mb-duree', heures_decimales: total_temps_impression, format: 'heures' -%}
     </p>
   </div>
   <div>
-    <span class="mb-details-projet__label">{{ 'mael.projet.materiau' | t }}</span>
-    <p class="mb-details-projet__valeur">{{ materiaux }}</p>
+    <span class="mb-resume-projet__label">{{ 'mael.projet.materiau' | t }}</span>
+    <p class="mb-resume-projet__valeur">{{ materiaux }}</p>
   </div>
   <div>
-    <span class="mb-details-projet__label">{{ 'mael.projet.pieces' | t }}</span>
-    <p class="mb-details-projet__valeur">{{ total_quantite }}</p>
+    <span class="mb-resume-projet__label">{{ 'mael.projet.pieces' | t }}</span>
+    <p class="mb-resume-projet__valeur">{{ total_quantite }}</p>
   </div>
   <div>
-    <span class="mb-details-projet__label">{{ 'mael.projet.composants' | t }}</span>
-    <p class="mb-details-projet__valeur">{{ total_composant }}</p>
+    <span class="mb-resume-projet__label">{{ 'mael.projet.composants' | t }}</span>
+    <p class="mb-resume-projet__valeur">{{ total_composant }}</p>
   </div>
   <div>
-    <span class="mb-details-projet__label">{{ 'mael.projet.niveau' | t }}</span>
-    <p class="mb-details-projet__valeur">{{ difficulte }}</p>
+    <span class="mb-resume-projet__label">{{ 'mael.projet.niveau' | t }}</span>
+    <p class="mb-resume-projet__valeur">{{ difficulte }}</p>
   </div>
 </div>

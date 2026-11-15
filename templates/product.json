@@ -109,7 +109,7 @@
               },
               "blocks": {
                 "mb_titre_produit_PVcVYN": {
-                  "type": "titre",
+                  "type": "mb-titre",
                   "name": "Titre produit",
                   "settings": {
                     "titre": "{{ closest.product.title }}",
@@ -245,7 +245,7 @@
               "block_order": []
             },
             "mb_description_produit_ACf48f": {
-              "type": "mb-description-produit",
+              "type": "mb-description",
               "name": "Description produit",
               "settings": {
                 "titre_summary": "Description",
@@ -302,16 +302,16 @@
               ]
             },
             "mb_lien_projet_MjHbAq": {
-              "type": "mb-lien-projet",
+              "type": "mb-lien",
               "name": "Lien vers projet",
               "settings": {
                 "lien": "",
                 "label_boolean": true,
                 "texte_label": "Making-of",
-                "position_label": "mb-lien-projet--label-dessus",
+                "position_label": "mb-lien--label-dessus",
                 "texte_lien": "Voir comment il a été fabriqué",
                 "souligner": false,
-                "style": "mb-lien-projet--clair",
+                "style": "mb-lien--clair",
                 "couleur_texte": "",
                 "font_align": "left",
                 "petit_lien": false,
@@ -353,7 +353,7 @@
       "type": "section",
       "blocks": {
         "mb_etape_produit_ETytP9": {
-          "type": "mb-etape-produit",
+          "type": "mb-etapes",
           "name": "Etape produit",
           "settings": {
             "ouvert": true,
@@ -402,7 +402,7 @@
       "type": "product-recommendations",
       "blocks": {
         "titre_xBFm63": {
-          "type": "titre",
+          "type": "mb-titre",
           "name": "Titre",
           "settings": {
             "titre": "Dans la même catégorie",
@@ -486,7 +486,7 @@
               "blocks": {}
             },
             "product_title_M7MJkb": {
-              "type": "titre",
+              "type": "mb-titre",
               "name": "t:names.product_title",
               "settings": {
                 "titre": "{{ closest.product.title }}",
