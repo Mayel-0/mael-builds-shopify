@@ -1,7 +1,13 @@
 {%- liquid
+  # Le projet vient du parent, dans cet ordre :
+  # 1. le projet du produit transmis (fiche produit, Groupe produit, Hero en mode produit)
+  # 2. le projet transmis directement (Hero en mode projet)
+  # 3. le projet de la page en cours (page projet)
   assign projet = blank
   if closest.product != blank
     assign projet = closest.product.metafields.custom.projet.value
+  elsif closest.metaobject.projet != blank
+    assign projet = closest.metaobject.projet
   elsif metaobject.system.type == 'projet'
     assign projet = metaobject
   endif
