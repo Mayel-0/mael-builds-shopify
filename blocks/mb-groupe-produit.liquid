@@ -24,31 +24,31 @@
 
 {% schema %}
 {
-  "name": "Groupe produit",
+  "name": "t:mael.groupe_produit.name",
   "tag": null,
   "blocks": [{ "type": "@theme" }, { "type": "@app" }],
   "settings": [
     {
       "type": "product",
       "id": "produit",
-      "label": "Produit",
-      "info": "Choisis un produit ou connecte une source dynamique (ex. le champ « produit » du projet). Les blocs à l'intérieur l'utilisent."
+      "label": "t:settings.product",
+      "info": "t:mael.groupe_produit.produit_info"
     },
-    { "type": "header", "content": "Disposition" },
+    { "type": "header", "content": "t:settings.layout" },
     {
       "type": "select",
       "id": "direction",
-      "label": "Direction",
+      "label": "t:settings.direction",
       "default": "mb-groupe-produit--vertical",
       "options": [
-        { "value": "mb-groupe-produit--vertical", "label": "Verticale" },
-        { "value": "mb-groupe-produit--horizontal", "label": "Horizontale" }
+        { "value": "mb-groupe-produit--vertical", "label": "t:options.vertical" },
+        { "value": "mb-groupe-produit--horizontal", "label": "t:options.horizontal" }
       ]
     },
     {
       "type": "range",
       "id": "gap",
-      "label": "Espace entre les blocs",
+      "label": "t:mael.groupe_produit.gap",
       "min": 0,
       "max": 50,
       "step": 2,
@@ -58,7 +58,7 @@
   ],
   "presets": [
     {
-      "name": "Groupe produit",
+      "name": "t:mael.groupe_produit.name",
       "settings": {
         "produit": "{{ closest.product }}"
       },

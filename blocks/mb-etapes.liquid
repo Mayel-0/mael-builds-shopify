@@ -32,27 +32,27 @@
 
 {% schema %}
 {
-  "name": "Etape produit",
+  "name": "t:mael.etapes.name",
   "tag": null,
   "presets": [
     {
-      "name": "Etape produit"
+      "name": "t:mael.etapes.name"
     }
   ],
   "settings": [
-    { "type": "checkbox", "id": "ouvert", "label": "Le premier est Ouvert par défaut", "default": true },
-    { "type": "checkbox", "id": "bordure_boolean", "label": "Ajouter une Bordure", "default": false },
+    { "type": "checkbox", "id": "ouvert", "label": "t:mael.etapes.ouvert", "default": true },
+    { "type": "checkbox", "id": "bordure_boolean", "label": "t:mael.etapes.bordure", "default": false },
     {
       "type": "color",
       "id": "couleur_bordure",
-      "label": "Couleur de bordure",
+      "label": "t:settings.border_color",
       "default": "{{ settings.color_palette.color1 }}",
       "visible_if": "{{ block.settings.bordure_boolean }}"
     },
     {
       "type": "range",
       "id": "bordure_epaisseur",
-      "label": "Taille bordure",
+      "label": "t:settings.border_width",
       "min": 0,
       "max": 10,
       "default": 0,
@@ -62,7 +62,7 @@
     {
       "type": "range",
       "id": "bordure_radius",
-      "label": "Angle radius",
+      "label": "t:settings.corner_radius",
       "unit": "px",
       "min": 0,
       "max": 50,

@@ -65,95 +65,95 @@
 
 {% schema %}
 {
-  "name": "Titre",
+  "name": "t:mael.titre.name",
   "tag": null,
   "settings": [
     {
       "type": "text",
       "id": "titre",
-      "label": "Titre",
-      "info": "Écris le texte ou connecte une source dynamique (titre du produit, champ du projet…)."
+      "label": "t:settings.title",
+      "info": "t:mael.titre.titre_info"
     },
     {
       "type": "url",
       "id": "lien",
-      "label": "Lien",
-      "info": "Optionnel. Dans une carte produit : connecte l'URL du produit."
+      "label": "t:settings.link",
+      "info": "t:mael.titre.lien_info"
     },
-    { "type": "header", "content": "Ligne au-dessus du titre" },
+    { "type": "header", "content": "t:mael.titre.header_ligne" },
     {
       "type": "text",
       "id": "label",
-      "label": "Label",
-      "info": "Laisser vide pour ne rien afficher. Exemple : Making-of"
+      "label": "t:mael.titre.label",
+      "info": "t:mael.titre.label_info"
     },
     {
       "type": "checkbox",
       "id": "afficher_type",
-      "label": "Afficher le type de produit",
-      "info": "Après le label. Fonctionne sur la fiche produit, dans une carte produit ou dans un Groupe produit. Rien ne s'affiche si le type est vide.",
+      "label": "t:mael.titre.afficher_type",
+      "info": "t:mael.titre.afficher_type_info",
       "default": false
     },
-    { "type": "checkbox", "id": "trait_label", "label": "Trait avant le label", "default": false },
+    { "type": "checkbox", "id": "trait_label", "label": "t:mael.titre.trait_label", "default": false },
     {
       "type": "select",
       "id": "style_label",
-      "label": "Style du label",
+      "label": "t:mael.titre.style_label",
       "default": "uppercase",
       "options": [
-        { "label": "En majuscule", "value": "uppercase" },
-        { "label": "Normale", "value": "none" }
+        { "label": "t:options.uppercase", "value": "uppercase" },
+        { "label": "t:mael.titre.casse_normale", "value": "none" }
       ]
     },
     {
       "type": "text",
       "id": "badge",
-      "label": "Badge",
-      "info": "Laisser vide pour ne rien afficher. Exemple : connecte la difficulté du projet."
+      "label": "t:mael.commun.badge",
+      "info": "t:mael.titre.badge_info"
     },
     {
       "type": "text",
       "id": "prefixe_badge",
-      "label": "Texte avant le badge",
+      "label": "t:mael.commun.prefixe_badge",
       "default": "Niveau"
     },
-    { "type": "header", "content": "Titre" },
+    { "type": "header", "content": "t:settings.title" },
     {
       "type": "select",
       "id": "niveau",
-      "label": "Niveau du titre (structure)",
+      "label": "t:mael.titre.niveau",
       "default": "h2",
-      "info": "Un seul H1 par page. H2 ou H3 dans une carte ou une section.",
+      "info": "t:mael.titre.niveau_info",
       "options": [
-        { "label": "H1 (titre de la page)", "value": "h1" },
-        { "label": "H2 (titre de la section)", "value": "h2" },
-        { "label": "H3 (titre de la carte)", "value": "h3" },
-        { "label": "H4 (titre du bloc)", "value": "h4" }
+        { "label": "t:mael.titre.h1", "value": "h1" },
+        { "label": "t:mael.titre.h2", "value": "h2" },
+        { "label": "t:mael.titre.h3", "value": "h3" },
+        { "label": "t:mael.titre.h4", "value": "h4" }
       ]
     },
     {
       "type": "select",
       "id": "taille",
-      "label": "Taille du titre",
+      "label": "t:settings.size",
       "default": "32px",
       "options": [
-        { "label": "Petit texte (14 px)", "value": "14px" },
-        { "label": "Texte (16 px)", "value": "16px" },
-        { "label": "Petit (20 px)", "value": "20px" },
-        { "label": "Moyen (24 px)", "value": "24px" },
-        { "label": "Grand (32 px)", "value": "32px" },
-        { "label": "Très grand (40 px)", "value": "40px" }
+        { "label": "t:mael.titre.taille_14", "value": "14px" },
+        { "label": "t:mael.titre.taille_16", "value": "16px" },
+        { "label": "t:mael.titre.taille_20", "value": "20px" },
+        { "label": "t:mael.titre.taille_24", "value": "24px" },
+        { "label": "t:mael.titre.taille_32", "value": "32px" },
+        { "label": "t:mael.titre.taille_40", "value": "40px" }
       ]
     },
-    { "type": "header", "content": "Marges" },
-    { "type": "range", "id": "margin_top", "label": "Haut", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 },
-    { "type": "range", "id": "margin_bottom", "label": "Bas", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 },
-    { "type": "range", "id": "margin_left", "label": "Gauche", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 },
-    { "type": "range", "id": "margin_right", "label": "Droite", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 }
+    { "type": "header", "content": "t:content.margin" },
+    { "type": "range", "id": "margin_top", "label": "t:settings.top", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "margin_bottom", "label": "t:settings.bottom", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "margin_left", "label": "t:settings.left", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "margin_right", "label": "t:settings.right", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 }
   ],
   "presets": [
     {
-      "name": "Titre",
+      "name": "t:mael.titre.name",
       "settings": {
         "titre": "Titre"
       }

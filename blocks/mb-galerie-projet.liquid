@@ -45,28 +45,28 @@
 
 {% schema %}
 {
-  "name": "Galerie projet",
+  "name": "t:mael.galerie.name",
   "tag": null,
-  "presets": [{ "name": "Galerie projet" }],
+  "presets": [{ "name": "t:mael.galerie.name" }],
   "settings": [
     {
       "type": "paragraph",
-      "content": "Les images viennent du champ « galerie » du projet. Le texte alternatif de chaque image sert de légende."
+      "content": "t:mael.galerie.aide"
     },
     {
       "type": "select",
       "id": "disposition",
-      "label": "Disposition",
+      "label": "t:settings.layout",
       "default": "mb-galerie-projet--mosaique",
       "options": [
-        { "label": "Mosaïque (1 grande image)", "value": "mb-galerie-projet--mosaique" },
-        { "label": "Grille régulière", "value": "mb-galerie-projet--grille" }
+        { "label": "t:mael.galerie.mosaique", "value": "mb-galerie-projet--mosaique" },
+        { "label": "t:mael.galerie.grille", "value": "mb-galerie-projet--grille" }
       ]
     },
     {
       "type": "range",
       "id": "espacement",
-      "label": "Espacement",
+      "label": "t:settings.gap",
       "min": 0,
       "max": 40,
       "step": 2,
@@ -76,14 +76,14 @@
     {
       "type": "range",
       "id": "arrondi",
-      "label": "Arrondi des coins",
+      "label": "t:settings.corner_radius",
       "min": 0,
       "max": 32,
       "step": 2,
       "unit": "px",
       "default": 18
     },
-    { "type": "checkbox", "id": "afficher_legendes", "label": "Afficher les légendes", "default": false }
+    { "type": "checkbox", "id": "afficher_legendes", "label": "t:mael.galerie.legendes", "default": false }
   ]
 }
 {% endschema %}

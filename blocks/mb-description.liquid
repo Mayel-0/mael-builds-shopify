@@ -42,17 +42,17 @@
 
 {% schema %}
 {
-  "name": "Description",
+  "name": "t:mael.description.name",
   "tag": null,
   "presets": [
     {
-      "name": "Description"
+      "name": "t:mael.description.name"
     }
   ],
   "settings": [
-    { "type": "text", "id": "titre_summary", "label": "Titre du Button", "default": "Description" },
-    { "type": "checkbox", "id": "ouvert", "label": "Ouvert par défaut", "default": true },
-    { "type": "checkbox", "id": "afficher_bordure", "label": "Afficher la bordure du bas", "default": true }
+    { "type": "text", "id": "titre_summary", "label": "t:mael.description.titre", "default": "Description" },
+    { "type": "checkbox", "id": "ouvert", "label": "t:settings.open_by_default", "default": true },
+    { "type": "checkbox", "id": "afficher_bordure", "label": "t:mael.commun.bordure_bas", "default": true }
   ]
 }
 {% endschema %}

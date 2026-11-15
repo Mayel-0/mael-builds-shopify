@@ -1377,7 +1377,7 @@
     {
       "type": "checkbox",
       "id": "afficher_titre",
-      "label": "Afficher le titre « Filtres »",
+      "label": "t:mael.filtres.afficher_titre",
       "default": true,
       "visible_if": "{{ block.settings.filter_style == 'vertical' and block.settings.enable_filtering == true }}"
     },
@@ -1486,11 +1486,11 @@
       "default": 20,
       "visible_if": "{{ block.settings.filter_style == 'vertical' }}"
     },
-    { "type": "text", "id": "separator_text", "label": "Text Séparateur min, max", "default": "-" },
+    { "type": "text", "id": "separator_text", "label": "t:mael.filtres.separateur_prix", "default": "-" },
     {
       "type": "checkbox",
       "id": "nombre_article_boolean",
-      "label": "Afficher le nombre de produits",
+      "label": "t:mael.filtres.nombre_produits",
       "default": true
     }
   ]

@@ -62,50 +62,50 @@
 
 {% schema %}
 {
-  "name": "Liste des pièces",
+  "name": "t:mael.liste_pieces.name",
   "tag": null,
   "settings": [
     {
       "type": "select",
       "id": "disposition",
-      "label": "Disposition",
+      "label": "t:settings.layout",
       "default": "mb-liste-pieces--detaillee",
       "options": [
-        { "label": "Détaillée (nom au-dessus des infos)", "value": "mb-liste-pieces--detaillee" },
-        { "label": "Compacte (tout sur une ligne)", "value": "mb-liste-pieces--compacte" }
+        { "label": "t:mael.liste_pieces.detaillee", "value": "mb-liste-pieces--detaillee" },
+        { "label": "t:mael.liste_pieces.compacte", "value": "mb-liste-pieces--compacte" }
       ]
     },
-    { "type": "checkbox", "id": "afficher_separateurs", "label": "Trait entre chaque pièce", "default": true },
-    { "type": "header", "content": "Temps d'impression total" },
-    { "type": "checkbox", "id": "afficher_resume", "label": "Afficher le total", "default": true },
+    { "type": "checkbox", "id": "afficher_separateurs", "label": "t:mael.liste_pieces.separateurs", "default": true },
+    { "type": "header", "content": "t:mael.liste_pieces.header_total" },
+    { "type": "checkbox", "id": "afficher_resume", "label": "t:mael.liste_pieces.afficher_total", "default": true },
     {
       "type": "text",
       "id": "texte_resume",
-      "label": "Texte du total",
+      "label": "t:mael.liste_pieces.texte_total",
       "default": "Temps d'impression total",
       "visible_if": "{{ block.settings.afficher_resume }}"
     },
     {
       "type": "select",
       "id": "format_temps",
-      "label": "Format des durées",
+      "label": "t:mael.liste_pieces.format_temps",
       "default": "decimal",
       "options": [
-        { "label": "Décimal (8,3 h)", "value": "decimal" },
-        { "label": "Heures et minutes (8h18)", "value": "heures" }
+        { "label": "t:mael.liste_pieces.format_decimal", "value": "decimal" },
+        { "label": "t:mael.liste_pieces.format_heures", "value": "heures" }
       ]
     },
-    { "type": "header", "content": "Infos de chaque pièce" },
-    { "type": "checkbox", "id": "afficher_temps_piece", "label": "Temps d'impression", "default": true },
+    { "type": "header", "content": "t:mael.liste_pieces.header_pieces" },
+    { "type": "checkbox", "id": "afficher_temps_piece", "label": "t:mael.liste_pieces.temps_piece", "default": true },
     {
       "type": "checkbox",
       "id": "afficher_couche",
-      "label": "Hauteur de couche",
-      "info": "Champ « hauteur_couche » du métaobjet Pièce",
+      "label": "t:mael.liste_pieces.couche",
+      "info": "t:mael.liste_pieces.couche_info",
       "default": true
     },
-    { "type": "checkbox", "id": "afficher_temperature", "label": "Température dans le badge", "default": true }
+    { "type": "checkbox", "id": "afficher_temperature", "label": "t:mael.liste_pieces.temperature", "default": true }
   ],
-  "presets": [{ "name": "Liste des pièces" }]
+  "presets": [{ "name": "t:mael.liste_pieces.name" }]
 }
 {% endschema %}

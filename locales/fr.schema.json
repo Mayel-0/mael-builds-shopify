@@ -1,5 +1,150 @@
 {
   "mael": {
+    "accordeon": {
+      "name": "Accordéon",
+      "preset_vide": "Accordéon vide",
+      "preset_fiche": "Fiche technique",
+      "preset_materiel": "Matériel nécessaire"
+    },
+    "commun": {
+      "bordure_bas": "Bordure du bas",
+      "padding_horizontal": "Marge intérieure gauche / droite",
+      "padding_vertical": "Marge intérieure haut / bas",
+      "badge": "Badge",
+      "prefixe_badge": "Texte avant le badge"
+    },
+    "description": {
+      "name": "Description",
+      "titre": "Titre de l'accordéon"
+    },
+    "etapes": {
+      "name": "Étapes de montage",
+      "ouvert": "Ouvrir la première étape",
+      "bordure": "Ajouter une bordure"
+    },
+    "galerie": {
+      "name": "Galerie du projet",
+      "aide": "Les images viennent du champ « galerie » du projet. Le texte alternatif de chaque image sert de légende.",
+      "mosaique": "Mosaïque (une grande image)",
+      "grille": "Grille régulière",
+      "legendes": "Afficher les légendes"
+    },
+    "garantie": {
+      "name": "Garantie"
+    },
+    "garanties": {
+      "name": "Garanties"
+    },
+    "lien": {
+      "name": "Lien",
+      "lien_info": "Choisis une page ou connecte une source dynamique. Vide : sur une page produit, le lien mène au projet ; sur une page projet, au produit.",
+      "afficher_label": "Afficher le label",
+      "texte_label": "Texte du label",
+      "position_label": "Position du label",
+      "label_dessus": "Au-dessus du lien",
+      "label_dessous": "Sous le lien",
+      "texte_lien": "Texte du lien",
+      "souligner": "Souligner le texte du lien",
+      "style": "Couleurs",
+      "style_clair": "Clair (fond gris, texte foncé)",
+      "style_sombre": "Sombre (fond foncé, texte clair)",
+      "style_transparent": "Transparent (sans fond)",
+      "couleur_texte_info": "Vide = couleur du texte du thème.",
+      "petit_lien": "Ajouter un petit lien",
+      "texte_petit_lien": "Texte du petit lien",
+      "texte_petit_lien_info": "Vide : « Voir le projet » sur une page produit, « Voir le produit » sur une page projet.",
+      "souligner_petit_lien": "Souligner le petit lien",
+      "couleur_petit_lien": "Couleur du petit lien",
+      "couleur_petit_lien_info": "Vide = même couleur que le texte du lien.",
+      "fleche": "Afficher la flèche"
+    },
+    "liste_composants": {
+      "name": "Liste des composants",
+      "separateurs": "Trait entre chaque composant"
+    },
+    "liste_pieces": {
+      "name": "Liste des pièces",
+      "header_total": "Temps d'impression total",
+      "header_pieces": "Infos de chaque pièce",
+      "detaillee": "Détaillée (nom au-dessus des infos)",
+      "compacte": "Compacte (tout sur une ligne)",
+      "separateurs": "Trait entre chaque pièce",
+      "afficher_total": "Afficher le total",
+      "texte_total": "Texte du total",
+      "format_temps": "Format des durées",
+      "format_decimal": "Décimal (8,3 h)",
+      "format_heures": "Heures et minutes (8h18)",
+      "temps_piece": "Temps d'impression",
+      "couche": "Hauteur de couche",
+      "couche_info": "Champ « hauteur_couche » du métaobjet Pièce.",
+      "temperature": "Température dans le badge"
+    },
+    "titre": {
+      "name": "Titre",
+      "header_ligne": "Ligne au-dessus du titre",
+      "titre_info": "Écris le texte ou connecte une source dynamique (titre du produit, champ du projet…).",
+      "lien_info": "Optionnel. Dans une carte produit, connecte l'URL du produit.",
+      "label": "Label",
+      "label_info": "Vide = rien ne s’affiche. Exemple : Making-of",
+      "afficher_type": "Afficher le type de produit",
+      "afficher_type_info": "Après le label. Fonctionne sur la fiche produit, dans une carte produit ou un Groupe produit. Rien ne s'affiche si le type est vide.",
+      "trait_label": "Trait avant le label",
+      "style_label": "Casse du label",
+      "casse_normale": "Normale",
+      "badge_info": "Vide = pas de badge. Exemple : connecte la difficulté du projet.",
+      "niveau": "Niveau du titre (structure)",
+      "niveau_info": "Un seul H1 par page. H2 ou H3 dans une carte ou une section.",
+      "h1": "H1 (titre de la page)",
+      "h2": "H2 (titre de section)",
+      "h3": "H3 (titre de carte)",
+      "h4": "H4 (titre de bloc)",
+      "taille_14": "Petit texte (14 px)",
+      "taille_16": "Texte (16 px)",
+      "taille_20": "Petit (20 px)",
+      "taille_24": "Moyen (24 px)",
+      "taille_32": "Grand (32 px)",
+      "taille_40": "Très grand (40 px)"
+    },
+    "groupe_produit": {
+      "name": "Groupe produit",
+      "produit_info": "Choisis un produit ou connecte une source dynamique (ex. le champ « produit » du projet). Les blocs à l'intérieur l'utilisent.",
+      "gap": "Espace entre les blocs"
+    },
+    "logo": {
+      "texte": "Texte du logo",
+      "texte_info": "Affiché seulement si aucune image de logo n'est choisie. Vide = nom de la boutique."
+    },
+    "carte_image": {
+      "badge_info": "Relié par défaut à la difficulté du produit. Vide = pas de badge. Position : Paramètres du thème > Badges."
+    },
+    "ajout_panier": {
+      "texte_bouton": "Texte du bouton"
+    },
+    "filtres": {
+      "afficher_titre": "Afficher le titre « Filtres »",
+      "separateur_prix": "Séparateur entre prix min et max",
+      "nombre_produits": "Afficher le nombre de produits"
+    },
+    "menu": {
+      "header_liens": "Liens",
+      "header_actif": "Lien actif",
+      "afficher_titre": "Afficher le titre",
+      "afficher_titre_info": "Si le titre est vide, le nom du menu s'affiche. Décoche pour ne rien afficher.",
+      "direction": "Direction des liens",
+      "espace_liens": "Espace entre les liens",
+      "bordure_couleur_info": "Vide = couleur du texte.",
+      "lien_actif": "Mettre en avant le lien de la page en cours"
+    },
+    "prix": {
+      "prefixe": "Texte avant le prix",
+      "prefixe_info": "Exemple : À partir de",
+      "suffixe": "Texte après le prix",
+      "suffixe_info": "Exemple : TTC",
+      "couleur_textes": "Couleur des textes avant / après",
+      "blanc": "Blanc",
+      "noir": "Noir",
+      "gris": "Gris"
+    },
     "nombre_produits": {
       "name": "Nombre de produits",
       "collection_info": "Relié par défaut à la collection de la carte ou de la page (source dynamique)."

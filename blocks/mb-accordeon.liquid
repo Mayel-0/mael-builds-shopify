@@ -14,25 +14,25 @@
 
 {% schema %}
 {
-  "name": "Accordéon",
+  "name": "t:mael.accordeon.name",
   "tag": null,
   "blocks": [{ "type": "mb-liste-pieces" }, { "type": "mb-liste-composants" }, { "type": "@theme" }],
   "settings": [
-    { "type": "text", "id": "titre", "label": "Titre", "default": "Informations" },
-    { "type": "checkbox", "id": "ouvert", "label": "Ouvert par défaut", "default": false },
-    { "type": "checkbox", "id": "afficher_bordure", "label": "Afficher la bordure du bas", "default": true }
+    { "type": "text", "id": "titre", "label": "t:settings.title", "default": "Informations" },
+    { "type": "checkbox", "id": "ouvert", "label": "t:settings.open_by_default", "default": false },
+    { "type": "checkbox", "id": "afficher_bordure", "label": "t:mael.commun.bordure_bas", "default": true }
   ],
   "presets": [
     {
-      "name": "Accordéon vide"
+      "name": "t:mael.accordeon.preset_vide"
     },
     {
-      "name": "Fiche technique",
+      "name": "t:mael.accordeon.preset_fiche",
       "settings": { "titre": "Fiche technique" },
       "blocks": [{ "type": "mb-liste-pieces" }]
     },
     {
-      "name": "Matériel nécessaire",
+      "name": "t:mael.accordeon.preset_materiel",
       "settings": { "titre": "Matériel nécessaire" },
       "blocks": [{ "type": "mb-liste-composants" }]
     }

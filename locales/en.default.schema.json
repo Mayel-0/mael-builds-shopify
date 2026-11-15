@@ -9,6 +9,151 @@
  */
 {
   "mael": {
+    "accordeon": {
+      "name": "Accordion",
+      "preset_vide": "Empty accordion",
+      "preset_fiche": "Technical sheet",
+      "preset_materiel": "Required parts"
+    },
+    "commun": {
+      "bordure_bas": "Bottom border",
+      "padding_horizontal": "Horizontal padding",
+      "padding_vertical": "Vertical padding",
+      "badge": "Badge",
+      "prefixe_badge": "Text before the badge"
+    },
+    "description": {
+      "name": "Description",
+      "titre": "Accordion title"
+    },
+    "etapes": {
+      "name": "Assembly steps",
+      "ouvert": "Open the first step",
+      "bordure": "Add a border"
+    },
+    "galerie": {
+      "name": "Project gallery",
+      "aide": "Images come from the project's “gallery” field. Each image's alt text is used as its caption.",
+      "mosaique": "Mosaic (one large image)",
+      "grille": "Even grid",
+      "legendes": "Show captions"
+    },
+    "garantie": {
+      "name": "Guarantee"
+    },
+    "garanties": {
+      "name": "Guarantees"
+    },
+    "lien": {
+      "name": "Link",
+      "lien_info": "Pick a page or connect a dynamic source. Empty: on a product page it leads to the project; on a project page, to the product.",
+      "afficher_label": "Show label",
+      "texte_label": "Label text",
+      "position_label": "Label position",
+      "label_dessus": "Above the link",
+      "label_dessous": "Below the link",
+      "texte_lien": "Link text",
+      "souligner": "Underline the link text",
+      "style": "Colors",
+      "style_clair": "Light (grey background, dark text)",
+      "style_sombre": "Dark (dark background, light text)",
+      "style_transparent": "Transparent (no background)",
+      "couleur_texte_info": "Empty = theme text color.",
+      "petit_lien": "Add a small link",
+      "texte_petit_lien": "Small link text",
+      "texte_petit_lien_info": "Empty: “See the project” on a product page, “See the product” on a project page.",
+      "souligner_petit_lien": "Underline the small link",
+      "couleur_petit_lien": "Small link color",
+      "couleur_petit_lien_info": "Empty = same color as the link text.",
+      "fleche": "Show arrow"
+    },
+    "liste_composants": {
+      "name": "Component list",
+      "separateurs": "Divider between components"
+    },
+    "liste_pieces": {
+      "name": "Parts list",
+      "header_total": "Total print time",
+      "header_pieces": "Details of each part",
+      "detaillee": "Detailed (name above details)",
+      "compacte": "Compact (single line)",
+      "separateurs": "Divider between parts",
+      "afficher_total": "Show total",
+      "texte_total": "Total label",
+      "format_temps": "Duration format",
+      "format_decimal": "Decimal (8.3 h)",
+      "format_heures": "Hours and minutes (8h18)",
+      "temps_piece": "Print time",
+      "couche": "Layer height",
+      "couche_info": "“hauteur_couche” field of the Part metaobject.",
+      "temperature": "Temperature in the badge"
+    },
+    "titre": {
+      "name": "Heading",
+      "header_ligne": "Line above the heading",
+      "titre_info": "Type the text or connect a dynamic source (product title, project field…).",
+      "lien_info": "Optional. In a product card, connect the product URL.",
+      "label": "Label",
+      "label_info": "Empty = nothing shown. Example: Making-of",
+      "afficher_type": "Show product type",
+      "afficher_type_info": "After the label. Works on the product page, in a product card or a Product group. Nothing shows if the type is empty.",
+      "trait_label": "Line before the label",
+      "style_label": "Label case",
+      "casse_normale": "Normal",
+      "badge_info": "Empty = no badge. Example: connect the project difficulty.",
+      "niveau": "Heading level (structure)",
+      "niveau_info": "One H1 per page. H2 or H3 in a card or section.",
+      "h1": "H1 (page title)",
+      "h2": "H2 (section title)",
+      "h3": "H3 (card title)",
+      "h4": "H4 (block title)",
+      "taille_14": "Small text (14 px)",
+      "taille_16": "Text (16 px)",
+      "taille_20": "Small (20 px)",
+      "taille_24": "Medium (24 px)",
+      "taille_32": "Large (32 px)",
+      "taille_40": "Extra large (40 px)"
+    },
+    "groupe_produit": {
+      "name": "Product group",
+      "produit_info": "Pick a product or connect a dynamic source (e.g. the project's “product” field). Blocks inside use it.",
+      "gap": "Space between blocks"
+    },
+    "logo": {
+      "texte": "Logo text",
+      "texte_info": "Shown only when no logo image is set. Empty = store name."
+    },
+    "carte_image": {
+      "badge_info": "Linked by default to the product difficulty. Empty = no badge. Position: Theme settings > Badges."
+    },
+    "ajout_panier": {
+      "texte_bouton": "Button text"
+    },
+    "filtres": {
+      "afficher_titre": "Show the “Filters” heading",
+      "separateur_prix": "Separator between min and max price",
+      "nombre_produits": "Show product count"
+    },
+    "menu": {
+      "header_liens": "Links",
+      "header_actif": "Active link",
+      "afficher_titre": "Show heading",
+      "afficher_titre_info": "If the heading is empty, the menu name is shown. Uncheck to show nothing.",
+      "direction": "Link direction",
+      "espace_liens": "Space between links",
+      "bordure_couleur_info": "Empty = text color.",
+      "lien_actif": "Highlight the current page link"
+    },
+    "prix": {
+      "prefixe": "Text before the price",
+      "prefixe_info": "Example: From",
+      "suffixe": "Text after the price",
+      "suffixe_info": "Example: incl. tax",
+      "couleur_textes": "Color of text before / after",
+      "blanc": "White",
+      "noir": "Black",
+      "gris": "Grey"
+    },
     "nombre_produits": {
       "name": "Product count",
       "collection_info": "Linked by default to the collection of the card or page (dynamic source)."
