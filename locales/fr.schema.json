@@ -27,7 +27,13 @@
       "aide": "Les images viennent du champ « galerie » du projet. Le texte alternatif de chaque image sert de légende.",
       "mosaique": "Mosaïque (une grande image)",
       "grille": "Grille régulière",
-      "legendes": "Afficher les légendes"
+      "legendes": "Afficher les légendes",
+      "format": "Format des images",
+      "format_info": "En mosaïque, la grande image suit la hauteur des autres.",
+      "format_carre": "Carré (1:1)",
+      "format_portrait": "Portrait (4:5)",
+      "format_paysage": "Paysage (4:3)",
+      "format_panoramique": "Panoramique (16:9)"
     },
     "garantie": {
       "name": "Garantie"
