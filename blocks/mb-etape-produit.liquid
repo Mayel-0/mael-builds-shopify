@@ -12,7 +12,9 @@
   <div
     class="mb-produit-etape"
     {{ block.shopify_attributes }}
-    style="{%- if block.settings.bordure_boolean -%}--bordure-etape: {{ block.settings.couleur_bordure }}; --bordure-taille: {{ block.settings.bordure_epaisseur }}px; --bordure-radius: {{ block.settings.bordure_radius }}px{%- endif -%};"
+    {% if block.settings.bordure_boolean %}
+      style="--bordure-etape: {{ block.settings.couleur_bordure }}; --bordure-taille: {{ block.settings.bordure_epaisseur }}px; --bordure-radius: {{ block.settings.bordure_radius }}px;"
+    {% endif %}
   >
     <ol class="mb-produit-etape__liste">
       {% render 'mb-etape-details' for etapes as etape, ouvert: block.settings.ouvert %}
@@ -32,7 +34,6 @@
     }
   ],
   "settings": [
-    { "type": "text", "id": "titre_block", "label": "Titre du Button", "default": "Étapes de montage" },
     { "type": "checkbox", "id": "ouvert", "label": "Le premier est Ouvert par défaut", "default": true },
     { "type": "checkbox", "id": "bordure_boolean", "label": "Ajouter une Bordure", "default": false },
     {

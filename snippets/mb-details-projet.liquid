@@ -13,17 +13,21 @@
   assign total_quantite = 0
   assign total_temps_impression = 0
   assign total_composant = 0
+  assign noms_materiaux = ''
 
   for piece in pieces
     assign quantite = piece.quantite.value | default: 1
     assign total_quantite = total_quantite | plus: quantite
     assign temps_impression = piece.temps_impression.value | times: quantite
     assign total_temps_impression = total_temps_impression | plus: temps_impression
-    assign materiel = piece.materiau.value.nom.value
+    assign noms_materiaux = noms_materiaux | append: piece.materiau.value.nom.value | append: '|'
   endfor
 
+  # Tous les matériaux du projet, sans doublon : « PETG, PLA »
+  assign materiaux = noms_materiaux | split: '|' | uniq | join: ', '
+
   for composant in composants
-    assign quantite = composant.quantite.value
+    assign quantite = composant.quantite.value | default: 1
     assign total_composant = total_composant | plus: quantite
   endfor
 -%}
@@ -37,7 +41,7 @@
   </div>
   <div>
     <span class="mb-details-projet__label">{{ 'mael.projet.materiau' | t }}</span>
-    <p class="mb-details-projet__valeur">{{ materiel }}</p>
+    <p class="mb-details-projet__valeur">{{ materiaux }}</p>
   </div>
   <div>
     <span class="mb-details-projet__label">{{ 'mael.projet.pieces' | t }}</span>

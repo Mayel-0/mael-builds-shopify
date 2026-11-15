@@ -356,7 +356,6 @@
           "type": "mb-etape-produit",
           "name": "Etape produit",
           "settings": {
-            "titre_block": "Étapes de montage",
             "ouvert": true,
             "bordure_boolean": true,
             "couleur_bordure": "{{ settings.color_palette.color1 }}",

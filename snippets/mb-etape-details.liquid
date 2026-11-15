@@ -1,11 +1,16 @@
 {% doc %}
-  @param {metaobject} etape - Meta object Etape
-  @param {boolean} ouvert - Le premier details est ouvert par defaut
+  Une étape de montage, repliable. À rendre avec « for » : le snippet
+  utilise forloop pour numéroter l'étape et ouvrir la première.
+
+  @param {metaobject} etape - Le métaobjet Étape (titre, contenu, image)
+  @param {boolean} [ouvert] - Ouvre la première étape par défaut
 
   @example
   {% render 'mb-etape-details' for etapes as etape, ouvert: true %}
 {% enddoc %}
 
+{%- # theme-check-disable UndefinedObject -%}
+{%- # forloop existe bien ici : il est fourni par « render … for » (Theme Check ne le sait pas) -%}
 {% assign current_index = forloop.index %}
 
 {% if etape != blank %}

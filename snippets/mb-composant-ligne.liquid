@@ -25,8 +25,13 @@
         <span class="mb-composant-ligne__nom">{{ composant.nom.value }}</span>
       </p>
     </div>
-    <div class="mb-composant-ligne__lien">
-      <a href="{{ composant.lien.value }}" target="_blank">{{ 'mael.composants.acheter' | t }}</a>
-    </div>
+    {%- if composant.lien.value != blank -%}
+      <div class="mb-composant-ligne__lien">
+        {%- comment -%} Site externe : nouvel onglet, sans donner accès à notre page (noopener) {%- endcomment -%}
+        <a href="{{ composant.lien.value }}" target="_blank" rel="noopener noreferrer">
+          {{- 'mael.composants.acheter' | t -}}
+        </a>
+      </div>
+    {%- endif -%}
   </div>
 {% endif %}
