@@ -8,7 +8,10 @@
 
 {%- if difficulte != blank -%}
   <span class="mb-badge-difficulte">
-    {%- if prefixe != blank -%}{{ prefixe }} {% endif -%}
-    {{ difficulte | downcase }}
+    {%- if prefixe != blank -%}
+      {{ prefixe }} {{ difficulte | downcase }}
+    {%- else -%}
+      {{ difficulte }}
+    {%- endif -%}
   </span>
 {%- endif -%}

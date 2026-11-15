@@ -3,6 +3,16 @@
   assign menu = block_settings.menu
   assign heading = block_settings.heading
   assign show_as_accordion = block_settings.show_as_accordion
+
+  # Case « Afficher le titre » décochée : on réutilise la classe --empty de Horizon,
+  # qui masque le titre (sauf en accordéon sur mobile, où il sert à ouvrir le menu).
+  assign titre_masque = false
+  if block_settings.afficher_titre == false
+    assign titre_masque = true
+  endif
+  if heading == blank and menu.title == blank
+    assign titre_masque = true
+  endif
   if show_as_accordion == true and block_settings.accordion_dividers == true
     assign dividers_enabled = true
   endif
@@ -46,7 +56,7 @@
       {% endif %}
       {{ block.shopify_attributes }}
     >
-      <summary class="menu__heading{% if heading == blank and menu.title == blank %} menu__heading--empty{% endif %} {{ block_settings.heading_preset }}">
+      <summary class="menu__heading{% if titre_masque %} menu__heading--empty{% endif %} {{ block_settings.heading_preset }}">
         <span class="menu__heading__default">{{ heading | default: menu.title }}</span>
         <span class="menu__heading__accordion">
           {{ heading | default: menu.title }}
@@ -64,15 +74,32 @@
 
       <nav
         class="details-content"
-        {% if heading == blank %}
+        {% if heading == blank or titre_masque %}
           aria-label="{{ menu.title | escape }}"
         {% endif %}
       >
         {% if menu %}
-          <ul class="list-unstyled">
+          <ul
+            class="list-unstyled menu__liste {{ block_settings.direction }}"
+            style="
+              --lien-padding-y: {{ block_settings.lien_padding_vertical }}px;
+              --lien-padding-x: {{ block_settings.lien_padding_horizontal }}px;
+              --lien-bordure: {{ block_settings.lien_bordure_epaisseur }}px;
+              --lien-arrondi: {{ block_settings.lien_bordure_arrondi }}px;
+              {% if block_settings.lien_bordure_couleur != blank %}--lien-bordure-couleur: {{ block_settings.lien_bordure_couleur }};{% endif %}
+              --lien-actif-fond: {{ block_settings.lien_actif_fond }};
+              --lien-actif-texte: {{ block_settings.lien_actif_texte }};
+            "
+          >
             {% for link in menu.links %}
               <li class="menu__item {{ block_settings.link_preset }}">
-                <a href="{{ link.url }}">
+                {%- comment -%} link.current : le lien pointe vers la page affichée {%- endcomment -%}
+                <a
+                  href="{{ link.url }}"
+                  {% if link.current and block_settings.lien_actif %}
+                    class="menu__lien--actif" aria-current="page"
+                  {% endif %}
+                >
                   {{ link.title }}{% if link.data_sharing_opt_out_icon %}{{ link.data_sharing_opt_out_icon }}{% endif %}
                 </a>
               </li>
@@ -103,6 +130,32 @@
 
   .menu__item + .menu__item {
     margin-block-start: var(--spacing--size);
+  }
+
+  /* Bordure et padding de chaque lien (réglages « Liens ») */
+  .menu__liste a {
+    display: inline-block;
+    padding: var(--lien-padding-y, 0) var(--lien-padding-x, 0);
+    border: var(--lien-bordure, 0) solid var(--lien-bordure-couleur, currentColor);
+    border-radius: var(--lien-arrondi, 0);
+  }
+
+  /* Lien de la page en cours (réglages « Lien actif ») */
+  .menu__liste .menu__lien--actif {
+    background: var(--lien-actif-fond);
+    border-color: var(--lien-actif-fond);
+    color: var(--lien-actif-texte);
+  }
+
+  /* Liens côte à côte : l'espace vertical sert d'espace entre les liens */
+  .menu__liste--horizontale {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing--size);
+  }
+
+  .menu__liste--horizontale .menu__item + .menu__item {
+    margin-block-start: 0;
   }
 
   .menu .menu__heading--empty {
@@ -166,19 +219,52 @@
       "label": "t:settings.heading"
     },
     {
+      "type": "checkbox",
+      "id": "afficher_titre",
+      "label": "Afficher le titre",
+      "info": "Si le titre est vide, le nom du menu s'affiche. Décoche pour ne rien afficher.",
+      "default": true
+    },
+    {
       "type": "header",
       "content": "t:content.appearance"
     },
     {
+      "type": "select",
+      "id": "direction",
+      "label": "Direction des liens",
+      "default": "menu__liste--verticale",
+      "options": [
+        { "value": "menu__liste--verticale", "label": "Verticale" },
+        { "value": "menu__liste--horizontale", "label": "Horizontale" }
+      ]
+    },
+    {
       "type": "range",
       "id": "menu_spacing",
-      "label": "t:settings.vertical_gap",
+      "label": "Espace entre les liens",
       "min": 0,
       "max": 50,
       "step": 1,
       "unit": "px",
       "default": 12
     },
+    { "type": "header", "content": "Liens" },
+    { "type": "range", "id": "lien_padding_vertical", "label": "Padding haut / bas", "min": 0, "max": 30, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "lien_padding_horizontal", "label": "Padding gauche / droite", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "lien_bordure_epaisseur", "label": "Épaisseur de la bordure", "min": 0, "max": 5, "step": 1, "unit": "px", "default": 0 },
+    {
+      "type": "color",
+      "id": "lien_bordure_couleur",
+      "label": "Couleur de la bordure",
+      "info": "Vide = couleur du texte.",
+      "visible_if": "{{ block.settings.lien_bordure_epaisseur > 0 }}"
+    },
+    { "type": "range", "id": "lien_bordure_arrondi", "label": "Arrondi des coins", "min": 0, "max": 50, "step": 2, "unit": "px", "default": 0 },
+    { "type": "header", "content": "Lien actif" },
+    { "type": "checkbox", "id": "lien_actif", "label": "Mettre en avant le lien de la page en cours", "default": false },
+    { "type": "color", "id": "lien_actif_fond", "label": "Fond", "default": "#000000", "visible_if": "{{ block.settings.lien_actif }}" },
+    { "type": "color", "id": "lien_actif_texte", "label": "Texte", "default": "#ffffff", "visible_if": "{{ block.settings.lien_actif }}" },
     {
       "type": "checkbox",
       "id": "show_as_accordion",

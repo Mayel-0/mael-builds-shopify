@@ -1,0 +1,29 @@
+@use '../abstracts/variables' as *;
+
+.mb-garantie {
+  display: flex;
+  align-items: center;
+  gap: $espace-3;
+  padding: $espace-2 $espace-4;
+  border: 1px solid var(--bordure-claire);
+  border-radius: 18px;
+  width: 280px;
+  &__pastille {
+    width: 8px;
+    height: 8px;
+    border-radius: 6px;
+    background-color: var(--accent);
+  }
+  &__textes {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+  }
+  &__titre {
+    font-weight: $texte-graisse-forte;
+  }
+  &__texte {
+    color: var(--texte-secondaire);
+    font-size: $espace-2;
+  }
+}

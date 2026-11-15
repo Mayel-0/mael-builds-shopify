@@ -1,9 +1,14 @@
 {%- liquid
-  # mael : si aucune image n'est choisie dans l'éditeur, on prend celle du produit ou du projet
+  # mael : si aucune image n'est choisie dans l'éditeur, image de secours, dans cet ordre :
+  # 1. produit transmis par un parent (closest.product)
+  # 2. 1re image de la galerie du projet transmis par un parent (closest.metaobject.projet)
+  # 3. produit du projet de la page en cours (page projet)
   assign image_affichee = block.settings.image
   if image_affichee == blank
     if closest.product != blank
       assign image_affichee = closest.product.featured_image
+    elsif closest.metaobject.projet != blank
+      assign image_affichee = closest.metaobject.projet.galerie.value | first
     elsif metaobject.system.type == 'projet'
       assign image_affichee = metaobject.produit.value.featured_image
     endif

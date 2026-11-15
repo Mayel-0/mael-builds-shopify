@@ -8,6 +8,32 @@
  * ------------------------------------------------------------
  */
 {
+  "mael": {
+    "nombre_produits": {
+      "name": "Product count",
+      "collection_info": "Linked by default to the collection of the card or page (dynamic source)."
+    },
+    "hero": {
+      "name": "Hero",
+      "projet": "Project",
+      "projet_info": "Takes priority over the product. Passed to the blocks: title, gallery and description of the project.",
+      "produit_info": "Used when no project is selected. Passed to the blocks: photo, title, price and link to the making-of.",
+      "visuel_a_gauche": "Visual on the left",
+      "proportion": "Column widths",
+      "visuel_en_premier": "Visual on top on mobile",
+      "fond_info": "Empty = transparent.",
+      "zone_contenu": "Content",
+      "zone_visuel": "Visual",
+      "zone_boutons": "Buttons",
+      "etiquette": "Product label",
+      "titre_defaut": "Objects designed, printed and assembled by hand.",
+      "label_defaut": "3D printing · electronics",
+      "texte_defaut": "<p>Download the STL file to print it at home, or get the part ready to use. Every project is documented step by step.</p>",
+      "bouton_boutique": "Shop now",
+      "bouton_making_of": "See the making-of",
+      "prix_prefixe": "From"
+    }
+  },
   "categories": {
     "banners": "Banners",
     // Category for fundamental content blocks (text, images, buttons)

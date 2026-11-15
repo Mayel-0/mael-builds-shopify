@@ -1,0 +1,48 @@
+{% doc %}
+  Nombre de produits d'une collection, ex. « 8 articles ».
+
+  La collection vient du réglage « Collection ». Par défaut, il est relié à la
+  collection du parent ({{ closest.collection }}), transmise par la carte de
+  collection ou la page collection. Le bloc ne devine rien selon la page.
+
+  @example
+  {% content_for 'block', type: 'nombre-produits', id: 'nombre-produits' %}
+{% enddoc %}
+
+{%- liquid
+  assign collection_comptee = block.settings.collection
+-%}
+
+{%- if collection_comptee != blank -%}
+  <p class="mb-nombre-produits" {{ block.shopify_attributes }}>
+    {{- 'mael.collection.nombre_produits' | t: count: collection_comptee.all_products_count -}}
+  </p>
+{%- elsif request.design_mode -%}
+  <p class="mb-nombre-produits" {{ block.shopify_attributes }}>
+    {{- 'mael.editeur.aucune_collection' | t -}}
+  </p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:mael.nombre_produits.name",
+  "tag": null,
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:settings.collection",
+      "info": "t:mael.nombre_produits.collection_info"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:mael.nombre_produits.name",
+      "category": "t:categories.collection",
+      "settings": {
+        "collection": "{{ closest.collection }}"
+      }
+    }
+  ]
+}
+{% endschema %}

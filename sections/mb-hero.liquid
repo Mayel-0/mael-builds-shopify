@@ -1,0 +1,274 @@
+{%- comment -%}
+  Section « Hero » : contenu à gauche, visuel à droite (empilés sur mobile).
+
+  Deux zones fixes (blocs statiques « Groupe ») : la structure ne peut pas être
+  cassée dans l'éditeur, mais chaque zone accepte n'importe quels blocs.
+  - contenu : titre, texte, boutons…
+  - visuel  : image, étiquette produit…
+
+  Réglages « Projet » ou « Produit » : la section transmet l'un des deux à ses zones.
+  - Projet choisi → closest.metaobject.projet (titre, galerie, description du projet)
+  - Sinon produit → closest.product (photo, titre, prix, lien vers le making-of)
+  Un content_for n'accepte qu'UNE valeur closest : on choisit donc laquelle envoyer.
+  Les blocs enfants s'en servent sans savoir d'où elle vient.
+{%- endcomment -%}
+
+{%- liquid
+  assign projet = section.settings.projet
+  assign produit = section.settings.produit
+
+  assign classes_hero = 'mb-hero ' | append: section.settings.proportion
+  if section.settings.visuel_a_gauche
+    assign classes_hero = classes_hero | append: ' mb-hero--visuel-a-gauche'
+  endif
+  if section.settings.visuel_en_premier
+    assign classes_hero = classes_hero | append: ' mb-hero--visuel-en-premier'
+  endif
+-%}
+
+<div
+  class="section section--page-width"
+  style="
+    --mb-hero-padding-haut: {{ section.settings.padding_haut }}px;
+    --mb-hero-padding-bas: {{ section.settings.padding_bas }}px;
+  "
+>
+  <div
+    class="{{ classes_hero }}"
+    style="
+      --mb-hero-gap: {{ section.settings.gap }}px;
+      {% if section.settings.fond != blank %}--mb-hero-fond: {{ section.settings.fond }};{% endif %}
+    "
+  >
+    <div class="mb-hero__contenu">
+      {%- if projet != blank -%}
+        {% content_for 'block', type: 'group', id: 'contenu', closest.metaobject.projet: projet %}
+      {%- else -%}
+        {% content_for 'block', type: 'group', id: 'contenu', closest.product: produit %}
+      {%- endif -%}
+    </div>
+    <div class="mb-hero__visuel">
+      {%- if projet != blank -%}
+        {% content_for 'block', type: 'group', id: 'visuel', closest.metaobject.projet: projet %}
+      {%- else -%}
+        {% content_for 'block', type: 'group', id: 'visuel', closest.product: produit %}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:mael.hero.name",
+  "tag": "section",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "metaobject",
+      "id": "projet",
+      "metaobject_type": "projet",
+      "label": "t:mael.hero.projet",
+      "info": "t:mael.hero.projet_info"
+    },
+    {
+      "type": "product",
+      "id": "produit",
+      "label": "t:settings.product",
+      "info": "t:mael.hero.produit_info"
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "proportion",
+      "label": "t:mael.hero.proportion",
+      "default": "mb-hero--50-50",
+      "options": [
+        { "value": "mb-hero--50-50", "label": "50 / 50" },
+        { "value": "mb-hero--60-40", "label": "60 / 40" },
+        { "value": "mb-hero--40-60", "label": "40 / 60" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "visuel_a_gauche",
+      "label": "t:mael.hero.visuel_a_gauche",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "visuel_en_premier",
+      "label": "t:mael.hero.visuel_en_premier",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color",
+      "id": "fond",
+      "label": "t:settings.background_color",
+      "info": "t:mael.hero.fond_info"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_haut",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bas",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:mael.hero.name",
+      "settings": {
+        "fond": "#f4f5f7"
+      },
+      "blocks": {
+        "contenu": {
+          "type": "group",
+          "name": "t:mael.hero.zone_contenu",
+          "static": true,
+          "settings": {
+            "content_direction": "column",
+            "vertical_alignment": "center",
+            "gap": 20,
+            "width": "fill"
+          },
+          "blocks": {
+            "titre": {
+              "type": "titre",
+              "settings": {
+                "titre": "t:mael.hero.titre_defaut",
+                "label": "t:mael.hero.label_defaut",
+                "trait_label": true,
+                "niveau": "h1",
+                "taille": "40px"
+              }
+            },
+            "texte": {
+              "type": "text",
+              "settings": {
+                "text": "t:mael.hero.texte_defaut",
+                "max_width": "narrow"
+              }
+            },
+            "boutons": {
+              "type": "group",
+              "name": "t:mael.hero.zone_boutons",
+              "settings": {
+                "content_direction": "row",
+                "gap": 8,
+                "width": "fit-content"
+              },
+              "blocks": {
+                "bouton_boutique": {
+                  "type": "mb-lien-projet",
+                  "settings": {
+                    "lien": "shopify://collections/all",
+                    "texte_lien": "t:mael.hero.bouton_boutique",
+                    "style": "mb-lien-projet--sombre",
+                    "font_align": "center",
+                    "label_boolean": false,
+                    "arrow_boolean": false
+                  }
+                },
+                "bouton_making_of": {
+                  "type": "mb-lien-projet",
+                  "settings": {
+                    "texte_lien": "t:mael.hero.bouton_making_of",
+                    "style": "mb-lien-projet--clair",
+                    "font_align": "center",
+                    "label_boolean": false,
+                    "arrow_boolean": false
+                  }
+                }
+              },
+              "block_order": ["bouton_boutique", "bouton_making_of"]
+            }
+          },
+          "block_order": ["titre", "texte", "boutons"]
+        },
+        "visuel": {
+          "type": "group",
+          "name": "t:mael.hero.zone_visuel",
+          "static": true,
+          "settings": {
+            "content_direction": "column",
+            "gap": 0,
+            "width": "fill"
+          },
+          "blocks": {
+            "image": {
+              "type": "image",
+              "settings": {
+                "width": "fill",
+                "height": "fill"
+              }
+            },
+            "etiquette": {
+              "type": "groupe-produit",
+              "name": "t:mael.hero.etiquette",
+              "settings": {
+                "produit": "{{ closest.product }}",
+                "gap": 2
+              },
+              "blocks": {
+                "titre_produit": {
+                  "type": "titre",
+                  "settings": {
+                    "titre": "{{ closest.product.title }}",
+                    "niveau": "h3",
+                    "taille": "14px"
+                  }
+                },
+                "prix": {
+                  "type": "price",
+                  "settings": {
+                    "prefixe": "t:mael.hero.prix_prefixe"
+                  }
+                }
+              },
+              "block_order": ["titre_produit", "prix"]
+            }
+          },
+          "block_order": ["image", "etiquette"]
+        }
+      }
+    }
+  ]
+}
+{% endschema %}

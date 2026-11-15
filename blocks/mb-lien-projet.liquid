@@ -1,9 +1,11 @@
 {%- liquid
-  # Seule la destination dépend de la page. Textes et style viennent des réglages :
-  # chaque bloc placé dans un template a ses propres réglages, indépendants.
-  assign url = blank
+  # Destination : le réglage « Lien » d'abord (utilisable partout : accueil, hero…).
+  # Vide → lien automatique entre produit et projet, comme avant.
+  assign url = block.settings.lien
 
-  if closest.product != blank
+  if url != blank
+    assign texte_petit_lien_defaut = 'mael.liens.voir_plus' | t
+  elsif closest.product != blank
     # Page produit → page du projet
     assign url = closest.product.metafields.custom.projet.value.system.url
     assign texte_petit_lien_defaut = 'mael.liens.voir_projet' | t
@@ -33,6 +35,10 @@
       --padding-side: {{ block.settings.padding_side_y }}px;
       --padding-side-x: {{ block.settings.padding_side_x }}px;
       --largeur-lien: {{ block.settings.largeur_lien }}%;
+      --decoration-lien: {% if block.settings.souligner %}underline{% else %}none{% endif %};
+      {% if block.settings.couleur_texte != blank %}--couleur-texte-lien: {{ block.settings.couleur_texte }};{% endif %}
+      --decoration-petit-lien: {% if block.settings.souligner_petit_lien %}underline{% else %}none{% endif %};
+      {% if block.settings.couleur_petit_lien != blank %}--couleur-petit-lien: {{ block.settings.couleur_petit_lien }};{% endif %}
     "
     {{ block.shopify_attributes }}
   >
@@ -66,8 +72,10 @@
   ],
   "settings": [
     {
-      "type": "paragraph",
-      "content": "Sur une page produit, le lien mène au projet. Sur une page projet, il mène au produit."
+      "type": "url",
+      "id": "lien",
+      "label": "Lien",
+      "info": "Choisis une page ou connecte une source dynamique. Vide : sur une page produit, le lien mène au projet ; sur une page projet, il mène au produit."
     },
     { "type": "header", "content": "Textes" },
     { "type": "checkbox", "id": "label_boolean", "label": "Afficher le label", "default": true },
@@ -90,6 +98,7 @@
       "visible_if": "{{ block.settings.label_boolean }}"
     },
     { "type": "text", "id": "texte_lien", "label": "Texte du lien", "default": "Voir comment il a été fabriqué" },
+    { "type": "checkbox", "id": "souligner", "label": "Souligner le texte du lien", "default": false },
     { "type": "header", "content": "Style" },
     {
       "type": "select",
@@ -98,8 +107,17 @@
       "default": "mb-lien-projet--clair",
       "options": [
         { "label": "Clair (fond gris, texte foncé)", "value": "mb-lien-projet--clair" },
-        { "label": "Sombre (fond foncé, texte clair)", "value": "mb-lien-projet--sombre" }
+        { "label": "Sombre (fond foncé, texte clair)", "value": "mb-lien-projet--sombre" },
+        { "label": "Transparent (pas de couleur)", "value": "mb-lien-projet--transparent" }
       ]
+    },
+  
+    {
+      "type": "color",
+      "id": "couleur_texte",
+      "label": "Couleur du texte",
+      "info": "Vide = couleur du texte du thème.",
+      "visible_if": "{{ block.settings.style == 'mb-lien-projet--transparent' }}"
     },
     {
       "type": "select",
@@ -119,6 +137,20 @@
       "label": "Texte du petit lien",
       "info": "Laisser vide pour « Voir le projet » (page produit) ou « Voir le produit » (page projet)",
       "visible_if": "{{ block.settings.petit_lien }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "souligner_petit_lien",
+      "label": "Souligner le petit lien",
+      "default": false,
+      "visible_if": "{{ block.settings.petit_lien }}"
+    },
+    {
+      "type": "color",
+      "id": "couleur_petit_lien",
+      "label": "Couleur du petit lien",
+      "info": "Vide = même couleur que le texte du lien.",
+      "visible_if": "{{ block.settings.petit_lien and block.settings.style == 'mb-lien-projet--transparent' }}"
     },
     {
       "type": "checkbox",

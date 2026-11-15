@@ -1,0 +1,26 @@
+<div class="mb-garanties" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Garanties",
+  "blocks": [{ "type": "mb-garantie" }],
+  "presets": [
+    {
+      "name": "Garanties",
+      "blocks": [
+        {
+          "type": "mb-garantie",
+          "settings": { "titre": "Téléchargement immédiat", "texte": "Le fichier STL arrive dans ton compte" }
+        },
+        { "type": "mb-garantie", "settings": { "titre": "Paiement sécurisé", "texte": "Carte, Apple Pay, PayPal" } },
+        {
+          "type": "mb-garantie",
+          "settings": { "titre": "Projets documentés", "texte": "Pièces, matériel et étapes détaillés" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

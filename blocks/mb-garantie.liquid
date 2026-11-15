@@ -1,0 +1,22 @@
+{%- if block.settings.titre != blank -%}
+  <div class="mb-garantie" {{ block.shopify_attributes }}>
+    <span class="mb-garantie__pastille" aria-hidden="true"></span>
+    <span class="mb-garantie__textes">
+      <span class="mb-garantie__titre">{{ block.settings.titre }}</span>
+      {%- if block.settings.texte != blank -%}
+        <span class="mb-garantie__texte">{{ block.settings.texte }}</span>
+      {%- endif -%}
+    </span>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Garantie",
+  "settings": [
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Téléchargement immédiat" },
+    { "type": "text", "id": "texte", "label": "Texte", "default": "Le fichier STL arrive dans ton compte" }
+  ],
+  "presets": [{ "name": "Garantie" }]
+}
+{% endschema %}

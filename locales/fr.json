@@ -366,9 +366,16 @@
     "composants": {
       "acheter": "Acheter"
     },
+    "collection": {
+      "nombre_produits": {
+        "one": "{{ count }} article",
+        "other": "{{ count }} articles"
+      }
+    },
     "liens": {
       "voir_projet": "Voir le projet",
-      "voir_produit": "Voir le produit"
+      "voir_produit": "Voir le produit",
+      "voir_plus": "En savoir plus"
     },
     "projet": {
       "temps_impression": "Temps d'impression",
@@ -383,6 +390,7 @@
       "aucune_etape": "Ajoute des étapes au projet du produit.",
       "aucune_image": "Ajoute des images dans la galerie du projet.",
       "aucun_lien": "Aucun projet ou produit associé à cette page.",
+      "aucune_collection": "Choisis une collection ou place ce bloc dans une carte de collection.",
       "aucun_produit": "Choisis ou connecte un produit dans les réglages du groupe.",
       "titre": "Renseigne le titre dans les réglages du bloc.",
       "description": "Ce bloc affiche la description d'un produit ou d'un projet."

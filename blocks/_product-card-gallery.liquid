@@ -1,8 +1,18 @@
-{% assign product = closest.product %}
+{% liquid
+  assign product = closest.product
+
+  # Badge libre (réglage « Badge »), ex. connecté à la difficulté du produit.
+  # Affiché à côté des badges Promo / Épuisé de Horizon, au même endroit.
+  assign badge = block.settings.badge
+  assign badge_horizon = false
+  if product.available == false or product.compare_at_price > product.price
+    assign badge_horizon = true
+  endif
+%}
 
 {% capture children %}
   {% unless product == blank %}
-    {%- if product.available == false or product.compare_at_price > product.price -%}
+    {%- if badge_horizon or badge != blank -%}
       <div
         class="product-badges product-badges--{{ settings.badge_position }}"
         style="
@@ -10,6 +20,8 @@
             --badge-font-family: var(--font-{{ settings.badge_font_family }}--family); --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight); --badge-text-transform: {{ settings.badge_text_transform }};
         "
       >
+        {%- render 'mb-badge-difficulte', difficulte: badge, prefixe: block.settings.prefixe_badge -%}
+        {%- if badge_horizon -%}
         <div
           class="
             product-badges__badge product-badges__badge--rectangle
@@ -22,6 +34,7 @@
             {{ 'content.product_badge_sale' | t }}
           {%- endif -%}
         </div>
+        {%- endif -%}
       </div>
     {%- endif -%}
     {% if product.available and settings.quick_add or settings.mobile_quick_add %}
@@ -52,6 +65,19 @@
     {
       "type": "paragraph",
       "content": "t:content.resource_reference_product_media"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "{{ closest.product.metafields.custom.difficulte.value }}",
+      "info": "Relié par défaut à la difficulté du produit de la carte. Vide = pas de badge. Position : Paramètres du thème > Badges."
+    },
+    {
+      "type": "text",
+      "id": "prefixe_badge",
+      "label": "Texte avant le badge",
+      "default": "Niveau"
     },
     {
       "type": "select",

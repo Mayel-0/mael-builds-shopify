@@ -15,9 +15,14 @@
   padding-left: var(--padding-side, 20px);
   border-radius: 18px;
   gap: 0px;
+  // Le soulignement se règle sur le texte seul (réglage « Souligner »),
+  // pas sur toute la carte : on enlève celui que le navigateur met sur <a>.
+  text-decoration: none;
+
   &__lien {
     font-weight: $texte-graisse-forte;
     font-size: $texte-normal;
+    text-decoration: var(--decoration-lien, none);
   }
 
   &__label {
@@ -73,6 +78,7 @@
     border-radius: 999px;
     font-size: $texte-petit;
     font-weight: $texte-graisse-forte;
+    text-decoration: var(--decoration-petit-lien, none); // réglage « Souligner le petit lien »
   }
 
   &--clair &__petit-lien {
@@ -83,5 +89,17 @@
   &--sombre &__petit-lien {
     background-color: var(--color-background);
     color: var(--color-foreground);
+  }
+
+  // Réglage « Couleur du texte » : seulement en transparent (sinon il casserait
+  // le contraste des styles clair / sombre). Vide → couleur du texte du thème.
+  &--transparent {
+    background-color: transparent;
+    color: var(--couleur-texte-lien, var(--color-foreground));
+  }
+
+  // Même logique pour le petit lien. Vide → même couleur que le texte du lien.
+  &--transparent &__petit-lien {
+    color: var(--couleur-petit-lien, var(--couleur-texte-lien, var(--color-foreground)));
   }
 }

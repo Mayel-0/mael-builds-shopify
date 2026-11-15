@@ -111,7 +111,7 @@
       class="facets facets--horizontal facets-controls-wrapper spacing-style{% if has_custom_color %} color-custom-{{ block.id }}{% endif %}"
       style="{% render 'spacing-style', settings: block_settings %}{% if block_settings.text_label_case == 'uppercase' %} --facet-label-transform: uppercase;{% endif %}"
     >
-      {% if block_settings.enable_filtering %}
+      {% if block_settings.enable_filtering and block_settings.afficher_titre %}
         <h4 class="facets--filters-title">{{ 'content.filters' | t }}</h4>
       {% endif %}
 
@@ -119,13 +119,15 @@
         class="products-count-wrapper"
         data-testid="products-count"
       >
-        <span role="status">
-          {% if products_count > 25000 %}
-            {{- 'content.item_count_cutoff' | t: count: 25000 -}}
-          {% else %}
-            {{- 'content.item_count' | t: count: products_count -}}
-          {% endif %}
-        </span>
+        {%- if block_settings.nombre_article_boolean -%}
+          <span role="status">
+            {% if products_count > 25000 %}
+              {{- 'content.item_count_cutoff' | t: count: 25000 -}}
+            {% else %}
+              {{- 'content.item_count' | t: count: products_count -}}
+            {% endif %}
+          </span>
+        {%- endif -%}
       </div>
 
       {% if block_settings.enable_sorting %}
@@ -216,7 +218,7 @@
                           assign should_render_clear = false
                         endif
 
-                        render 'price-filter', filter: filter, filter_style: block_settings.filter_style, should_render_clear: should_render_clear, id_prefix: 'horizontal'
+                        render 'price-filter', filter: filter, filter_style: block_settings.filter_style, should_render_clear: should_render_clear, id_prefix: 'horizontal', separator_text: block_settings.separator_text
                       -%}
                     {% else %}
                       {% liquid
@@ -281,13 +283,15 @@
                 class="products-count-wrapper"
                 data-testid="products-count"
               >
-                <span role="status">
-                  {% if products_count > 25000 %}
-                    {{- 'content.item_count_cutoff' | t: count: 25000 -}}
-                  {% else %}
-                    {{- 'content.item_count' | t: count: products_count -}}
-                  {% endif %}
-                </span>
+                {%- if block_settings.nombre_article_boolean -%}
+                  <span role="status">
+                    {% if products_count > 25000 %}
+                      {{- 'content.item_count_cutoff' | t: count: 25000 -}}
+                    {% else %}
+                      {{- 'content.item_count' | t: count: products_count -}}
+                    {% endif %}
+                  </span>
+                {%- endif -%}
               </div>
 
               {% if block_settings.enable_sorting %}
@@ -480,7 +484,7 @@
                           assign is_active = true
                         endif
 
-                        render 'price-filter', filter: filter, filter_style: 'vertical', should_render_clear: false, id_prefix: 'dialog'
+                        render 'price-filter', filter: filter, filter_style: 'vertical', should_render_clear: false, id_prefix: 'dialog', separator_text: block_settings.separator_text
                       -%}
                     {% else %}
                       {% liquid
@@ -1372,6 +1376,13 @@
     },
     {
       "type": "checkbox",
+      "id": "afficher_titre",
+      "label": "Afficher le titre « Filtres »",
+      "default": true,
+      "visible_if": "{{ block.settings.filter_style == 'vertical' and block.settings.enable_filtering == true }}"
+    },
+    {
+      "type": "checkbox",
       "id": "show_filter_label",
       "label": "t:settings.show_filter_label",
       "default": false,
@@ -1474,6 +1485,13 @@
       "unit": "px",
       "default": 20,
       "visible_if": "{{ block.settings.filter_style == 'vertical' }}"
+    },
+    { "type": "text", "id": "separator_text", "label": "Text Séparateur min, max", "default": "-" },
+    {
+      "type": "checkbox",
+      "id": "nombre_article_boolean",
+      "label": "Afficher le nombre de produits",
+      "default": true
     }
   ]
 }

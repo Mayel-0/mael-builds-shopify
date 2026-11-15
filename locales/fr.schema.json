@@ -1,4 +1,30 @@
 {
+  "mael": {
+    "nombre_produits": {
+      "name": "Nombre de produits",
+      "collection_info": "Relié par défaut à la collection de la carte ou de la page (source dynamique)."
+    },
+    "hero": {
+      "name": "Hero",
+      "projet": "Projet",
+      "projet_info": "Prioritaire sur le produit. Transmis aux blocs : titre, galerie et description du projet.",
+      "produit_info": "Utilisé si aucun projet n'est choisi. Transmis aux blocs : photo, titre, prix et lien vers le making-of.",
+      "visuel_a_gauche": "Visuel à gauche",
+      "proportion": "Largeur des colonnes",
+      "visuel_en_premier": "Visuel au-dessus sur mobile",
+      "fond_info": "Vide = transparent.",
+      "zone_contenu": "Contenu",
+      "zone_visuel": "Visuel",
+      "zone_boutons": "Boutons",
+      "etiquette": "Étiquette produit",
+      "titre_defaut": "Des objets conçus, imprimés et montés à la main.",
+      "label_defaut": "Impression 3D · électronique",
+      "texte_defaut": "<p>Télécharge le fichier STL pour l'imprimer chez toi, ou reçois la pièce prête à l'emploi. Chaque projet est documenté pas à pas.</p>",
+      "bouton_boutique": "Découvrir la boutique",
+      "bouton_making_of": "Voir les making-of",
+      "prix_prefixe": "À partir de"
+    }
+  },
   "names": {
     "404": "404",
     "custom_section": "Section personnalisée",

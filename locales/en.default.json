@@ -387,9 +387,16 @@
     "composants": {
       "acheter": "Buy"
     },
+    "collection": {
+      "nombre_produits": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} items"
+      }
+    },
     "liens": {
       "voir_projet": "See the project",
-      "voir_produit": "See the product"
+      "voir_produit": "See the product",
+      "voir_plus": "Learn more"
     },
     "projet": {
       "temps_impression": "Print time",
@@ -404,6 +411,7 @@
       "aucune_etape": "Add steps to the product's project.",
       "aucune_image": "Add images to the project gallery.",
       "aucun_lien": "No project or product linked to this page.",
+      "aucune_collection": "Pick a collection or place this block in a collection card.",
       "aucun_produit": "Pick or connect a product in the group settings.",
       "titre": "Fill in the title in the block settings.",
       "description": "This block shows the description of a product or a project."

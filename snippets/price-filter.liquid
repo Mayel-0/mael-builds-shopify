@@ -5,12 +5,18 @@
   @param {string} filter_style - The filter style, can be 'horizontal' or 'vertical'.
   @param {boolean} [should_render_clear] - Whether to render the clear button.
   @param {string} [id_prefix] - Unique prefix to avoid duplicate IDs when rendered multiple times.
+  @param {string} [separator_text] - Séparateur de text min, max
 
   @example
   {% render 'price-filter', filter: filter, filter_style: 'vertical', id_prefix: 'dialog' %}
 {%- enddoc -%}
 
 {%- liquid
+  # Séparateur entre min et max : texte du réglage, sinon la traduction Horizon (« à »).
+  if separator_text == blank
+    assign separator_text = 'fields.separator' | t
+  endif
+
   assign is_horizontal = false
   assign is_vertical = false
   if filter_style == 'horizontal'
@@ -33,7 +39,7 @@
       class="facets__summary"
       data-testid="price-filter"
     >
-      <span class="facets__label">{{ filter.label }}</span>
+      <span class="facets__label alter__graisse">{{ filter.label }}</span>
       <facet-status-component class="facets__status">
         <template ref="moneyFormat">{{ shop.money_format }}</template>
 
@@ -110,7 +116,7 @@
               </label>
             </div>
 
-            <div class="price-facet__separator">{{ 'fields.separator' | t }}</div>
+            <div class="price-facet__separator">{{ separator_text }}</div>
 
             <div class="field price-facet__field">
               <input
@@ -137,18 +143,6 @@
               </label>
             </div>
           </div>
-        </div>
-
-        <div
-          class="
-            price-facet__highest-price
-            {%- if filter_style == 'horizontal' %}
-              price-facet__highest-price--horizontal
-            {%- endif %}
-          "
-        >
-          {%- capture formatted_highest_price -%}<bdi>{{ filter.range_max | money }}</bdi>{%- endcapture -%}
-          {{ 'content.price_filter_html' | t: price: formatted_highest_price }}
         </div>
 
         {% if filter.min_value.value != null or filter.max_value.value != null %}
@@ -223,15 +217,6 @@
     align-items: center;
     justify-content: center;
     font-size: var(--font-paragraph--size);
-  }
-
-  .price-facet__highest-price {
-    color: var(--color-foreground-muted);
-    padding: var(--padding-xs) 0 var(--padding-sm);
-  }
-
-  .price-facet__highest-price--horizontal {
-    padding: 0 var(--padding-md) var(--padding-xs);
   }
 
   .price-facet__label {

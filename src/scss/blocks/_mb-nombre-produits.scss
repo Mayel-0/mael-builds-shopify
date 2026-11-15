@@ -1,0 +1,9 @@
+// blocks/nombre-produits.liquid
+@use '../abstracts/variables' as *;
+
+.mb-nombre-produits {
+  margin: 0;
+  font-size: $texte-petit;
+  color: $texte-secondaire;
+  white-space: nowrap; // « 8 articles » ne se coupe jamais en deux lignes
+}

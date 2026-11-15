@@ -1,7 +1,14 @@
 {%- liquid
+  # Ce que le parent transmet, dans cet ordre :
+  # 1. un produit (fiche produit, carte, Groupe produit, Hero…)
+  # 2. un projet (Hero avec un projet choisi…)
+  # 3. le projet de la page en cours (page projet)
   assign context = blank
   if closest.product != blank
     assign context = 'produit'
+  elsif closest.metaobject.projet != blank
+    assign context = 'projet'
+    assign projet = closest.metaobject.projet
   elsif metaobject.system.type == 'projet'
     assign context = 'projet'
     assign projet = metaobject
@@ -13,7 +20,7 @@
     <div {{ block.shopify_attributes }}>
       {% render 'mb-details-produit',
         titre: block.settings.titre_summary,
-        contenu: product.description,
+        contenu: closest.product.description,
         ouvert: block.settings.ouvert,
         bordure: block.settings.afficher_bordure
       %}

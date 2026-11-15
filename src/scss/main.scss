@@ -17,6 +17,12 @@
 @use 'blocks/mb-lien-projet';
 @use 'blocks/mb-galerie-projet';
 @use 'blocks/mb-card-produit';
+@use 'blocks/mb-nombre-produits';
+@use 'blocks/mb-garantie';
+@use 'blocks/mb-garanties';
+
+// Sections (sections/*.liquid)
+@use 'sections/mb-hero';
 
 // Snippets (snippets/*.liquid)
 @use 'snippets/mb-badge-difficulte';
@@ -32,3 +38,5 @@
 @use 'horizon/add-to-cart';
 @use 'horizon/variant-main-picker';
 @use 'horizon/product-media-gallery';
+@use 'horizon/price-filter';
+@use 'horizon/list-filter';

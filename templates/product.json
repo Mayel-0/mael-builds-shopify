@@ -305,14 +305,19 @@
               "type": "mb-lien-projet",
               "name": "Lien vers projet",
               "settings": {
+                "lien": "",
                 "label_boolean": true,
                 "texte_label": "Making-of",
                 "position_label": "mb-lien-projet--label-dessus",
                 "texte_lien": "Voir comment il a été fabriqué",
+                "souligner": false,
                 "style": "mb-lien-projet--clair",
+                "couleur_texte": "",
                 "font_align": "left",
                 "petit_lien": false,
                 "texte_petit_lien": "",
+                "souligner_petit_lien": false,
+                "couleur_petit_lien": "",
                 "arrow_boolean": true,
                 "padding_side_y": 20,
                 "padding_side_x": 18,
@@ -340,74 +345,29 @@
         "gap": 20,
         "enable_sticky_add_to_cart": true,
         "background_color": "",
-        "padding-block-start": 0,
+        "padding-block-start": 24,
         "padding-block-end": 0
       }
     },
     "section_HktG8E": {
       "type": "section",
       "blocks": {
-        "group_CCjbLi": {
-          "type": "group",
-          "name": "t:names.group",
+        "mb_etape_produit_ETytP9": {
+          "type": "mb-etape-produit",
+          "name": "Etape produit",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 0,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 24,
-            "padding-inline-end": 24
+            "titre_block": "Étapes de montage",
+            "ouvert": true,
+            "bordure_boolean": true,
+            "couleur_bordure": "{{ settings.color_palette.color1 }}",
+            "bordure_epaisseur": 0,
+            "bordure_radius": 18
           },
-          "blocks": {
-            "mb_etape_produit_kwwXmW": {
-              "type": "mb-etape-produit",
-              "name": "Etape produit",
-              "settings": {
-                "titre_block": "Étapes de montage",
-                "ouvert": true,
-                "bordure_boolean": true,
-                "couleur_bordure": "{{ settings.color_palette.color1 }}",
-                "bordure_epaisseur": 0,
-                "bordure_radius": 18
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "mb_etape_produit_kwwXmW"
-          ]
+          "blocks": {}
         }
       },
       "block_order": [
-        "group_CCjbLi"
+        "mb_etape_produit_ETytP9"
       ],
       "name": "t:names.custom_section",
       "settings": {
@@ -435,18 +395,39 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 24,
-        "padding-block-end": 24
+        "padding-block-start": 34,
+        "padding-block-end": 34
       }
     },
     "product_recommendations_qggXJq": {
       "type": "product-recommendations",
       "blocks": {
+        "titre_xBFm63": {
+          "type": "titre",
+          "name": "Titre",
+          "settings": {
+            "titre": "Dans la même catégorie",
+            "lien": "",
+            "label": "",
+            "afficher_type": false,
+            "trait_label": false,
+            "style_label": "uppercase",
+            "badge": "",
+            "prefixe_badge": "Niveau",
+            "niveau": "h4",
+            "taille": "32px",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "margin_left": 0,
+            "margin_right": 0
+          },
+          "blocks": {}
+        },
         "text_cbcgyb": {
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h2>Dans la même catégorie</h2>",
+            "text": "",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -490,6 +471,8 @@
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
               "settings": {
+                "badge": "{{ closest.product.metafields.custom.difficulte.value }}",
+                "prefixe_badge": "Niveau",
                 "image_ratio": "adapt",
                 "border": "solid",
                 "border_width": 0,
@@ -558,6 +541,7 @@
         }
       },
       "block_order": [
+        "titre_xBFm63",
         "text_cbcgyb"
       ],
       "name": "t:names.product_recommendations",

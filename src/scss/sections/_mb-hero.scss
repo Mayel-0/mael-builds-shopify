@@ -1,0 +1,75 @@
+// sections/mb-hero.liquid
+@use '../abstracts/variables' as *;
+
+.mb-hero {
+  display: grid;
+  grid-template-columns: 1fr; // mobile : une seule colonne
+  gap: var(--mb-hero-gap, 0);
+  margin-block: var(--mb-hero-padding-haut) var(--mb-hero-padding-bas);
+  background: var(--mb-hero-fond, transparent);
+  border-radius: $rayon-carte;
+  overflow: hidden;
+
+  // Proportions : le 1er chiffre est toujours la largeur du CONTENU
+  @media (min-width: $bp-tablette) {
+    &--50-50 { grid-template-columns: 1fr 1fr; }
+    &--60-40 { grid-template-columns: 3fr 2fr; }
+    &--40-60 { grid-template-columns: 2fr 3fr; }
+  }
+
+  // Ordinateur : visuel à gauche. On inverse aussi les colonnes,
+  // pour que « 60 / 40 » donne toujours 60 % au contenu.
+  &--visuel-a-gauche {
+    @media (min-width: $bp-tablette) {
+      .mb-hero__visuel { order: -1; }
+
+      &.mb-hero--60-40 { grid-template-columns: 2fr 3fr; }
+      &.mb-hero--40-60 { grid-template-columns: 3fr 2fr; }
+    }
+  }
+
+  // Mobile uniquement : le visuel passe au-dessus du contenu
+  &--visuel-en-premier .mb-hero__visuel {
+    @media (max-width: #{$bp-tablette - 1px}) {
+      order: -1;
+    }
+  }
+
+  // Zone de gauche : le texte respire
+  &__contenu {
+    display: flex;
+    align-items: center;
+    padding: $espace-5 $espace-4;
+
+    @media (min-width: $bp-tablette) {
+      padding: $espace-6;
+    }
+  }
+
+  // Zone de droite : le visuel touche les bords, l'étiquette produit flotte dessus
+  &__visuel {
+    position: relative;
+    min-height: 320px;
+
+    > *,
+    img {
+      height: 100%;
+    }
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .mb-groupe-produit {
+      position: absolute;
+      inset-block-end: $espace-3;
+      inset-inline-start: $espace-3;
+      width: auto;
+      height: auto;
+      padding: $espace-2 $espace-3;
+      background: var(--color-background);
+      border-radius: $rayon-bouton;
+    }
+  }
+}

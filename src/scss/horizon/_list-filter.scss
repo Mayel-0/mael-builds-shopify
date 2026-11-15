@@ -1,0 +1,9 @@
+// snippets/list-filter.liquid : espace entre les options d'un filtre (Niveau, Format…)
+@use '../abstracts/variables' as *;
+
+// Les deux classes sont sur le MÊME <ul> : on les colle (pas d'espace).
+// Préfixe .facets__inputs-wrapper : la règle Horizon (.facets__inputs-wrapper .facets__inputs-list)
+// est chargée après ce fichier, il faut donc un sélecteur plus fort pour passer devant.
+.facets__inputs-wrapper .facets__inputs-list.filtre__liste {
+  gap: 22px;
+}

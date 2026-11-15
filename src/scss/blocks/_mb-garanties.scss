@@ -1,0 +1,6 @@
+@use '../abstracts/variables' as *;
+
+.mb-garanties {
+  display: flex;
+  gap: $espace-4;
+}

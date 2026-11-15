@@ -79,13 +79,14 @@
     "content_for_index": [],
     "color_palette": {
       "background": "#ffffff",
-      "foreground": "#0A0B0D",
-      "color1": "#E6E8EB",
-      "color2": "#0A0B0D",
-      "color3": "#FFFFFF",
-      "color4": "#0779A8",
+      "foreground": "#0a0b0d",
+      "color1": "#e6e8eb",
+      "color2": "#0a0b0d",
+      "color3": "#ffffff",
+      "color4": "#0779a8",
       "color5": "{{ settings.color_palette.background }}",
-      "color6": "#09BCF5"
+      "color6": "#09bcf5",
+      "color7": "#5B616B"
     }
   },
   "presets": {

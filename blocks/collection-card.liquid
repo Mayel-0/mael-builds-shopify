@@ -9,7 +9,8 @@
 {% endcapture %}
 
 {% capture children %}
-  {% content_for 'blocks' %}
+  {%- # mael : la carte transmet sa collection à ses blocs enfants (titre, nombre de produits…) -%}
+  {% content_for 'blocks', closest.collection: collection %}
 {% endcapture %}
 
 {% render 'collection-card',
@@ -38,6 +39,9 @@
     },
     {
       "type": "collection-title"
+    },
+    {
+      "type": "nombre-produits"
     }
   ],
   "tag": null,
