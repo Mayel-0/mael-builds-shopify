@@ -57,7 +57,7 @@ Shopify CLI, Theme Check, Search & Discovery, Digital Products.
 ├── blocks/      # blocs de thème ; les blocs du projet sont préfixés mb-
 ├── sections/    # sections ; mb-hero
 ├── snippets/    # fragments réutilisables ; préfixés mb-
-├── locales/     # traductions (fr, en) : textes du site et libellés de l'éditeur
+├── locales/     # traductions fr et en uniquement : textes du site et libellés de l'éditeur
 ├── src/scss/    # sources SCSS, compilées dans assets/mael-builds.css
 └── docs/        # documentation technique
 ```
@@ -195,7 +195,9 @@ src/scss/
 
 - **Nommage** : tout ce qui est propre au projet est préfixé `mb-` et nommé d'après son rôle.
 - **Traductions** : aucun texte en dur. Textes du site dans `locales/*.json`, libellés
-  de l'éditeur dans `locales/*.schema.json`, sous la clé `mael.*`.
+  de l'éditeur dans `locales/*.schema.json`, sous la clé `mael.*`. Le thème est livré
+  en **français** et en **anglais** (langue par défaut) : les 53 autres langues
+  d'Horizon ont été retirées, la boutique n'en utilisant aucune.
 - **Documentation** : chaque snippet commence par un `{% doc %}` (paramètres et exemple).
 - **Qualité** : Theme Check sans erreur ni avertissement sur le code du projet.
 - **Commits** : [Conventional Commits](https://www.conventionalcommits.org/fr/)
