@@ -2,11 +2,11 @@
 @use '../abstracts/variables' as *;
 
 .mb-badge-difficulte {
-  border: 1px solid $bordure-claire;
-  font-size: $texte-petit;
-  font-weight: 500;
   padding: 4px $espace-2;
-  border-radius: 999px;
+  border: 1px solid $bordure-claire;
+  border-radius: $rayon-pastille;
+  font-size: $texte-petit;
+  font-weight: $texte-graisse-moyenne;
 }
 
 // Sur l'image d'une carte produit (blocks/_product-card-gallery.liquid) :

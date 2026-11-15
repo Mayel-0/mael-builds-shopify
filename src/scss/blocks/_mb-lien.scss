@@ -1,34 +1,19 @@
+// blocks/mb-lien.liquid
 @use '../abstracts/variables' as *;
 
-
 .mb-lien {
-  // Toute la largeur, même dans une section/un groupe aligné à gauche
-  // (align-items: flex-start rétrécit les enfants à la taille de leur contenu)
+  // Largeur réglable (100 % par défaut, même dans un groupe aligné à gauche)
   width: var(--largeur-lien, 100%);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--bg-claire);
-  padding-top: var(--padding-side-x, 18px);
-  padding-bottom: var(--padding-side-x, 18px);
-  padding-right: var(--padding-side, 20px);
-  padding-left: var(--padding-side, 20px);
-  border-radius: 18px;
-  gap: 0px;
+  padding-block: var(--lien-padding-y, #{$espace-3});
+  padding-inline: var(--lien-padding-x, #{$espace-4});
+  border-radius: $rayon-moyen;
+  background-color: $bg-claire;
   // Le soulignement se règle sur le texte seul (réglage « Souligner »),
   // pas sur toute la carte : on enlève celui que le navigateur met sur <a>.
   text-decoration: none;
-
-  &__lien {
-    font-weight: $texte-graisse-forte;
-    font-size: $texte-normal;
-    text-decoration: var(--decoration-lien, none);
-  }
-
-  &__label {
-    font-size: $texte-petit;
-    color: var(--accent);
-  }
 
   &__textes {
     // Prend toute la place à gauche de la flèche : sinon la boîte fait
@@ -36,25 +21,54 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    // La valeur de secours va DANS les parenthèses de var()
     text-align: var(--font-align, left);
   }
 
+  &__label {
+    font-size: $texte-petit;
+    color: $accent-fonce; // texte : l'accent foncé, lisible sur fond clair
+  }
+
+  &__lien {
+    font-size: $texte-normal;
+    font-weight: $texte-graisse-forte;
+    text-decoration: var(--decoration-lien, none);
+  }
+
   &__fleche {
-    width: 20px;
-    height: 20px;
-    transition: transform 0.2s;
+    width: $espace-4;
+    height: $espace-4;
+    transition: transform $transition-rapide;
   }
 
   &:hover &__fleche {
     transform: translateX(4px);
   }
 
-  // Modificateurs choisis dans l'éditeur (réglage « Style »).
-  // Plusieurs propriétés changent ensemble → une classe plutôt qu'une variable CSS.
+  // Réglage « Petit lien » : une pastille à droite, aux couleurs INVERSES de la carte
+  &__petit-lien {
+    flex-shrink: 0;
+    padding: $espace-1 $espace-3;
+    border-radius: $rayon-pastille;
+    font-size: $texte-petit;
+    font-weight: $texte-graisse-forte;
+    text-decoration: var(--decoration-petit-lien, none);
+  }
+
+  // Réglage « Position du label »
+  &--label-dessous &__textes {
+    flex-direction: column-reverse;
+  }
+
+  // ---------- Réglage « Couleurs » : plusieurs propriétés → une classe ----------
   &--clair {
-    background-color: var(--bg-claire);
+    background-color: $bg-claire;
     color: var(--color-foreground);
+  }
+
+  &--clair &__petit-lien {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
   }
 
   &--sombre {
@@ -66,39 +80,18 @@
     color: var(--color-background);
   }
 
-  // Réglage « Position du label »
-  &--label-dessous &__textes {
-    flex-direction: column-reverse;
-  }
-  // Réglage « Petit lien » : un bouton-pastille à droite.
-  // Ses couleurs sont l'INVERSE de celles de la carte, pour ressortir dessus.
-  &__petit-lien {
-    flex-shrink: 0;
-    padding: $espace-1 $espace-3;
-    border-radius: 999px;
-    font-size: $texte-petit;
-    font-weight: $texte-graisse-forte;
-    text-decoration: var(--decoration-petit-lien, none); // réglage « Souligner le petit lien »
-  }
-
-  &--clair &__petit-lien {
-    background-color: var(--color-foreground);
-    color: var(--color-background);
-  }
-
   &--sombre &__petit-lien {
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
 
-  // Réglage « Couleur du texte » : seulement en transparent (sinon il casserait
-  // le contraste des styles clair / sombre). Vide → couleur du texte du thème.
+  // Seul style où les couleurs du texte sont réglables (sinon le contraste
+  // des styles clair / sombre pourrait casser). Vide → couleur du thème.
   &--transparent {
     background-color: transparent;
     color: var(--couleur-texte-lien, var(--color-foreground));
   }
 
-  // Même logique pour le petit lien. Vide → même couleur que le texte du lien.
   &--transparent &__petit-lien {
     color: var(--couleur-petit-lien, var(--couleur-texte-lien, var(--color-foreground)));
   }

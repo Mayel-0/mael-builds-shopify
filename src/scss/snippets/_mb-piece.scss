@@ -18,7 +18,7 @@
   }
 
   &__meta {
-    color: var(--texte-secondaire);
+    color: $texte-secondaire;
 
     // « 1 pièce · 8,3 h · couche 0,2 mm » : le « · » est ajouté devant chaque info sauf la 1re
     > span + span::before {
@@ -34,10 +34,10 @@
     align-items: center;
     gap: 6px;
     padding: 2px $espace-2;
-    border-radius: 999px;
+    border-radius: $rayon-pastille;
     font-size: $texte-petit;
     white-space: nowrap;
-    border: 1px solid var(--bordure-claire);
+    border: 1px solid $bordure-claire;
 
     // Pastille de la couleur du matériau (métaobjet Matériau → champ couleur).
     // La bordure la garde visible même si la couleur est blanche ou très claire.
@@ -49,7 +49,7 @@
       height: 10px;
       border-radius: 50%;
       background-color: var(--couleur-materiau, transparent);
-      border: 1px solid var(--bordure-claire);
+      border: 1px solid $bordure-claire;
     }
   }
 }

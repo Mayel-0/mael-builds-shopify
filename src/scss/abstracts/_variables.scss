@@ -1,12 +1,16 @@
-// Variables Sass : elles ne génèrent aucun CSS à elles seules.
+// Variables Sass (design tokens) : elles ne génèrent aucun CSS à elles seules.
 // Dans un autre fichier : @use '../abstracts/variables' as *;
+//
+// Règle du projet : dans le SCSS, on utilise TOUJOURS ces variables, jamais une
+// valeur en dur. Seules les valeurs dont le Liquid a besoin sont exposées en
+// variables CSS (voir base/_racine.scss).
 
-// Breakpoints (les mêmes que ceux d'Horizon, voir assets/base.css)
+// ---------- Breakpoints (les mêmes que ceux d'Horizon, voir assets/base.css) ----------
 $bp-tablette: 750px;
 $bp-bureau: 990px;
 $bp-large: 1400px;
 
-// Espacements
+// ---------- Espacements ----------
 $espace-1: 8px;
 $espace-2: 12px;
 $espace-3: 16px;
@@ -15,28 +19,36 @@ $espace-5: 32px;
 $espace-6: 56px;
 $espace-section: 88px;
 
-// Rayons
-$rayon-bouton: 12px;
-$rayon-photo: 18px;
-$rayon-carte: 24px; // entre 22 et 26 px
+// ---------- Rayons ----------
+$rayon-petit: 12px; // boutons, étapes, vignettes
+$rayon-moyen: 18px; // encarts, photos
+$rayon-grand: 24px; // grandes cartes (hero)
+$rayon-pastille: 999px; // badges et pilules
 
-// Typographie (les polices sont déclarées dans snippets/mb-polices.liquid)
+// ---------- Typographie (polices déclarées dans snippets/mb-polices.liquid) ----------
 $titre-graisse: 600;
 $titre-interlettrage: -0.03em;
+$texte-graisse-legere: 300;
 $texte-graisse: 400;
+$texte-graisse-moyenne: 500;
 $texte-graisse-forte: 600;
 
-// Tailles de texte (à ne pas confondre avec les espacements, même si les valeurs se ressemblent)
 $texte-petit: 12px;
 $texte-normal: 16px;
 $texte-grand: 24px;
+$titre-defaut: 40px;
 
-// Couleurs qu'Horizon ne propose pas dans ses schémas.
-// Les autres (fond, surface, bordure, texte, boutons, liens) se règlent
-// dans l'éditeur : Paramètres du thème → Couleurs.
-$accent: #09bcf5; // numéros, traits, puces : jamais en fond de bouton ni pour du texte
-$texte-secondaire-noir: #2B2F35; // texte secondaire, gris foncé
-$texte-secondaire: #5b616b;
-$bordure-claire: #d5d8dd;
-$bg-claire: #F4F5F7;
-$bg-blanc: #FFFFFF;
+// ---------- Couleurs : palette de la charte Mael Builds ----------
+// Fond, texte et boutons se règlent dans l'éditeur (Paramètres du thème → Couleurs).
+// Ici : les couleurs qu'Horizon ne propose pas dans ses schémas.
+$bg-blanc: #ffffff;
+$bg-claire: #f4f5f7; // surfaces (encarts, fonds de photo)
+$bordure-claire: #e6e8eb; // traits et bordures
+$texte-secondaire: #5b616b; // textes d'aide, légendes
+$texte-secondaire-noir: #2b2f35; // texte secondaire sur fond clair, plus contrasté
+$noir: #0a0b0d;
+$accent: #09bcf5; // traits, puces, numéros : jamais pour du texte (contraste trop faible)
+$accent-fonce: #0779a8; // l'accent pour les TEXTES et les liens (contraste suffisant)
+
+// ---------- Animations ----------
+$transition-rapide: 0.2s ease;

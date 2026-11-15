@@ -408,8 +408,8 @@
                     "souligner_petit_lien": false,
                     "couleur_petit_lien": "",
                     "arrow_boolean": false,
-                    "padding_side_y": 0,
-                    "padding_side_x": 10,
+                    "padding_horizontal": 0,
+                    "padding_vertical": 10,
                     "largeur_lien": 90
                   },
                   "blocks": {}
@@ -835,8 +835,8 @@
                 "souligner_petit_lien": false,
                 "couleur_petit_lien": "",
                 "arrow_boolean": false,
-                "padding_side_y": 20,
-                "padding_side_x": 35,
+                "padding_horizontal": 20,
+                "padding_vertical": 35,
                 "largeur_lien": 100
               },
               "blocks": {}

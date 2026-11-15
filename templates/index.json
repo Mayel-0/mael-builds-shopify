@@ -190,8 +190,8 @@
                     "souligner_petit_lien": false,
                     "couleur_petit_lien": "",
                     "arrow_boolean": false,
-                    "padding_side_y": 20,
-                    "padding_side_x": 18,
+                    "padding_horizontal": 20,
+                    "padding_vertical": 18,
                     "largeur_lien": 100
                   },
                   "blocks": {}
@@ -214,8 +214,8 @@
                     "souligner_petit_lien": false,
                     "couleur_petit_lien": "",
                     "arrow_boolean": false,
-                    "padding_side_y": 20,
-                    "padding_side_x": 18,
+                    "padding_horizontal": 20,
+                    "padding_vertical": 18,
                     "largeur_lien": 100
                   },
                   "blocks": {}
@@ -494,8 +494,8 @@
                 "souligner_petit_lien": true,
                 "couleur_petit_lien": "{{ settings.color_palette.color7 }}",
                 "arrow_boolean": false,
-                "padding_side_y": 0,
-                "padding_side_x": 18,
+                "padding_horizontal": 0,
+                "padding_vertical": 18,
                 "largeur_lien": 76
               },
               "blocks": {}
@@ -1185,8 +1185,8 @@
                 "souligner_petit_lien": true,
                 "couleur_petit_lien": "{{ settings.color_palette.color7 }}",
                 "arrow_boolean": false,
-                "padding_side_y": 0,
-                "padding_side_x": 18,
+                "padding_horizontal": 0,
+                "padding_vertical": 18,
                 "largeur_lien": 72
               },
               "blocks": {}
@@ -1787,8 +1787,8 @@
                     "souligner_petit_lien": true,
                     "couleur_petit_lien": "",
                     "arrow_boolean": false,
-                    "padding_side_y": 0,
-                    "padding_side_x": 0,
+                    "padding_horizontal": 0,
+                    "padding_vertical": 0,
                     "largeur_lien": 100
                   },
                   "blocks": {}

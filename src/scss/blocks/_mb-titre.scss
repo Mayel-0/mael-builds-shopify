@@ -7,18 +7,18 @@
   &__titre {
     font-family: var(--font-heading--family);
     font-weight: $titre-graisse;
-    font-size: 40px;
+    font-size: $titre-defaut;
     line-height: 1.08;
   }
 
   // base.css d'Horizon : « :first-child:is(h1, h2…) { margin-block-start: 0 } »
   // (1 pseudo-classe + 1 balise) bat une seule classe → on passe à 2 classes.
   & &__titre {
-    margin-block-start: var(--margin-top, 0px); // haut
-    margin-block-end: var(--margin-bottom, 0px); // bas
-    margin-inline-start: var(--margin-left, 0px); // gauche
-    margin-inline-end: var(--margin-right, 0px); // droite
-    font-size: var(--taille-titre, 40px);
+    margin-block-start: var(--margin-top, 0); // haut
+    margin-block-end: var(--margin-bottom, 0); // bas
+    margin-inline-start: var(--margin-left, 0); // gauche
+    margin-inline-end: var(--margin-right, 0); // droite
+    font-size: var(--taille-titre, #{$titre-defaut});
   }
 
   // Lien vers la fiche produit (cartes) : garde la couleur du titre
@@ -41,10 +41,10 @@
 
   &__label {
     margin: 0;
-    font-weight: 300;
+    font-weight: $texte-graisse-legere;
     // Mise en forme en CSS : le HTML garde le vrai texte (mieux pour les lecteurs d'écran)
-
   }
+
   & &__label {
     text-transform: var(--style-texte-label, uppercase);
   }
@@ -59,7 +59,7 @@
       content: ''; // obligatoire : sans content, le ::before n'est pas créé
       width: $espace-3;
       height: 1px;
-      background-color: var(--accent);
+      background-color: $accent;
     }
   }
 }

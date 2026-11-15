@@ -4,22 +4,27 @@
 @use 'sass:map';
 @use 'variables' as *;
 
-// Media query à partir d'une largeur minimale (mobile d'abord)
-// Exemple : @include a-partir-de(tablette) { ... }
 $breakpoints: (
   tablette: $bp-tablette,
   bureau: $bp-bureau,
   large: $bp-large,
 );
 
+// À partir d'une largeur (mobile d'abord) : @include a-partir-de(tablette) { ... }
 @mixin a-partir-de($nom) {
   @media screen and (min-width: map.get($breakpoints, $nom)) {
     @content;
   }
 }
 
-// Contour visible uniquement à la navigation clavier
-// Exemple : .bouton { @include focus-visible; }
+// En dessous d'une largeur (mobile seulement) : @include avant(tablette) { ... }
+@mixin avant($nom) {
+  @media screen and (max-width: map.get($breakpoints, $nom) - 1px) {
+    @content;
+  }
+}
+
+// Contour visible uniquement à la navigation clavier : .bouton { @include focus-visible; }
 @mixin focus-visible {
   &:focus-visible {
     outline: 2px solid currentColor;

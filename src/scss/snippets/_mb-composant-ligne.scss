@@ -1,3 +1,4 @@
+// snippets/mb-composant-ligne.liquid
 @use '../abstracts/variables' as *;
 
 .mb-composant-ligne {
@@ -10,19 +11,22 @@
     display: flex;
     align-items: center;
   }
+
   &__image {
     width: $espace-6;
     height: $espace-6;
-    border-radius: 10px;
-    background: var(--bg-claire);
-    margin-right: $espace-3;
+    margin-inline-end: $espace-3;
+    border-radius: $rayon-petit;
+    background: $bg-claire;
   }
+
   &__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: inherit;
   }
+
   &__texte {
     display: flex;
     align-items: baseline;
@@ -35,14 +39,15 @@
   }
 
   &__lien {
-    color: var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  & &__lien {
+  // 2 classes : passe devant le style des liens d'Horizon
+  & &__lien a {
     font-weight: $texte-graisse-forte;
+    color: $accent-fonce; // texte : l'accent foncé, lisible sur fond clair
     text-decoration-line: underline;
   }
 }

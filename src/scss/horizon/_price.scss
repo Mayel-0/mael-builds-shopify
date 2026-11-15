@@ -23,6 +23,6 @@
   &__prefixe,
   &__suffixe {
     // Secours : les blocs Prix déjà en place n'ont pas encore ce réglage enregistré
-    color: var(--color-texte-sp, var(--texte-secondaire));
+    color: var(--color-texte-sp, #{$texte-secondaire});
   }
 }

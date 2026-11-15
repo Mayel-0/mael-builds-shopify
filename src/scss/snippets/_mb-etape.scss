@@ -1,9 +1,17 @@
+// snippets/mb-etape.liquid
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+$vignette-largeur: 240px;
 
 .mb-etape {
-  background-color: var(--bg-blanc);
   padding: $espace-2 $espace-3;
-  border-radius: 12px;
+  border-radius: $rayon-petit;
+  background-color: $bg-blanc;
+
+  summary {
+    position: relative; // repère du « + » (en absolute)
+  }
 
   // La classe est sur le <li>, l'attribut open sur le <details> à l'intérieur :
   // l'espace après & veut dire « un [open] DANS .mb-etape »
@@ -11,52 +19,58 @@
     content: '−';
   }
 
-  summary {
-    position: relative; // repère du « + » (en absolute)
-  }
-
   &__titre {
     margin: 0;
-    font-size: 17px;
+    font-size: $texte-normal;
     font-weight: $titre-graisse;
+
+    // Numéro de l'étape (01, 02…)
     span {
-      margin-right: $espace-3;
-      color: var(--accent);
+      margin-inline-end: $espace-3;
+      color: $accent;
     }
+
     &::after {
       content: '+';
-      font-size: $texte-grand;
-      font-weight: 300;
-      line-height: 1;
-      color: var(--texte-secondaire);
       position: absolute;
-      right: 0;
       top: 50%;
+      right: 0;
       transform: translateY(-50%);
+      font-size: $texte-grand;
+      font-weight: $texte-graisse-legere;
+      line-height: 1;
+      color: $texte-secondaire;
     }
   }
+
   &__contenu {
     display: flex;
-    color: var(--texte-secondaire-noir);
+    flex-direction: column; // mobile : image au-dessus du texte
     gap: $espace-3;
     margin-top: $espace-3;
-    p {
-      width: 80%;
+    color: $texte-secondaire-noir;
+
+    @include a-partir-de(tablette) {
+      flex-direction: row;
     }
   }
+
   &__conteneur-image {
-    border-radius: 12px;
-    height: 220px;
-    width: 240px;
-    background-color: var(--bg-claire);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-shrink: 0;
+    width: 100%;
+    aspect-ratio: 12 / 11;
+    border-radius: $rayon-petit;
+    overflow: hidden;
+    background-color: $bg-claire;
+
+    @include a-partir-de(tablette) {
+      width: $vignette-largeur;
+    }
   }
+
   &__image {
-    height: 210px;
-    width: 230px;
-    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
-

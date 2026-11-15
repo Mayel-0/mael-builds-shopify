@@ -9,8 +9,8 @@
 
   &__label {
     font-size: $texte-petit;
-    font-weight: 300;
-    color: var(--texte-secondaire);
+    font-weight: $texte-graisse-legere;
+    color: $texte-secondaire;
   }
 
   & &__valeur {

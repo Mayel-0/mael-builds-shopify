@@ -1,29 +1,35 @@
+// blocks/mb-garantie.liquid
 @use '../abstracts/variables' as *;
 
 .mb-garantie {
   display: flex;
+  flex: 1 1 240px; // 3 côte à côte sur ordinateur, passent à la ligne sur mobile
   align-items: center;
   gap: $espace-3;
   padding: $espace-2 $espace-4;
-  border: 1px solid var(--bordure-claire);
-  border-radius: 18px;
-  width: 280px;
+  border: 1px solid $bordure-claire;
+  border-radius: $rayon-moyen;
+
   &__pastille {
-    width: 8px;
-    height: 8px;
-    border-radius: 6px;
-    background-color: var(--accent);
+    flex-shrink: 0;
+    width: $espace-1;
+    height: $espace-1;
+    border-radius: 50%;
+    background-color: $accent;
   }
+
   &__textes {
     display: flex;
-    align-items: start;
     flex-direction: column;
+    align-items: flex-start;
   }
+
   &__titre {
     font-weight: $texte-graisse-forte;
   }
+
   &__texte {
-    color: var(--texte-secondaire);
-    font-size: $espace-2;
+    font-size: $texte-petit;
+    color: $texte-secondaire;
   }
 }

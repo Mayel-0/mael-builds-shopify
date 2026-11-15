@@ -32,8 +32,8 @@
     class="mb-lien {{ block.settings.style }} {{ block.settings.position_label }}"
     style="
       --font-align: {{ block.settings.font_align }};
-      --padding-side: {{ block.settings.padding_side_y }}px;
-      --padding-side-x: {{ block.settings.padding_side_x }}px;
+      --lien-padding-x: {{ block.settings.padding_horizontal }}px;
+      --lien-padding-y: {{ block.settings.padding_vertical }}px;
       --largeur-lien: {{ block.settings.largeur_lien }}%;
       --decoration-lien: {% if block.settings.souligner %}underline{% else %}none{% endif %};
       {% if block.settings.couleur_texte != blank %}--couleur-texte-lien: {{ block.settings.couleur_texte }};{% endif %}
@@ -161,7 +161,7 @@
     },
     {
       "type": "range",
-      "id": "padding_side_y",
+      "id": "padding_horizontal",
       "label": "t:mael.commun.padding_horizontal",
       "max": 50,
       "min": 0,
@@ -170,7 +170,7 @@
     },
     {
       "type": "range",
-      "id": "padding_side_x",
+      "id": "padding_vertical",
       "label": "t:mael.commun.padding_vertical",
       "max": 60,
       "min": 0,

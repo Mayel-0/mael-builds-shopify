@@ -1,6 +1,9 @@
+// blocks/mb-garanties.liquid
 @use '../abstracts/variables' as *;
 
 .mb-garanties {
   display: flex;
-  gap: $espace-4;
+  flex-wrap: wrap; // sur mobile, les garanties passent à la ligne au lieu de déborder
+  gap: $espace-2;
+  width: 100%;
 }

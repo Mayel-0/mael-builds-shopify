@@ -17,8 +17,8 @@
     margin: 0; // <figure> a une marge par défaut dans les navigateurs
     aspect-ratio: 1; // cases carrées
     overflow: hidden;
-    border-radius: var(--rayon-galerie, #{$rayon-photo});
-    background-color: var(--bg-claire);
+    border-radius: var(--rayon-galerie, #{$rayon-moyen});
+    background-color: $bg-claire;
   }
 
   &__image {

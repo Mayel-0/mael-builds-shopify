@@ -7,11 +7,11 @@
 .product-information .media-gallery--carousel {
   // Largeur max de toute la galerie (grande image + miniatures, qui suivent)
   max-width: 560px;
-  padding: 0px $espace-2;
+  padding: 0 $espace-2;
 
   // Grande image : fond gris clair derrière les photos détourées
   .product-media-container {
-    background-color: var(--bg-claire);
+    background-color: $bg-claire;
   }
 
   // La rangée de miniatures : 4 colonnes égales sur toute la largeur.
@@ -29,8 +29,8 @@
   // Horizon : width: clamp(44px, 7vw, var(--thumbnail-width)) → 72px max
   .slideshow-controls__thumbnails .slideshow-control {
     width: 100%;
-    background-color: var(--bg-claire);
-    border: 1px solid var(--bordure-claire);
+    background-color: $bg-claire;
+    border: 1px solid $bordure-claire;
 
     // Miniature de l'image affichée : bordure noire au lieu du contour d'Horizon
     &[aria-selected='true'] {

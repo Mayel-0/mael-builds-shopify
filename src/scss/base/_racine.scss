@@ -1,20 +1,9 @@
-// Transforme les variables Sass en variables CSS, pour pouvoir les utiliser
-// aussi dans les {% stylesheet %} des blocs et des snippets : var(--accent)
+// Variables CSS lues par le Liquid (pas par le SCSS, qui utilise les variables Sass).
+// Exemple : options de couleur du bloc Prix (blocks/price.liquid) → var(--texte-secondaire).
 
 @use '../abstracts/variables' as *;
 
 :root {
-  --accent: #{$accent};
   --texte-secondaire: #{$texte-secondaire};
-
-  --rayon-bouton: #{$rayon-bouton};
-  --rayon-photo: #{$rayon-photo};
-  --rayon-carte: #{$rayon-carte};
-
-  --espace-section: #{$espace-section};
   --texte-secondaire-noir: #{$texte-secondaire-noir};
-  --bordure-claire: #{$bordure-claire};
-
-  --bg-claire: #{$bg-claire};
-  --bg-blanc: #{$bg-blanc};
 }

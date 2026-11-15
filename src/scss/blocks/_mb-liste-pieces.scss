@@ -11,11 +11,11 @@
     align-items: center;
     justify-content: space-between;
     gap: $espace-3;
-    border-bottom: 1px solid var(--bordure-claire);
+    border-bottom: 1px solid $bordure-claire;
   }
 
   &__resume-texte {
-    color: var(--texte-secondaire);
+    color: $texte-secondaire;
   }
 
   &__total {
@@ -24,7 +24,7 @@
 
   // Réglage « Trait entre chaque pièce »
   &--separateurs .mb-piece + .mb-piece {
-    border-top: 1px solid var(--bordure-claire);
+    border-top: 1px solid $bordure-claire;
   }
 
   // ---------- Disposition « Détaillée » (page projet) ----------
@@ -68,7 +68,7 @@
       flex-direction: row;
       flex-wrap: wrap;
       gap: 0;
-      color: var(--texte-secondaire);
+      color: $texte-secondaire;
     }
 
     .mb-piece__meta::before {

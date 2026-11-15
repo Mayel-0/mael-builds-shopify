@@ -1,21 +1,23 @@
+// blocks/mb-etapes.liquid
 @use '../abstracts/variables' as *;
 
 .mb-etapes {
-  // Toute la largeur, même dans une section/un groupe aligné à gauche
-  // (align-items: flex-start rétrécit les enfants à la taille de leur contenu).
-  // Marche avec "tag": null dans le schéma : plus de <div class="shopify-block"> autour.
-  width: 98%;
+  // Toute la largeur, même dans un groupe aligné à gauche
+  // (marche avec "tag": null : pas de <div class="shopify-block"> autour)
+  width: 100%;
+
   &__liste {
     display: flex;
     flex-direction: column;
     gap: $espace-4;
-    li {
-      border: var(--bordure-taille, 0px) solid var(--bordure-etape, transparent);
-      border-radius: var(--bordure-radius, 0px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    // Réglages « Bordure » du bloc (variables CSS écrites dans le Liquid)
+    > li {
+      border: var(--bordure-taille, 0) solid var(--bordure-etape, transparent);
+      border-radius: var(--bordure-radius, 0);
     }
   }
-}
-
-.mb-etapes ol {
-  list-style-type: none;
 }

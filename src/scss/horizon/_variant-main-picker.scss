@@ -44,7 +44,7 @@
   }
 
   &__legend-valeur {
-    font-weight: 300;
+    font-weight: $texte-graisse-legere;
   }
 
   &__contenu {
@@ -74,6 +74,6 @@
 
   &__detail {
     font-size: $texte-petit;
-    color: var(--texte-secondaire);
+    color: $texte-secondaire;
   }
 }

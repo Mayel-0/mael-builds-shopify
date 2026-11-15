@@ -5,5 +5,5 @@
 // Préfixe .facets__inputs-wrapper : la règle Horizon (.facets__inputs-wrapper .facets__inputs-list)
 // est chargée après ce fichier, il faut donc un sélecteur plus fort pour passer devant.
 .facets__inputs-wrapper .facets__inputs-list.filtre__liste {
-  gap: 22px;
+  gap: $espace-4;
 }

@@ -2,7 +2,7 @@
 @use '../abstracts/variables' as *;
 
 .mb-details {
-  border-bottom: 1px solid var(--bordure-claire);
+  border-bottom: 1px solid $bordure-claire;
 
   // Réglage « Afficher la bordure du bas » décoché dans le bloc
   &--sans-bordure {
@@ -24,14 +24,13 @@
     &::after {
       content: '+';
       font-size: $texte-grand;
-      font-weight: 300;
+      font-weight: $texte-graisse-legere;
       line-height: 1;
-      color: var(--texte-secondaire);
+      color: $texte-secondaire;
       position: absolute;
       right: 0;
       top: 50%;
       transform: translateY(-50%); // centré verticalement dans le summary
     }
   }
-
 }

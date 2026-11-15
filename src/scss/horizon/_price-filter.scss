@@ -4,6 +4,6 @@
 // Le titre est dans <summary class="facets__summary">, pas dans .price-facet__label
 // (qui est le label des champs min / max).
 .facets__summary .alter__graisse {
+  font-size: $texte-normal;
   font-weight: $texte-graisse-forte;
-  font-size: 16px;
 }

@@ -319,8 +319,8 @@
                 "souligner_petit_lien": false,
                 "couleur_petit_lien": "",
                 "arrow_boolean": true,
-                "padding_side_y": 20,
-                "padding_side_x": 18,
+                "padding_horizontal": 20,
+                "padding_vertical": 18,
                 "largeur_lien": 100
               },
               "blocks": {}
