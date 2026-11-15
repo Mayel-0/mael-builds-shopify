@@ -496,7 +496,7 @@
                 "arrow_boolean": false,
                 "padding_horizontal": 0,
                 "padding_vertical": 18,
-                "largeur_lien": 76
+                "largeur_lien": 95
               },
               "blocks": {}
             }
@@ -1187,7 +1187,7 @@
                 "arrow_boolean": false,
                 "padding_horizontal": 0,
                 "padding_vertical": 18,
-                "largeur_lien": 72
+                "largeur_lien": 95
               },
               "blocks": {}
             }
