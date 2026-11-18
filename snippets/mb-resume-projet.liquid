@@ -20,7 +20,10 @@
     assign total_quantite = total_quantite | plus: quantite
     assign temps_impression = piece.temps_impression.value | times: quantite
     assign total_temps_impression = total_temps_impression | plus: temps_impression
-    assign noms_materiaux = noms_materiaux | append: piece.materiau.value.nom.value | append: '|'
+    assign nom_materiau = piece.materiau.value.nom.value
+    if nom_materiau != blank
+      assign noms_materiaux = noms_materiaux | append: nom_materiau | append: '|'
+    endif
   endfor
 
   # Tous les matériaux du projet, sans doublon : « PETG, PLA »

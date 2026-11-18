@@ -1,5 +1,23 @@
 {
   "mael": {
+    "defauts": {
+      "informations": "Informations",
+      "fiche_technique": "Fiche technique",
+      "materiel": "Matériel nécessaire",
+      "description": "Description",
+      "garantie_telechargement": "Téléchargement immédiat",
+      "garantie_telechargement_texte": "Le fichier STL arrive dans ton compte",
+      "garantie_paiement": "Paiement sécurisé",
+      "garantie_paiement_texte": "Carte, Apple Pay, PayPal",
+      "garantie_projets": "Projets documentés",
+      "garantie_projets_texte": "Pièces, matériel et étapes détaillés",
+      "lien_label": "Making-of",
+      "lien_texte": "Voir comment il a été fabriqué",
+      "temps_total": "Temps d'impression total",
+      "niveau": "Niveau",
+      "titre": "Titre",
+      "niveau_info": "Suis la hiérarchie de la page : un H2 sous le titre principal, un H3 à l'intérieur d'une partie en H2."
+    },
     "accordeon": {
       "name": "Accordéon",
       "preset_vide": "Accordéon vide",
@@ -27,7 +45,13 @@
       "aide": "Les images viennent du champ « galerie » du projet. Le texte alternatif de chaque image sert de légende.",
       "mosaique": "Mosaïque (une grande image)",
       "grille": "Grille régulière",
-      "legendes": "Afficher les légendes"
+      "legendes": "Afficher les légendes",
+      "format": "Format des images",
+      "format_info": "En mosaïque, la grande image suit la hauteur des autres.",
+      "format_carre": "Carré (1:1)",
+      "format_portrait": "Portrait (4:5)",
+      "format_paysage": "Paysage (4:3)",
+      "format_panoramique": "Panoramique (16:9)"
     },
     "garantie": {
       "name": "Garantie"

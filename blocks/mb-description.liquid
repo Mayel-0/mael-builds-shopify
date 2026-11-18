@@ -22,7 +22,8 @@
         titre: block.settings.titre_summary,
         contenu: closest.product.description,
         ouvert: block.settings.ouvert,
-        bordure: block.settings.afficher_bordure
+        bordure: block.settings.afficher_bordure,
+        niveau: block.settings.niveau
       %}
     </div>
   {% endif %}
@@ -50,9 +51,21 @@
     }
   ],
   "settings": [
-    { "type": "text", "id": "titre_summary", "label": "t:mael.description.titre", "default": "Description" },
+    { "type": "text", "id": "titre_summary", "label": "t:mael.description.titre", "default": "t:mael.defauts.description" },
     { "type": "checkbox", "id": "ouvert", "label": "t:settings.open_by_default", "default": true },
-    { "type": "checkbox", "id": "afficher_bordure", "label": "t:mael.commun.bordure_bas", "default": true }
+    { "type": "checkbox", "id": "afficher_bordure", "label": "t:mael.commun.bordure_bas", "default": true },
+    {
+      "type": "select",
+      "id": "niveau",
+      "label": "t:mael.titre.niveau",
+      "info": "t:mael.defauts.niveau_info",
+      "default": "h2",
+      "options": [
+        { "label": "t:mael.titre.h2", "value": "h2" },
+        { "label": "t:mael.titre.h3", "value": "h3" },
+        { "label": "t:mael.titre.h4", "value": "h4" }
+      ]
+    }
   ]
 }
 {% endschema %}

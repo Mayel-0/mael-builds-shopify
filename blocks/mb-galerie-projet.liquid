@@ -17,18 +17,32 @@
 {%- if images != blank -%}
   <div
     class="mb-galerie-projet {{ block.settings.disposition }}"
-    style="--gap-galerie: {{ block.settings.espacement }}px; --rayon-galerie: {{ block.settings.arrondi }}px;"
+    style="
+      --format-galerie: {{ block.settings.format }};
+      --gap-galerie: {{ block.settings.espacement }}px;
+      --rayon-galerie: {{ block.settings.arrondi }}px;
+    "
     {{ block.shopify_attributes }}
   >
     {%- comment -%} images est une LISTE : une boucle pour passer chaque image à image_url {%- endcomment -%}
     {%- for image in images -%}
+      {%- liquid
+        # 1re image de la 1re section : visible sans défiler, on la charge tout de suite (LCP)
+        assign chargement = 'lazy'
+        assign priorite = 'auto'
+        if forloop.first and section and section.index == 1
+          assign chargement = 'eager'
+          assign priorite = 'high'
+        endif
+      -%}
       <figure class="mb-galerie-projet__element">
         {{
           image
           | image_url: width: 1200
           | image_tag:
             alt: image.alt,
-            loading: 'lazy',
+            loading: chargement,
+            fetchpriority: priorite,
             widths: '400, 800, 1200',
             sizes: '(min-width: 750px) 33vw, 100vw',
             class: 'mb-galerie-projet__image'
@@ -61,6 +75,19 @@
       "options": [
         { "label": "t:mael.galerie.mosaique", "value": "mb-galerie-projet--mosaique" },
         { "label": "t:mael.galerie.grille", "value": "mb-galerie-projet--grille" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "format",
+      "label": "t:mael.galerie.format",
+      "info": "t:mael.galerie.format_info",
+      "default": "1 / 1",
+      "options": [
+        { "label": "t:mael.galerie.format_carre", "value": "1 / 1" },
+        { "label": "t:mael.galerie.format_portrait", "value": "4 / 5" },
+        { "label": "t:mael.galerie.format_paysage", "value": "4 / 3" },
+        { "label": "t:mael.galerie.format_panoramique", "value": "16 / 9" }
       ]
     },
     {

@@ -15,7 +15,7 @@
   &__element {
     position: relative;
     margin: 0; // <figure> a une marge par défaut dans les navigateurs
-    aspect-ratio: 1; // cases carrées
+    aspect-ratio: var(--format-galerie, 1); // réglage « Format des images » (carré par défaut)
     overflow: hidden;
     border-radius: var(--rayon-galerie, #{$rayon-moyen});
     background-color: $bg-claire;
@@ -42,5 +42,8 @@
   &--mosaique &__element:first-child {
     grid-column: span 2;
     grid-row: span 2;
+    // Sa hauteur suit les 2 rangées qu'elle couvre (calées sur le format des autres
+    // images), au lieu de son propre format : la mosaïque reste alignée quel que soit le format.
+    aspect-ratio: auto;
   }
 }

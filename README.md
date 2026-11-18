@@ -12,10 +12,21 @@ réglages restent bornés pour que le design ne casse pas.
 **Stack** : Shopify (Online Store 2.0, theme blocks), Liquid, métaobjets, SCSS (BEM),
 Shopify CLI, Theme Check, Search & Discovery, Digital Products.
 
+## Voir le projet
+
+|                                    |                                                                                               |
+| ---------------------------------- | --------------------------------------------------------------------------------------------- |
+| 🛒 **Boutique en ligne**           | [mael-builds.myshopify.com](https://mael-builds.myshopify.com) · mot de passe : `maelbuilds2026`      |
+| 📄 **Modifications d'Horizon**     | [docs/modifications-horizon.md](docs/modifications-horizon.md)                                |
+
+> La boutique est une boutique de développement Shopify : elle est protégée par un
+> mot de passe tant qu'elle n'a pas de forfait payant. Les prix sont fictifs.
+
 ---
 
 ## Sommaire
 
+- [Voir le projet](#voir-le-projet)
 - [Le projet](#le-projet)
 - [Architecture](#architecture)
 - [Modèle de données](#modèle-de-données)
@@ -41,12 +52,12 @@ Shopify CLI, Theme Check, Search & Discovery, Digital Products.
 - Les pages sont composées dans l'**éditeur de thème** avec des blocs réutilisables.
 - Les **filtres** (format, niveau, prix) sont configurés dans Search & Discovery.
 
-| Page | Rôle |
-|---|---|
-| Accueil | Donne envie et oriente vers une catégorie (hero, garanties, catégories, produits phares, making-of à la une) |
-| Collection | Navigation par catégorie (collections automatiques) et filtres |
-| Fiche produit | Choix du format, ajout au panier, fiche technique, matériel, étapes |
-| Page projet | Le making-of, avec un lien pour acheter |
+| Page          | Rôle                                                                                                         |
+| ------------- | ------------------------------------------------------------------------------------------------------------ |
+| Accueil       | Donne envie et oriente vers une catégorie (hero, garanties, catégories, produits phares, making-of à la une) |
+| Collection    | Navigation par catégorie (collections automatiques) et filtres                                               |
+| Fiche produit | Choix du format, ajout au panier, fiche technique, matériel, étapes                                          |
+| Page projet   | Le making-of, avec un lien pour acheter                                                                      |
 
 ---
 
@@ -114,12 +125,14 @@ Produit ──(custom.projet)──▶ Projet
                               └── étapes ────────▶ Étape (titre, contenu, image)
 ```
 
-| Métachamp | Sur | Rôle |
-|---|---|---|
-| `custom.projet` | Produit | Le projet (métaobjet) lié au produit |
-| `custom.difficulte` | Produit | Niveau affiché en badge sur les cartes |
-| `custom.livraison` | Variante | Message de livraison sous le sélecteur de format |
+| Métachamp              | Sur      | Rôle                                                                    |
+| ---------------------- | -------- | ----------------------------------------------------------------------- |
+| `custom.projet`        | Produit  | Le projet (métaobjet) lié au produit                                    |
+| `custom.livraison`     | Variante | Message de livraison sous le sélecteur de format                        |
 | `custom.detail_format` | Variante | Détail de chaque format (« Téléchargement immédiat · usage personnel ») |
+
+La difficulté n'existe qu'à un seul endroit, sur le projet : les badges des cartes la lisent
+à travers le produit (`closest.product.metafields.custom.projet.value.difficulte`).
 
 Chaque projet a aussi sa propre page, générée par Shopify à partir du métaobjet
 (`templates/metaobject/projet.json`).
@@ -130,39 +143,39 @@ Chaque projet a aussi sa propre page, générée par Shopify à partir du métao
 
 ### Blocs
 
-| Bloc | Rôle |
-|---|---|
-| `mb-titre` | Titre générique : texte, lien, label, type de produit, badge, niveau H1 à H4 |
-| `mb-lien` | Lien en carte, avec label et petit lien ; mène au projet ou au produit par défaut |
-| `mb-groupe-produit` | Groupe qui transmet un produit à ses blocs enfants |
-| `mb-description` | Description d'un produit, ou résumé chiffré d'un projet |
-| `mb-accordeon` | Accordéon qui accueille d'autres blocs (fiche technique, matériel) |
-| `mb-liste-pieces` | Pièces imprimées et temps d'impression total |
-| `mb-liste-composants` | Composants électroniques, avec lien d'achat |
-| `mb-etapes` | Étapes de montage repliables, numérotées |
-| `mb-galerie-projet` | Galerie du projet, en mosaïque ou en grille |
-| `mb-garanties` / `mb-garantie` | Bandeau de réassurance |
-| `mb-nombre-produits` | Nombre de produits d'une collection (« 8 articles ») |
+| Bloc                           | Rôle                                                                              |
+| ------------------------------ | --------------------------------------------------------------------------------- |
+| `mb-titre`                     | Titre générique : texte, lien, label, type de produit, badge, niveau H1 à H4      |
+| `mb-lien`                      | Lien en carte, avec label et petit lien ; mène au projet ou au produit par défaut |
+| `mb-groupe-produit`            | Groupe qui transmet un produit à ses blocs enfants                                |
+| `mb-description`               | Description d'un produit, ou résumé chiffré d'un projet                           |
+| `mb-accordeon`                 | Accordéon qui accueille d'autres blocs (fiche technique, matériel)                |
+| `mb-liste-pieces`              | Pièces imprimées et temps d'impression total                                      |
+| `mb-liste-composants`          | Composants électroniques, avec lien d'achat                                       |
+| `mb-etapes`                    | Étapes de montage repliables, numérotées                                          |
+| `mb-galerie-projet`            | Galerie du projet, en mosaïque ou en grille                                       |
+| `mb-garanties` / `mb-garantie` | Bandeau de réassurance                                                            |
+| `mb-nombre-produits`           | Nombre de produits d'une collection (« 8 articles »)                              |
 
 ### Section
 
-| Section | Rôle |
-|---|---|
+| Section   | Rôle                                                                             |
+| --------- | -------------------------------------------------------------------------------- |
 | `mb-hero` | Hero en deux zones fixes (contenu, visuel), alimenté par un produit ou un projet |
 
 ### Snippets
 
-| Snippet | Rôle |
-|---|---|
-| `mb-details` | Accordéon `<details>` générique |
-| `mb-resume-projet` | Résumé chiffré d'un projet (temps, matériaux, pièces, composants, niveau) |
-| `mb-piece` | Une pièce imprimée et son badge de matériau |
-| `mb-composant-ligne` | Une ligne de composant |
-| `mb-etape` | Une étape de montage |
-| `mb-duree` | Durée en heures décimales, formatée « 8,3 h » ou « 8h18 » |
-| `mb-badge-difficulte` | Badge de niveau |
-| `mb-label-livraison` | Message de livraison d'une variante |
-| `mb-polices` | Déclaration des polices de la charte |
+| Snippet               | Rôle                                                                      |
+| --------------------- | ------------------------------------------------------------------------- |
+| `mb-details`          | Accordéon `<details>` générique                                           |
+| `mb-resume-projet`    | Résumé chiffré d'un projet (temps, matériaux, pièces, composants, niveau) |
+| `mb-piece`            | Une pièce imprimée et son badge de matériau                               |
+| `mb-composant-ligne`  | Une ligne de composant                                                    |
+| `mb-etape`            | Une étape de montage                                                      |
+| `mb-duree`            | Durée en heures décimales, formatée « 8,3 h » ou « 8h18 »                 |
+| `mb-badge-difficulte` | Badge de niveau                                                           |
+| `mb-label-livraison`  | Message de livraison d'une variante                                       |
+| `mb-polices`          | Déclaration des polices de la charte                                      |
 
 ---
 

@@ -496,7 +496,7 @@
                 "arrow_boolean": false,
                 "padding_horizontal": 0,
                 "padding_vertical": 18,
-                "largeur_lien": 95
+                "largeur_lien": 80
               },
               "blocks": {}
             }
@@ -540,8 +540,8 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
+            "padding-block-start": 12,
+            "padding-block-end": 58,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -1187,7 +1187,7 @@
                 "arrow_boolean": false,
                 "padding_horizontal": 0,
                 "padding_vertical": 18,
-                "largeur_lien": 95
+                "largeur_lien": 72
               },
               "blocks": {}
             }
@@ -1231,7 +1231,7 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "",
-            "padding-block-start": 0,
+            "padding-block-start": 12,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
@@ -1262,7 +1262,7 @@
                 "product_card_gallery_Qi9YLe": {
                   "type": "_product-card-gallery",
                   "settings": {
-                    "badge": "{{ closest.product.metafields.custom.difficulte.value }}",
+                    "badge": "{{ closest.product.metafields.custom.projet.value.difficulte.value }}",
                     "prefixe_badge": "Niveau",
                     "image_ratio": "square",
                     "border": "none",
@@ -1356,7 +1356,7 @@
                 "product_card_gallery_gNVcVD": {
                   "type": "_product-card-gallery",
                   "settings": {
-                    "badge": "{{ closest.product.metafields.custom.difficulte.value }}",
+                    "badge": "{{ closest.product.metafields.custom.projet.value.difficulte.value }}",
                     "prefixe_badge": "Niveau",
                     "image_ratio": "square",
                     "border": "none",
@@ -1450,7 +1450,7 @@
                 "product_card_gallery_PxhFTR": {
                   "type": "_product-card-gallery",
                   "settings": {
-                    "badge": "{{ closest.product.metafields.custom.difficulte.value }}",
+                    "badge": "{{ closest.product.metafields.custom.projet.value.difficulte.value }}",
                     "prefixe_badge": "Niveau",
                     "image_ratio": "square",
                     "border": "none",
@@ -1544,7 +1544,7 @@
                 "product_card_gallery_ddU3XK": {
                   "type": "_product-card-gallery",
                   "settings": {
-                    "badge": "{{ closest.product.metafields.custom.difficulte.value }}",
+                    "badge": "{{ closest.product.metafields.custom.projet.value.difficulte.value }}",
                     "prefixe_badge": "Niveau",
                     "image_ratio": "square",
                     "border": "none",

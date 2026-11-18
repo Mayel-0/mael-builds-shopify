@@ -17,7 +17,8 @@
     position: relative; // repère du « + » (en absolute) : sans ça il se place par rapport à un ancêtre au hasard
     min-height: 60px;
     height: 60px;
-    h2 {
+    .mb-details__intitule {
+      margin: 0;
       font-weight: $titre-graisse;
       font-size: $texte-normal;
     }

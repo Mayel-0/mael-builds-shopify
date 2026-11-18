@@ -9,6 +9,24 @@
  */
 {
   "mael": {
+    "defauts": {
+      "informations": "Information",
+      "fiche_technique": "Technical sheet",
+      "materiel": "Required hardware",
+      "description": "Description",
+      "garantie_telechargement": "Instant download",
+      "garantie_telechargement_texte": "The STL file lands in your account",
+      "garantie_paiement": "Secure payment",
+      "garantie_paiement_texte": "Card, Apple Pay, PayPal",
+      "garantie_projets": "Documented projects",
+      "garantie_projets_texte": "Parts, hardware and steps in detail",
+      "lien_label": "Making-of",
+      "lien_texte": "See how it was made",
+      "temps_total": "Total print time",
+      "niveau": "Level",
+      "titre": "Title",
+      "niveau_info": "Follow the page hierarchy: an H2 under the main title, an H3 inside an H2 part."
+    },
     "accordeon": {
       "name": "Accordion",
       "preset_vide": "Empty accordion",
@@ -36,7 +54,13 @@
       "aide": "Images come from the project's “gallery” field. Each image's alt text is used as its caption.",
       "mosaique": "Mosaic (one large image)",
       "grille": "Even grid",
-      "legendes": "Show captions"
+      "legendes": "Show captions",
+      "format": "Image format",
+      "format_info": "In mosaic, the large image follows the height of the others.",
+      "format_carre": "Square (1:1)",
+      "format_portrait": "Portrait (4:5)",
+      "format_paysage": "Landscape (4:3)",
+      "format_panoramique": "Panoramic (16:9)"
     },
     "garantie": {
       "name": "Guarantee"

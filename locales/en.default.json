@@ -385,7 +385,8 @@
     },
     "duree": {
       "decimal": "{{ heures }} h",
-      "heures_minutes": "{{ heures }}h{{ minutes }}"
+      "heures_minutes": "{{ heures }}h{{ minutes }}",
+      "separateur": "."
     },
     "composants": {
       "acheter": "Buy"

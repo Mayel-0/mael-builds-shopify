@@ -114,7 +114,7 @@
                   "settings": {
                     "titre": "{{ closest.product.title }}",
                     "lien": "",
-                    "label": "{{ closest.product.metafields.custom.difficulte.value }}",
+                    "label": "{{ closest.product.metafields.custom.projet.value.difficulte.value }}",
                     "afficher_type": true,
                     "trait_label": false,
                     "style_label": "uppercase",
@@ -352,21 +352,88 @@
     "section_HktG8E": {
       "type": "section",
       "blocks": {
-        "mb_etape_produit_ETytP9": {
-          "type": "mb-etapes",
-          "name": "Etape produit",
+        "group_cChL3w": {
+          "type": "group",
+          "name": "t:names.group",
           "settings": {
-            "ouvert": true,
-            "bordure_boolean": true,
-            "couleur_bordure": "{{ settings.color_palette.color1 }}",
-            "bordure_epaisseur": 0,
-            "bordure_radius": 18
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 38,
+            "padding-inline-end": 38
           },
-          "blocks": {}
+          "blocks": {
+            "mb_titre_JzzqRm": {
+              "type": "mb-titre",
+              "name": "t:mael.titre.name",
+              "settings": {
+                "titre": "Étapes de montage",
+                "lien": "",
+                "label": "",
+                "afficher_type": false,
+                "trait_label": false,
+                "style_label": "uppercase",
+                "badge": "",
+                "prefixe_badge": "Niveau",
+                "niveau": "h2",
+                "taille": "32px",
+                "margin_top": 22,
+                "margin_bottom": 34,
+                "margin_left": 0,
+                "margin_right": 0
+              },
+              "blocks": {}
+            },
+            "mb_etapes_E6mLdw": {
+              "type": "mb-etapes",
+              "name": "Etape produit",
+              "settings": {
+                "ouvert": true,
+                "bordure_boolean": true,
+                "couleur_bordure": "{{ settings.color_palette.color1 }}",
+                "bordure_epaisseur": 0,
+                "bordure_radius": 18
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "mb_titre_JzzqRm",
+            "mb_etapes_E6mLdw"
+          ]
         }
       },
       "block_order": [
-        "mb_etape_produit_ETytP9"
+        "group_cChL3w"
       ],
       "name": "t:names.custom_section",
       "settings": {
@@ -470,7 +537,7 @@
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
               "settings": {
-                "badge": "{{ closest.product.metafields.custom.difficulte.value }}",
+                "badge": "{{ closest.product.metafields.custom.projet.value.difficulte.value }}",
                 "prefixe_badge": "Niveau",
                 "image_ratio": "adapt",
                 "border": "solid",
