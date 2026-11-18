@@ -8,7 +8,8 @@
     titre: block.settings.titre,
     contenu: contenu,
     ouvert: block.settings.ouvert,
-    bordure: block.settings.afficher_bordure
+    bordure: block.settings.afficher_bordure,
+    niveau: block.settings.niveau
   %}
 </div>
 
@@ -18,9 +19,21 @@
   "tag": null,
   "blocks": [{ "type": "mb-liste-pieces" }, { "type": "mb-liste-composants" }, { "type": "@theme" }],
   "settings": [
-    { "type": "text", "id": "titre", "label": "t:settings.title", "default": "Informations" },
+    { "type": "text", "id": "titre", "label": "t:settings.title", "default": "t:mael.defauts.informations" },
     { "type": "checkbox", "id": "ouvert", "label": "t:settings.open_by_default", "default": false },
-    { "type": "checkbox", "id": "afficher_bordure", "label": "t:mael.commun.bordure_bas", "default": true }
+    { "type": "checkbox", "id": "afficher_bordure", "label": "t:mael.commun.bordure_bas", "default": true },
+    {
+      "type": "select",
+      "id": "niveau",
+      "label": "t:mael.titre.niveau",
+      "info": "t:mael.defauts.niveau_info",
+      "default": "h2",
+      "options": [
+        { "label": "t:mael.titre.h2", "value": "h2" },
+        { "label": "t:mael.titre.h3", "value": "h3" },
+        { "label": "t:mael.titre.h4", "value": "h4" }
+      ]
+    }
   ],
   "presets": [
     {
@@ -28,12 +41,12 @@
     },
     {
       "name": "t:mael.accordeon.preset_fiche",
-      "settings": { "titre": "Fiche technique" },
+      "settings": { "titre": "t:mael.defauts.fiche_technique" },
       "blocks": [{ "type": "mb-liste-pieces" }]
     },
     {
       "name": "t:mael.accordeon.preset_materiel",
-      "settings": { "titre": "Matériel nécessaire" },
+      "settings": { "titre": "t:mael.defauts.materiel" },
       "blocks": [{ "type": "mb-liste-composants" }]
     }
   ]

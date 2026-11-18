@@ -30,6 +30,7 @@
         {%- comment -%} Site externe : nouvel onglet, sans donner accès à notre page (noopener) {%- endcomment -%}
         <a href="{{ composant.lien.value }}" target="_blank" rel="noopener noreferrer">
           {{- 'mael.composants.acheter' | t -}}
+          <span class="visually-hidden"> {{ composant.nom.value }} ({{ 'accessibility.new_window' | t }})</span>
         </a>
       </div>
     {%- endif -%}

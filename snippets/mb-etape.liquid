@@ -4,6 +4,7 @@
 
   @param {metaobject} etape - Le métaobjet Étape (titre, contenu, image)
   @param {boolean} [ouvert] - Ouvre la première étape par défaut
+  @param {string} [niveau] - Balise du titre de l'étape : h3 (par défaut) ou h4
 
   @example
   {% render 'mb-etape' for etapes as etape, ouvert: true %}
@@ -12,6 +13,7 @@
 {%- # theme-check-disable UndefinedObject -%}
 {%- # forloop existe bien ici : il est fourni par « render … for » (Theme Check ne le sait pas) -%}
 {% assign current_index = forloop.index %}
+{%- assign balise_titre = niveau | default: 'h3' -%}
 
 {% if etape != blank %}
   <li class="mb-etape">
@@ -21,8 +23,9 @@
       {% endif %}
     >
       <summary>
-        <h4 class="mb-etape__titre">
-          <span>
+        <{{ balise_titre }} class="mb-etape__titre">
+          {%- comment -%} Numéro décoratif : le <ol> numérote déjà pour les lecteurs d'écran {%- endcomment -%}
+          <span aria-hidden="true">
             {%- if current_index < 10 -%}
               0{{ current_index }}
             {%- else -%}
@@ -30,7 +33,7 @@
             {%- endif -%}
           </span>
           {{ etape.titre.value }}
-        </h4>
+        </{{ balise_titre }}>
       </summary>
 
       <div class="mb-etape__contenu">

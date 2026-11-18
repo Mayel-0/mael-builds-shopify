@@ -9,6 +9,24 @@
  */
 {
   "mael": {
+    "defauts": {
+      "informations": "Information",
+      "fiche_technique": "Technical sheet",
+      "materiel": "Required hardware",
+      "description": "Description",
+      "garantie_telechargement": "Instant download",
+      "garantie_telechargement_texte": "The STL file lands in your account",
+      "garantie_paiement": "Secure payment",
+      "garantie_paiement_texte": "Card, Apple Pay, PayPal",
+      "garantie_projets": "Documented projects",
+      "garantie_projets_texte": "Parts, hardware and steps in detail",
+      "lien_label": "Making-of",
+      "lien_texte": "See how it was made",
+      "temps_total": "Total print time",
+      "niveau": "Level",
+      "titre": "Title",
+      "niveau_info": "Follow the page hierarchy: an H2 under the main title, an H3 inside an H2 part."
+    },
     "accordeon": {
       "name": "Accordion",
       "preset_vide": "Empty accordion",

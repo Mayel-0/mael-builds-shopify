@@ -23,7 +23,7 @@
     {% endif %}
   >
     <ol class="mb-etapes__liste">
-      {% render 'mb-etape' for etapes as etape, ouvert: block.settings.ouvert %}
+      {% render 'mb-etape' for etapes as etape, ouvert: block.settings.ouvert, niveau: block.settings.niveau %}
     </ol>
   </div>
 {% elsif request.design_mode %}
@@ -41,6 +41,18 @@
   ],
   "settings": [
     { "type": "checkbox", "id": "ouvert", "label": "t:mael.etapes.ouvert", "default": true },
+    {
+      "type": "select",
+      "id": "niveau",
+      "label": "t:mael.titre.niveau",
+      "info": "t:mael.defauts.niveau_info",
+      "default": "h3",
+      "options": [
+        { "label": "t:mael.titre.h2", "value": "h2" },
+        { "label": "t:mael.titre.h3", "value": "h3" },
+        { "label": "t:mael.titre.h4", "value": "h4" }
+      ]
+    },
     { "type": "checkbox", "id": "bordure_boolean", "label": "t:mael.etapes.bordure", "default": false },
     {
       "type": "color",

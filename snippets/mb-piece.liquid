@@ -18,7 +18,8 @@
   assign quantite = piece.quantite.value | default: 1
   assign heures_decimales = piece.temps_impression.value | times: quantite
   assign couche = piece.hauteur_couche.value
-  assign hauteur_couche = couche | append: '' | replace: '.', ','
+  assign separateur = 'mael.duree.separateur' | t
+  assign hauteur_couche = couche | append: '' | replace: '.', separateur
 -%}
 
 {%- if piece != blank -%}

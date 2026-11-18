@@ -26,13 +26,23 @@
   >
     {%- comment -%} images est une LISTE : une boucle pour passer chaque image à image_url {%- endcomment -%}
     {%- for image in images -%}
+      {%- liquid
+        # 1re image de la 1re section : visible sans défiler, on la charge tout de suite (LCP)
+        assign chargement = 'lazy'
+        assign priorite = 'auto'
+        if forloop.first and section and section.index == 1
+          assign chargement = 'eager'
+          assign priorite = 'high'
+        endif
+      -%}
       <figure class="mb-galerie-projet__element">
         {{
           image
           | image_url: width: 1200
           | image_tag:
             alt: image.alt,
-            loading: 'lazy',
+            loading: chargement,
+            fetchpriority: priorite,
             widths: '400, 800, 1200',
             sizes: '(min-width: 750px) 33vw, 100vw',
             class: 'mb-galerie-projet__image'

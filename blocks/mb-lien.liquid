@@ -49,7 +49,7 @@
       <span class="mb-lien__lien">{{ block.settings.texte_lien }}</span>
     </span>
     {%- if block.settings.petit_lien == false and block.settings.arrow_boolean == true -%}
-      <span class="mb-lien__fleche svg-wrapper">
+      <span class="mb-lien__fleche svg-wrapper" aria-hidden="true">
         {{- 'icon-arrow.svg' | inline_asset_content -}}
       </span>
     {%- endif -%}
@@ -83,7 +83,7 @@
       "type": "text",
       "id": "texte_label",
       "label": "t:mael.lien.texte_label",
-      "default": "Making-of",
+      "default": "t:mael.defauts.lien_label",
       "visible_if": "{{ block.settings.label_boolean }}"
     },
     {
@@ -97,7 +97,7 @@
       ],
       "visible_if": "{{ block.settings.label_boolean }}"
     },
-    { "type": "text", "id": "texte_lien", "label": "t:mael.lien.texte_lien", "default": "Voir comment il a été fabriqué" },
+    { "type": "text", "id": "texte_lien", "label": "t:mael.lien.texte_lien", "default": "t:mael.defauts.lien_texte" },
     { "type": "checkbox", "id": "souligner", "label": "t:mael.lien.souligner", "default": false },
     { "type": "header", "content": "t:content.appearance" },
     {

@@ -3,10 +3,13 @@
   @param {string} contenu - Le contenu HTML à afficher une fois déplié
   @param {boolean} [ouvert] - Ouvert par défaut
   @param {boolean} [bordure] - Bordure du bas (affichée si absent ou true, masquée si false)
+  @param {string} [niveau] - Balise du titre : h2 (par défaut), h3 ou h4, selon la place dans la page
 
   @example
   {% render 'mb-details', titre: 'Description', contenu: produit.metafields.custom.description, ouvert: true, bordure: false %}
 {% enddoc %}
+
+{%- assign balise_titre = niveau | default: 'h2' -%}
 
 {%- if titre != blank and contenu != blank -%}
   <details
@@ -16,7 +19,7 @@
     {% endif %}
   >
     <summary class="mb-details__titre">
-      <h2>{{ titre }}</h2>
+      <{{ balise_titre }} class="mb-details__intitule">{{ titre }}</{{ balise_titre }}>
     </summary>
     <div class="mb-details__contenu">
       {{ contenu }}

@@ -3,7 +3,7 @@
   @param {string} [prefixe] - Texte affiché avant le niveau, par exemple « Niveau »
 
   @example
-  {% render 'mb-badge-difficulte', difficulte: produit.metafields.custom.difficulte.value, prefixe: 'Niveau' %}
+  {% render 'mb-badge-difficulte', difficulte: produit.metafields.custom.projet.value.difficulte.value, prefixe: 'Niveau' %}
 {% enddoc %}
 
 {%- if difficulte != blank -%}

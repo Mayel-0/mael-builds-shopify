@@ -2,7 +2,7 @@
   Affiche une durée saisie en heures décimales (8.3 = 8 h 18 min).
 
   @param {number} heures_decimales - La durée en heures décimales
-  @param {string} [format] - 'decimal' → « 8,3 h » (par défaut) | 'heures' → « 8h18 »
+  @param {string} [format] - 'decimal' → « 8,3 h » en français, « 8.3 h » en anglais (par défaut) | 'heures' → « 8h18 »
 
   @example
   {% render 'mb-duree', heures_decimales: 8.3, format: 'heures' %}
@@ -16,8 +16,9 @@
     assign minutes = minutes_total | modulo: 60 | prepend: '0' | slice: -2, 2
     echo 'mael.duree.heures_minutes' | t: heures: heures, minutes: minutes
   else
-    # 1 décimale, virgule française, et « 66,0 » devient « 66 »
-    assign texte = heures_decimales | round: 1 | append: '' | replace: '.0', '' | replace: '.', ','
+    # 1 décimale, séparateur de la langue (« , » en français), et « 66.0 » devient « 66 »
+    assign separateur = 'mael.duree.separateur' | t
+    assign texte = heures_decimales | round: 1 | append: '' | replace: '.0', '' | replace: '.', separateur
     echo 'mael.duree.decimal' | t: heures: texte
   endif
 -%}
