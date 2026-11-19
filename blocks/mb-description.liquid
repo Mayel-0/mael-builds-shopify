@@ -33,7 +33,7 @@
       {% render 'mb-resume-projet',
         pieces: projet.pieces.value,
         composants: projet.composant.value,
-        difficulte: projet.difficulte.value
+        difficulte: projet.produit.value.metafields.custom.difficulte.value
       %}
     </div>
   {%- endif -%}

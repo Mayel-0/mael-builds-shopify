@@ -9,41 +9,6 @@
  */
 {
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
-      "disabled": true,
-      "name": "t:names.hero",
-      "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "background_color": "",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
-      }
-    },
     "mb_hero_RdMRG9": {
       "type": "mb-hero",
       "blocks": {
@@ -1262,7 +1227,7 @@
                 "product_card_gallery_Qi9YLe": {
                   "type": "_product-card-gallery",
                   "settings": {
-                    "badge": "{{ closest.product.metafields.custom.projet.value.difficulte.value }}",
+                    "badge": "{{ closest.product.metafields.custom.difficulte.value }}",
                     "prefixe_badge": "Niveau",
                     "image_ratio": "square",
                     "border": "none",
@@ -1356,7 +1321,7 @@
                 "product_card_gallery_gNVcVD": {
                   "type": "_product-card-gallery",
                   "settings": {
-                    "badge": "{{ closest.product.metafields.custom.projet.value.difficulte.value }}",
+                    "badge": "{{ closest.product.metafields.custom.difficulte.value }}",
                     "prefixe_badge": "Niveau",
                     "image_ratio": "square",
                     "border": "none",
@@ -1450,7 +1415,7 @@
                 "product_card_gallery_PxhFTR": {
                   "type": "_product-card-gallery",
                   "settings": {
-                    "badge": "{{ closest.product.metafields.custom.projet.value.difficulte.value }}",
+                    "badge": "{{ closest.product.metafields.custom.difficulte.value }}",
                     "prefixe_badge": "Niveau",
                     "image_ratio": "square",
                     "border": "none",
@@ -1544,7 +1509,7 @@
                 "product_card_gallery_ddU3XK": {
                   "type": "_product-card-gallery",
                   "settings": {
-                    "badge": "{{ closest.product.metafields.custom.projet.value.difficulte.value }}",
+                    "badge": "{{ closest.product.metafields.custom.difficulte.value }}",
                     "prefixe_badge": "Niveau",
                     "image_ratio": "square",
                     "border": "none",
@@ -1951,7 +1916,6 @@
     }
   },
   "order": [
-    "hero_jVaWmY",
     "mb_hero_RdMRG9",
     "section_8kMXxp",
     "section_QXFdMa",

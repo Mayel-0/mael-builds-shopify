@@ -222,7 +222,7 @@
             "card-gallery": {
               "type": "_product-card-gallery",
               "settings": {
-                "badge": "{{ closest.product.metafields.custom.projet.value.difficulte.value }}",
+                "badge": "{{ closest.product.metafields.custom.difficulte.value }}",
                 "prefixe_badge": "Niveau",
                 "image_ratio": "adapt",
                 "border": "none",

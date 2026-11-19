@@ -115,7 +115,7 @@ la reporter lors d'une mise à jour d'Horizon.
 
 ```
 Produit ──(custom.projet)──▶ Projet
-                              ├── titre, accroche, galerie, difficulté
+                              ├── titre, accroche, galerie
                               ├── produit ──▶ Produit
                               ├── pièces ────────▶ Pièce ──▶ Matériau
                               │                    (nom, quantité,      (nom, couleur,
@@ -128,11 +128,13 @@ Produit ──(custom.projet)──▶ Projet
 | Métachamp              | Sur      | Rôle                                                                    |
 | ---------------------- | -------- | ----------------------------------------------------------------------- |
 | `custom.projet`        | Produit  | Le projet (métaobjet) lié au produit                                    |
+| `custom.difficulte`    | Produit  | Niveau : badge des cartes, résumé du projet et filtre « Niveau »        |
 | `custom.livraison`     | Variante | Message de livraison sous le sélecteur de format                        |
 | `custom.detail_format` | Variante | Détail de chaque format (« Téléchargement immédiat · usage personnel ») |
 
-La difficulté n'existe qu'à un seul endroit, sur le projet : les badges des cartes la lisent
-à travers le produit (`closest.product.metafields.custom.projet.value.difficulte`).
+La difficulté n'existe qu'à un seul endroit, sur le produit (`custom.difficulte`, choix limité à
+Débutant, Intermédiaire, Avancé) : c'est ce métachamp qu'utilise le filtre « Niveau » de
+Search & Discovery. La page projet la lit à travers son produit (`projet.produit.value`).
 
 Chaque projet a aussi sa propre page, générée par Shopify à partir du métaobjet
 (`templates/metaobject/projet.json`).
